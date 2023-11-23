@@ -1,0 +1,16 @@
+2D Complete Character Controller
+
+Overview:
+Welcome to the '2D Complete Character Controller,' a powerful Unity asset that simplifies the integration of advanced character mechanics and combat systems into your projects. This asset is crafted to streamline the development of dynamic and responsive characters, whether under player or AI control.
+
+Key Features:
+Comprehensive Mechanics: Elevate your 2D game with a full suite of character mechanics, providing seamless movement, advanced combat actions, and responsive controls.
+Versatile Controller: Leverage the abstract Humanoid Controller class, to effortlessly build customized player and AI controllers, adapting to the specific requirements of your project.
+Simplified Combat System: Easily create dynamic attacks and combat sequences with the Combat System, requiring minimal coding for developers to implement engaging 2D combat experiences.
+
+Example Scene:
+Explore the capabilities of the '2D Complete Character Controller' with a dedicated example scene. This scene showcases practical examples, demonstrating what can be achieved using the asset.
+
+Fully Functional Character: Take control of a character equipped with advanced mechanics. Experience fluid movement, execute dynamic attacks, and enjoy responsive controls.
+Stationary AI Character: Encounter a stationary AI character serving as a dummy. Use it to observe the combat system, experiment with provided attacks, and evaluate the system's versatility.
+Immerse yourself in the example scene to gain a deeper understanding of how the '2D Complete Character Controller' can elevate your 2D game development experience.

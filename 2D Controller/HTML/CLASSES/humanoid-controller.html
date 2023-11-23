@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controller Documentation</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/CSS/navigation-bar.css">
+    <link rel="stylesheet" href="/CSS/general.css">
+    <link rel="stylesheet" href="/CSS/table.css">
+</head>
+<body>
+    <script src="/JAVASCRIPT/header.js"></script>
+    <div class="main-page-division">
+        <h1 style="text-align: center;">Humanoid Controller</h1>
+        <h2>Description</h2>
+        The HumanoidController class serves as an abstract base class for implementing a
+        2D character controller. It provides a comprehensive set of functionalities for handling:
+        <ul>
+            <li>Ground Movement</li>
+            <li>Aerial Movement</li>
+            <li>Jumping</li>
+            <li>Dashing</li>
+            <li>Ledge Grabbing</li>
+            <li>Ledge Climbing</li>
+            <li>Floor Sliding</li>
+            <li>Wall Sliding</li>
+        </ul>
+        You can inherit from this class to create custom humanoid characters with dynamic and
+        responsive behaviors.
+        <br>
+        <div class="table-division">
+            <span class="table-title">Events</span>
+            <table>
+                <tr>
+                    <td class="label"><div class="events">OnCharacterJump</div></td>
+                    <td class="description">Triggered when the character performs a jump</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="events">OnCharacterDash</div></td>
+                    <td class="description">Triggered when the character performs a dash.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="events">OnLedgeGrabEnter</div></td>
+                    <td class="description">Triggered when the character enters the ledge grab state.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="events">OnLedgeClimbEnter</div></td>
+                    <td class="description">Triggered when the character starts climbing a ledge.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="events">OnLedgeExit</div></td>
+                    <td class="description">Triggered when the character exits the ledge grab or ledge climb state.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-division">
+            <span class="table-title">Properties</span>
+            <table>
+                <tr>
+                    <td class="label"><div class="properties">VerticalVelocity</div></td>
+                    <td class="description">Current velocity of the character on the Y-axis.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="properties">HorizontalVelocity</div></td>
+                    <td class="description">Current velocity of the character on the X-axis.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="properties">LedgeDetected</div></td>
+                    <td class="description">Indicates whether a ledge is currently detected.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="properties">IsGrounded</div></td>
+                    <td class="description">Indicates whether the character is grounded.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="properties">IsRunning</div></td>
+                    <td class="description">Indicates whether the character is currently in a running state.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="properties">IsFloorSliding</div></td>
+                    <td class="description">Indicates whether the character is currently sliding on the floor.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="properties">IsWallSliding</div></td>
+                    <td class="description">Indicates whether the character is currently sliding on a wall.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="properties">IsDashing</div></td>
+                    <td class="description">Indicates whether the character is currently dashing.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="properties">IsLedgeGrabbing</div></td>
+                    <td class="description">Indicates whether the character is currently in the ledge grab state.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="properties">IsLedgeClimbing</div></td>
+                    <td class="description">Indicates whether the character is currently climbing a ledge.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-division">
+            <span class="table-title">Public Methods</span>
+            <table>
+                <tr>
+                    <td class="label"><div class="public-methods">ChangeHorizontalVelocity</div></td>
+                    <td>Changes the character's horizontal velocity based on the provided direction.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="public-methods">TryJumping</div></td>
+                    <td class="description">Attempts to make the character jump based on certain conditions.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="public-methods">LedgeGrab</div></td>
+                    <td class="description">Handles the logic for ledge grabbing, allowing customization of conditions.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="public-methods">LedgeClimb</div></td>
+                    <td class="description">Handles the logic for ledge climbing, allowing customization of conditions.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="public-methods">TryDashing</div></td>
+                    <td class="description">Attempts to make the character perform a dash based on certain conditions.</td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="public-methods">TryFloorSlide</div></td>
+                    <td class="description">Handles the logic for initiating and exiting floor sliding.</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>Version Information</h2>
+        Unity Compatibility: Compatible with Unity engine. <br>
+        Class Version: 1.0
+    </div>    
+</body>
+</html>

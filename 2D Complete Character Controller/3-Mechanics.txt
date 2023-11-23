@@ -1,0 +1,2 @@
+Mechanics:
+Each character mechanic is designed to seamlessly integrate with other custom scripts, offering public methods that can be called to execute their functionality. While efforts have been made to minimize dependencies on other custom scripts, these mechanics inherently offer modularity. Feel free to modify them, if needed, to align with your project's requirements. However, exercise caution, as the HumanoidController class heavily relies on all these mechanics.

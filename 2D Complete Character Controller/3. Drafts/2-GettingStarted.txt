@@ -1,0 +1,14 @@
+Getting Started:
+Navigate to the 'Getting Started' folder within your project files. Inside, you will find the following essential components:
+
+Animator Controller:
+
+This animator controller is pre-configured to seamlessly integrate with the created systems. Simply reference your desired animations to each state. It's recommended not to remove any existing states, as it may result in unexpected behavior. If you don't intend to use a specific state or lack an animation for it, leave the animation reference empty.
+CharacterTemplate Prefab:
+
+The prefab includes all necessary components for your character to utilize the provided mechanics. Default values are set for characters that are 1.6 Unity units tall and 0.5 Unity units wide. Avoid deleting or moving any child objects within the prefab to prevent potential bugs.
+CustomControllerTemplate Script:
+
+This script establishes key functionality for creating your custom controller. For your convenience, refrain from modifying the script directly. Instead, copy and paste the template code into a new script, allowing you to customize it according to your preferences.
+
+These resources are designed to expedite the setup process and provide a solid foundation for incorporating the '2D Complete Character Controller' into your project.

@@ -1,0 +1,64 @@
+AttackSO ScriptableObject
+
+The AttackSO (ScriptableObject) script is designed to represent an attack configuration within a 2D combat system in Unity. This script allows developers to define various properties and behaviors for different attacks in their game. Below is a breakdown of the key features and properties:
+
+General Attack Properties:
+
+Attack Name: A string identifier for the attack.
+Attack Icon: The sprite representing the attack.
+Attack Animation: The animation clip associated with the attack.
+Hitbox Shape: Defines the shape of the attack's hitbox.
+Damageable Layers: Specifies which layers can be damaged by the attack.
+Damage Amount: The amount of damage dealt by the attack.
+Scalable Damage: Determines if the attack's damage scales with the level of charge applied.
+Minimum Damage: Minimum damage that the attack can deal.
+Cooldown: The cooldown period for the attack.
+Wall and Movement Properties:
+
+Disable Cast On Wall: Whether the attack can be cast if a wall is detected in front of the character.
+Wall Cast Distance: Distance from the wall at which the attack can be cast.
+Reset Velocity: Controls whether the character's velocity is set to zero when the attack is initiated.
+Can Change Directions: Indicates if the character can change directions while attacking.
+Adjust Position On Attack End: Offset for adjusting the character's position after the attack ends.
+Can Move While Attacking: Specifies if the character can move while casting the attack.
+Attack Move Speed Percentage: Adjusts the character's movement speed as a percentage of their maximum speed.
+Attack Force and Push Properties:
+
+Attack Pushes Character: Whether a force should be applied to the character when the attack is initiated.
+Attack Push Mode: Determines when the character should be pushed (OnInitiate or OnRelease).
+Force Mode: Specifies the force mode for Rigidbody.AddForce().
+Force: The amount of force to be applied.
+Delay Force Time: Delay in seconds before applying force.
+Use Gravity: Whether the character should be affected by gravity during the attack.
+Drag Coefficient: Changes the drag coefficient of the Rigidbody2D during the attack.
+Chargeable Attack Properties:
+
+Is Chargeable Attack: Specifies if the attack can be charged.
+Initiate Charge Animation: Animation played when the charge is initiated.
+Charge Animation: Animation played during the charging phase.
+Charge Time: Time required for the attack to be fully charged.
+Hold Charge Time: Maximum time the attack can be held before being forced to release or cancel.
+Charge Over Time: Action to take if the attack is held for longer than the designated hold charge time.
+Cooldown If Canceled: Cooldown applied if the attack is canceled.
+Can Move While Charging: Specifies if the character can move while charging the attack.
+Charge Move Speed Percentage: Adjusts the character's movement speed as a percentage of their maximum speed during charging.
+Can Move On Release Attack: Indicates if the character can move as soon as the attack is released.
+Projectile Properties:
+
+Throws Projectile: Specifies if the attack throws a projectile.
+Projectile Damage: Damage dealt by the projectile.
+Scalable Projectile Damage: Determines if the projectile damage scales with the level of charge applied.
+Minimum Projectile Damage: Minimum damage that the projectile can deal.
+Choose Random From List: Allows multiple prefabs to be assigned as projectiles, and a random one is chosen upon attacking.
+Projectile Prefab: The prefab of the projectile to be spawned.
+Projectile Prefabs: Array of projectile prefabs if choosing randomly.
+Throw At Percentage: Timing for launching the projectile during the attack animation.
+Delay Projectile Throw: Delay in seconds before the projectile is thrown.
+Additional Properties:
+
+Current Cooldown Time: Configured by the combat system to regulate the cooldown of the attack. It's recommended not to modify this value unless intending to reset the attack cooldown.
+Getters for Attack Properties: Various getters provide access to the attack's properties, facilitating external access without exposing serialized fields.
+Initialization:
+
+The OnEnable method initializes the CurrentCooldownTime to zero when the AttackSO is enabled.
+Note: It is crucial not to modify certain properties directly in the code, as doing so may lead to unintended bugs. These properties include CurrentCooldownTime and CanMoveWhileAttacking (which is recommended to be set based on whether the attack is chargeable).
