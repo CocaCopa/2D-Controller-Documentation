@@ -10,29 +10,43 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/CSS/navigation-bar.css">
-    <link rel="stylesheet" href="/CSS/general.css">
-    <link rel="stylesheet" href="/CSS/table.css">
+    <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
 </head>
 <body>
-    <script src="/JAVASCRIPT/header.js"></script>
+    <header class="nav-bar">
+        <div class="navbar-links">
+            <ul>
+                <li><a href="../../../../Documentation.html">Overview</a></li>
+                <li><a href="../../../getting-started.html">Getting Started</a></li>
+                <li><a href="../../../locomotion-controller.html">Locomotion Controller</a></li>
+                <li><a href="../../../combat-system.html">Combat System</a></li>
+                <li id="active-nav-link"><a href="../../classes.html">Classes</a></li>
+            </ul>
+        </div>
+    </header>
+
     <div class="main-page-division">
-        <h1 style="text-align: center;">Humanoid Controller</h1>
-        <h2>Description</h2>
-        The HumanoidController class serves as an abstract base class for implementing a
-        2D character controller. It provides a comprehensive set of functionalities for handling:
-        <ul>
-            <li>Ground Movement</li>
-            <li>Aerial Movement</li>
-            <li>Jumping</li>
-            <li>Dashing</li>
-            <li>Ledge Grabbing</li>
-            <li>Ledge Climbing</li>
-            <li>Floor Sliding</li>
-            <li>Wall Sliding</li>
-        </ul>
-        You can inherit from this class to create custom humanoid characters with dynamic and
-        responsive behaviors.
+        <h1>Humanoid Controller</h1>
+        <p>
+            <h2>Description</h2>
+            The HumanoidController class serves as an abstract base class for implementing a
+            2D character controller. It provides a comprehensive set of functionalities for handling:
+            <ul>
+                <li>Ground Movement</li>
+                <li>Aerial Movement</li>
+                <li>Jumping</li>
+                <li>Dashing</li>
+                <li>Ledge Grabbing</li>
+                <li>Ledge Climbing</li>
+                <li>Floor Sliding</li>
+                <li>Wall Sliding</li>
+            </ul>
+            You can inherit from this class to create custom humanoid characters with dynamic and
+            responsive behaviors.
+        </p>
         <br>
         <div class="table-division">
             <span class="table-title">Events</span>
@@ -61,7 +75,21 @@
         </div>
 
         <div class="table-division">
-            <span class="table-title">Properties</span>
+            <span class="table-title">Protected Properties</span>
+            <table>
+                <tr>
+                    <td class="label"><div class="properties">combatSystem</div></td>
+                    <td class="description"></td>
+                </tr>
+                <tr>
+                    <td class="label"><div class="properties">activeCollider</div></td>
+                    <td class="description"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-division">
+            <span class="table-title">Public Properties</span>
             <table>
                 <tr>
                     <td class="label"><div class="properties">VerticalVelocity</div></td>
@@ -110,11 +138,11 @@
             <span class="table-title">Public Methods</span>
             <table>
                 <tr>
-                    <td class="label"><div class="public-methods">ChangeHorizontalVelocity</div></td>
+                    <td class="label"><a class="public-methods" href="change-horizontal-velocity.html" target="_blank">ChangeHorizontalVelocity</a></td>
                     <td>Changes the character's horizontal velocity based on the provided direction.</td>
                 </tr>
                 <tr>
-                    <td class="label"><div class="public-methods">TryJumping</div></td>
+                    <td class="label"><a class="public-methods" href="try-jumping.html" target="_blank">TryJumping</a></td>
                     <td class="description">Attempts to make the character jump based on certain conditions.</td>
                 </tr>
                 <tr>
@@ -136,9 +164,11 @@
             </table>
         </div>
 
-        <h2>Version Information</h2>
-        Unity Compatibility: Compatible with Unity engine. <br>
-        Class Version: 1.0
+        <p>
+            <h2>Version Information</h2>
+            Unity Compatibility: Compatible with Unity engine.
+            <span>Class Version: <b>1.0</b></span>
+        </p>
     </div>    
 </body>
 </html>

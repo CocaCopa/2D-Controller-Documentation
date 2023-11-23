@@ -40,7 +40,7 @@
 }
 
 .navbar-links li a:hover {
-    color: #393646;
+    color: #222C37;
     background-color: #fafafa;
 }
 
@@ -52,5 +52,5 @@
 }
 
 #active-nav-link a:hover {
-    text-decoration-color: #0049A1;
+    text-decoration-color: #222C37;
 }

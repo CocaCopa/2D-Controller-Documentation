@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TryJumping</title>
+
+    <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../CSS/general.css"">
+    <link rel="stylesheet" href="../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <header class="nav-bar">
+        <div class="navbar-links">
+            <ul>
+                <li><a href="../../../../Documentation.html">Overview</a></li>
+                <li><a href="../../../HTML/getting-started.html">Getting Started</a></li>
+                <li><a href="../../../HTML/locomotion-controller.html">Locomotion Controller</a></li>
+                <li><a href="../../../HTML/combat-system.html">Combat System</a></li>
+                <li id="active-nav-link"><a href="../../classes.html">Classes</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="main-page-division">
+        <p>
+            <h1>TryJumping</h1>
+            <h2>Declaration</h2>
+            <p>protected void <b>TryJumping</b>();</p> <br>
+            <h2>Description</h2>
+            Attempts to make the character jump based on certain conditions. <br> <br>
+            
+            When the designated jump key is pressed, a series of checks are conducted to ensure the feasibility of initiating a jump. These checks encompass factors such as 
+            the remaining air jumps, if applicable, and considerations regarding the setup of Ledge Grab and/or Ledge Climb mechanics. For instance, if the jump key is pressed
+            while your character is ledge grabbing, the system evaluates the percentage of the played ledge grab animation before permitting the jump. Said evaluation is
+            based on the 'ledgeJumpThreshold' value, set in the inspector <br> <br>
+
+            Furthermore, the execution of a jump varies based on the character's state, distinguishing between scenarios such as wall sliding, standard jumps from the 
+            ground, or air jumps. <br> <br>
+            
+            Importantly, initiating a jump will also override any ongoing attack animation within the combat system, ensuring a seamless transition between actions.
+        </p>
+    </div>
+</body>

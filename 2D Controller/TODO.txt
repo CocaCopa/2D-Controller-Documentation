@@ -1,0 +1,4 @@
+-changeHorizontalVelocity.html
+1. Add link to Vector2 that will direct to the official Unity documentation for Vecto2
+2. Add link to 'IsRunning' that will direct to the 'IsRunning' property
+3. Add link to 'combatSystem' that will direct to the 'CombatSystem' page

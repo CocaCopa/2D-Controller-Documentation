@@ -7,6 +7,21 @@ body {
     background: #fafafa;
 }
 
+b {
+    display: inline;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    margin-bottom: 6px;
+    font-weight: bolder;
+    font-size: larger;
+}
+
 .debug-division {
     border: 2px solid red;
 }
@@ -21,18 +36,21 @@ body {
     box-shadow: 1px 2px 6px rgb(240, 240, 240);
     border-radius: 10px;
     padding: 25px;
+    line-height: 1.4;
 }
 
-/* h1 {
-    color: #F4EEE0;
-    margin: 10 0;
+.redirect-link {
+    width: fit-content;
+    color: #b83c82;
 }
 
-h2 {
-    color: #D7A9A8;
-    margin: 20px 0px 0px 0px;
-    font-weight: light;
+.redirect-link:hover {
+    color: #ee4ba8;
+    text-decoration: none;
 }
+
+/*
+
 
 h3 {
     margin: 0;

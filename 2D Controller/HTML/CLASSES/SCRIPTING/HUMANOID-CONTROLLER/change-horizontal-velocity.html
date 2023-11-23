@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChangeHorizontalVelocity</title>
+
+    <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
+    <link rel="stylesheet" href="../../../../CSS/general.css"">
+    <link rel="stylesheet" href="../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
+</head>
+<body>
+    <header class="nav-bar">
+        <div class="navbar-links">
+            <ul>
+                <li><a href="../../../../Documentation.html">Overview</a></li>
+                <li><a href="../../../HTML/getting-started.html">Getting Started</a></li>
+                <li><a href="../../../HTML/locomotion-controller.html">Locomotion Controller</a></li>
+                <li><a href="../../../HTML/combat-system.html">Combat System</a></li>
+                <li id="active-nav-link"><a href="../../classes.html">Classes</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="main-page-division">
+        <p>
+            <h1>ChangeHorizontalVelocity</h1>
+            <h2>Declaration</h2>
+            <p>protected void <b>ChangeHorizontalVelocity</b>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html" target="_blank">Vector2</a> <b>moveDirection</b>);</p>
+            <br>
+            <div class="table-division">
+                <span class="table-title">Parameters</span>
+                <table>
+                    <tr>
+                        <td class="label"><b>moveDirection</b></td>
+                        <td class="description">Desired horizontal direction to move towards</td>
+                    </tr>
+                </table>
+            </div>
+            <h2>Description</h2>
+            Changes the character's horizontal velocity based on the provided direction. <br>
+            <ul>
+                <li>This function manages the horizontal movement of the character, taking into account various factors such as the character's grounded or airborne state.</li> <br>
+                <li>It automatically limits the character's movement if another action, such as 'dash,' is being performed.</li> <br>
+                <li>Additionally, it sets the running state of the character by setting the value of the 'IsRunning' property accordingly</li> <br>
+                <li>If a combat system is in place, it considers attack configurations and may restrict the character's movement accordingly.</li> <br>
+            </ul>
+        </p>
+        <p>
+
+            This example implements the function to facilitate character movement. It's important to highlight that inheriting from the Humanoid controller is crucial for the proper functioning of this feature.
+        </p>
+        <div class="code-block">
+            using UnityEngine; <br> <br>
+            public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a> &lbrace; <br> <br>
+            <span style="margin-left: 25px">protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html" target="_blank">Update</a>() &lbrace;</span> <br>
+            <span style="margin-left: 50px;">base.Update();</span> <br> <br>
+            <span style="margin-left: 50px;"><a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html" target="_blank">Vector2</a> moveDirection = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxis.html" target="_blank">Input.GetAxis</a>("Horizontal");</span> <br>
+            <span style="margin-left: 50px;">ChangeHorizontalVelocity(moveDirection);</span> <br>
+            <span style="margin-left: 25px">&rbrace;</span>
+        </div>
+    </div>
+</body>
+</html>
