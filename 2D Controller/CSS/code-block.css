@@ -3,7 +3,8 @@
     padding: 25px;
     background-color: rgb(37, 37, 37);
     color: #d4d1d1;
-    line-height: 1.8;
+    line-height: 1.5;
     letter-spacing: 1px;
     overflow: auto;
+    border-radius: 8px;
 }

@@ -1,4 +1,15 @@
--changeHorizontalVelocity.html
-1. Add link to Vector2 that will direct to the official Unity documentation for Vecto2
-2. Add link to 'IsRunning' that will direct to the 'IsRunning' property
-3. Add link to 'combatSystem' that will direct to the 'CombatSystem' page
+humanoid-controller.html
+- Add link to 'combatSystem' property.
+- Add link to 'activeCollider' property.
+
+changeHorizontalVelocity.html
+- Add link to 'IsRunning' that will direct to the 'IsRunning' property.
+- Add link to 'combatSystem' that will direct to the 'CombatSystem' page.
+- Add link to 'ChaacterMovement' component.
+
+ledge-grab.html
+- Add link to 'CharacterEnvironmentalQuery' component.
+- Add link to 'CharacterLedgeGrab' component
+
+try-dashing.html
+- Add link to 'CharacterDash' component in the description text.

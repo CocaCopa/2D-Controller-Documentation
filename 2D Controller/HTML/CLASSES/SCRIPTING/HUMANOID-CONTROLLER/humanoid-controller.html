@@ -44,7 +44,7 @@
                 <li>Floor Sliding</li>
                 <li>Wall Sliding</li>
             </ul>
-            You can inherit from this class to create custom humanoid characters with dynamic and
+            You can inherit from this class to create custom humanoid characters, controlled by a player and/or an AI, with dynamic and
             responsive behaviors.
         </p>
         <br>
@@ -78,12 +78,16 @@
             <span class="table-title">Protected Properties</span>
             <table>
                 <tr>
-                    <td class="label"><div class="properties">combatSystem</div></td>
-                    <td class="description"></td>
+                    <td class="label"><a class="properties" href="#">characterRb</a></td>
+                    <td class="description">The '<a class="properties" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a>' component attached to the character</td>
                 </tr>
                 <tr>
-                    <td class="label"><div class="properties">activeCollider</div></td>
-                    <td class="description"></td>
+                    <td class="label"><a class="properties" href="#">combatSystem</a></td>
+                    <td class="description">Reference to the '<a class="redirect-link" href="#">CombatSystem</a>' component</td>
+                </tr>
+                <tr>
+                    <td class="label"><a class="properties" href="#">activeCollider</a></td>
+                    <td class="description">Reference to the active '<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider.html">collider</a>' of the character</td>
                 </tr>
             </table>
         </div>
@@ -138,27 +142,27 @@
             <span class="table-title">Public Methods</span>
             <table>
                 <tr>
-                    <td class="label"><a class="public-methods" href="change-horizontal-velocity.html" target="_blank">ChangeHorizontalVelocity</a></td>
+                    <td class="label"><a class="public-methods" href="change-horizontal-velocity.html">ChangeHorizontalVelocity</a></td>
                     <td>Changes the character's horizontal velocity based on the provided direction.</td>
                 </tr>
                 <tr>
-                    <td class="label"><a class="public-methods" href="try-jumping.html" target="_blank">TryJumping</a></td>
+                    <td class="label"><a class="public-methods" href="try-jumping.html">TryJumping</a></td>
                     <td class="description">Attempts to make the character jump based on certain conditions.</td>
                 </tr>
                 <tr>
-                    <td class="label"><div class="public-methods">LedgeGrab</div></td>
+                    <td class="label"><a class="public-methods" href="ledge-grab.html">LedgeGrab</a></td>
                     <td class="description">Handles the logic for ledge grabbing, allowing customization of conditions.</td>
                 </tr>
                 <tr>
-                    <td class="label"><div class="public-methods">LedgeClimb</div></td>
+                    <td class="label"><a class="public-methods" href="ledge-climb.html">LedgeClimb</a></td>
                     <td class="description">Handles the logic for ledge climbing, allowing customization of conditions.</td>
                 </tr>
                 <tr>
-                    <td class="label"><div class="public-methods">TryDashing</div></td>
+                    <td class="label"><a class="public-methods" href="try-dashing.html">TryDashing</a></td>
                     <td class="description">Attempts to make the character perform a dash based on certain conditions.</td>
                 </tr>
                 <tr>
-                    <td class="label"><div class="public-methods">TryFloorSlide</div></td>
+                    <td class="label"><a class="public-methods" href="try-floor-slide.html">TryFloorSlide</a></td>
                     <td class="description">Handles the logic for initiating and exiting floor sliding.</td>
                 </tr>
             </table>
