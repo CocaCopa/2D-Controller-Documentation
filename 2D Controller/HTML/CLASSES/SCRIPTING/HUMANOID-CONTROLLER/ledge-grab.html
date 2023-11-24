@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="../../../../Documentation.html">Overview</a></li>
                 <li><a href="../../../getting-started.html">Getting Started</a></li>
-                <li><a href="../../../locomotion-controller.html">Locomotion Controller</a></li>
+                <li><a href="../../../locomotion-controller.html">Locomotion System</a></li>
                 <li><a href="../../../combat-system.html">Combat System</a></li>
                 <li id="active-nav-link"><a href="../../classes.html">Classes</a></li>
             </ul>
@@ -28,52 +28,50 @@
         <p>
             <h1>LedgeGrab</h1>
             <h2>Declaration</h2>
-            <p>protected void <b>LedgeGrab</b>(bool <b>canLedgeGrab</b> = true);</p> <br>
-
-            <div class="table-division">
-                <span class="table-title">Parameters</span>
-                <table>
-                    <tr>
-                        <td class="label"><b>canLedgeGrab</b></td>
-                        <td class="description">True, your character will automatically perform a ledge grab as soon as a ledge is detected</td>
-                    </tr>
-                </table>
-            </div>
-            
-            <h2>Description</h2>
-            <p>
-                Handles the logic for ledge grabbing, allowing customization of conditions.
-                <br> <br>
-                In accordance with the Ledge Grab configuration in the '<a class="redirect-link" href="#">CharacterEnvironmentalQuery</a>' component, when a ledge is detected, your
-                character will be able to grab it. You have the option to initiate a grab either automatically, by calling '<b>LedgeGrab();</b>' without passing any parameters, or
-                by specifying a custom condition, such as a key press by the player. In the inspector of the controller, you can specify the maximum time that the character is able to
-                hold a ledge, by configuring the '<b>maxLedgeGrabTime</b>' value.  Further customization of the ledge grab mechanic can be achieved by fine-tuning the settings of the
-                '<a class="redirect-link" href="#">CharacterLedgeGrab</a>' component.
-                <br> <br>
-                Note that if your controller is configured to use '<a class="redirect-link" href="ledge-climb.html">LedgeClimb();</a>' with no parameters, allowing for
-                automatic ledge climbing, this function will take precedence and override '<b>LedgeGrab();</b>'.
-                <br> <br>
-                This example incorporates the ledge grab mechanic, specifying that the player must run toward a wall for it to be activated:
-            </p>
-
-            <div class="code-block">
-                using UnityEngine; <br> <br>
-            public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a> <br>
-            &lbrace; <br>
-            <span style="margin-left: 25px">protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()</span> <br>
-            <span style="margin-left: 25px;">&lbrace;</span> <br>
-            <span style="margin-left: 50px;">base.Update();</span> <br> <br>
-            <span style="margin-left: 50px;">float horizontalInput = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxis.html">Input.GetAxis</a>("Horizontal");</span> <br>
-            <span style="margin-left: 50px;">float moveDirection = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform-right.html">transform.right</a>.x;</span> <br>
-            <span style="margin-left: 50px;">bool canLedgeGrab = horizontalInput * moveDirection > 0;</span> <br> <br>
-            <span style="margin-left: 50px;">LedgeGrab(canLedgeGrab);</span> <br>
-            <span style="margin-left: 25px;">&rbrace;</span>
-            <span><br>&rbrace;</span>
-            </div>
+            <p>protected void <b>LedgeGrab</b>(bool <b>canLedgeGrab</b> = true);</p>
         </p>
         <br>
-        <p>
 
+        <div class="table-division">
+            <span class="table-title">Parameters</span>
+            <table>
+                <tr>
+                    <td class="label"><b>canLedgeGrab</b></td>
+                    <td class="description">True, your character will automatically perform a ledge grab as soon as a ledge is detected</td>
+                </tr>
+            </table>
+        </div>
+        
+        <h2>Description</h2>
+        <p>
+            Handles the logic for ledge grabbing, allowing customization of conditions.
+            <br> <br>
+            In accordance with the Ledge Grab configuration in the '<a class="redirect-link" href="#">CharacterEnvironmentalQuery</a>' component, when a ledge is detected, your
+            character will be able to grab it. You have the option to initiate a grab either automatically, by calling '<b>LedgeGrab();</b>' without passing any parameters, or
+            by specifying a custom condition, such as a key press by the player. In the inspector of the controller, you can specify the maximum time that the character is able to
+            hold a ledge, by configuring the '<b>maxLedgeGrabTime</b>' value.  Further customization of the ledge grab mechanic can be achieved by fine-tuning the settings of the
+            '<a class="redirect-link" href="#">CharacterLedgeGrab</a>' component.
+            <br> <br>
+            This example incorporates the ledge grab mechanic, specifying that the player must run toward a wall for it to be activated:
         </p>
+
+<pre class="code-block">
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a>
+{
+    protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        base.Update();
+
+        float horizontalInput = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxis.html">Input.GetAxis</a>("Horizontal");
+        float moveDirection = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform-right.html">transform.right</a>.x;
+        bool canLedgeGrab = horizontalInput * moveDirection > 0;
+
+        LedgeGrab(canLedgeGrab);
+    }
+}
+</pre>
+
     </div>
 </body>

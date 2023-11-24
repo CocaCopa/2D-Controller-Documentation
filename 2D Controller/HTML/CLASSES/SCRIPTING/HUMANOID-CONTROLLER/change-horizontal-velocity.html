@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="../../../../Documentation.html">Overview</a></li>
                 <li><a href="../../../getting-started.html">Getting Started</a></li>
-                <li><a href="../../../locomotion-controller.html">Locomotion Controller</a></li>
+                <li><a href="../../../locomotion-controller.html">Locomotion System</a></li>
                 <li><a href="../../../combat-system.html">Combat System</a></li>
                 <li id="active-nav-link"><a href="../../classes.html">Classes</a></li>
             </ul>
@@ -52,18 +52,20 @@
             This example implements the function to facilitate character movement. It's important to highlight that inheriting from the Humanoid controller is crucial for the proper
             functioning of this feature.
         </p>
-        <div class="code-block">
-            using UnityEngine; <br> <br>
-            public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a> <br>
-            &lbrace; <br>
-            <span style="margin-left: 25px">protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()</span> <br>
-            <span style="margin-left: 25px;">&lbrace;</span> <br>
-            <span style="margin-left: 50px;">base.Update();</span> <br> <br>
-            <span style="margin-left: 50px;"><a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> moveDirection = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxis.html">Input.GetAxis</a>("Horizontal");</span> <br>
-            <span style="margin-left: 50px;">ChangeHorizontalVelocity(moveDirection);</span> <br>
-            <span style="margin-left: 25px">&rbrace;</span>
-            <span><br>&rbrace;</span>
-        </div>
+
+<pre class="code-block">
+using UnityEngine; <br> <br>
+public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a> <br>
+{
+    protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        base.Update();
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> moveDirection = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxis.html">Input.GetAxis</a>("Horizontal");
+        ChangeHorizontalVelocity(moveDirection);
+    }
+}
+</pre>
+
     </div>
 </body>
 </html>

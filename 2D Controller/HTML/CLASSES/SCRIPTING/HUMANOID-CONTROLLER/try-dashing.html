@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="../../../../Documentation.html">Overview</a></li>
                 <li><a href="../../../getting-started.html">Getting Started</a></li>
-                <li><a href="../../../locomotion-controller.html">Locomotion Controller</a></li>
+                <li><a href="../../../locomotion-controller.html">Locomotion System</a></li>
                 <li><a href="../../../combat-system.html">Combat System</a></li>
                 <li id="active-nav-link"><a href="../../classes.html">Classes</a></li>
             </ul>
@@ -28,6 +28,7 @@
         <p>
             <h1>TryDashing</h1>
             <h2>Declaration</h2>
+        </p>
             <p>protected void <b>TryDashing();</b></p> <br>
             
             <h2>Description</h2>
@@ -42,24 +43,21 @@
                 Here is a basic example on how you can implement the dash mechanic into your custom controller:
             </p>
 
-            <div class="code-block">
-                using UnityEngine; <br> <br>
-                public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a> <br>
-                &lbrace; <br>
-                <span style="margin-left: 25px">protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()</span> <br>
-                <span style="margin-left: 25px;">&lbrace;</span> <br>
-                <span style="margin-left: 50px">base.Update();</span> <br> <br>
-                <span style="margin-left: 50px">if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.LeftShit</a>))</span> <br>
-                <span style="margin-left: 50px;">&lbrace;</span> <br>
-                <span style="margin-left: 75px;">TryDashing();</span> <br>
-                <span style="margin-left: 50px;">&rbrace;</span> <br>
-                <span style="margin-left: 25px">&rbrace;</span>
-                <span><br>&rbrace;</span>
-            </div>
-        </p>
-        <br>
-        <p>
+<pre class="code-block">
+using UnityEngine;
 
-        </p>
+public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a>
+{
+    protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        base.Update();
+
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.LeftShit</a>))
+        {
+            TryDashing();
+        }
+    }
+}
+</pre>
     </div>
 </body>

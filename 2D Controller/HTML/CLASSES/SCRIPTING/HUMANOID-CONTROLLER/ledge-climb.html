@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="../../../../Documentation.html">Overview</a></li>
                 <li><a href="../../../getting-started.html">Getting Started</a></li>
-                <li><a href="../../../locomotion-controller.html">Locomotion Controller</a></li>
+                <li><a href="../../../locomotion-controller.html">Locomotion System</a></li>
                 <li><a href="../../../combat-system.html">Combat System</a></li>
                 <li id="active-nav-link"><a href="../../classes.html">Classes</a></li>
             </ul>
@@ -40,14 +40,72 @@
                 </table>
             </div>
             
-            <h2>Description</h2>
-            <p>
-                Handles the logic for ledge climbing, allowing customization of conditions.
-            </p>
         </p>
+        <h2>Description</h2>
+        <p>
+            Handles the logic for ledge climbing, allowing customization of conditions.
+            <br> <br>
+            In alignment with the Ledge Grab configuration in the '<a class="redirect-link" href="#">CharacterEnvironmentalQuery</a>' component, the '<b>LedgeClimb();</b>'
+            method operates similarly to '<a class="redirect-link" href="ledge-grab.html">LedgeGrab();</a>'. When a ledge is detected, your character gains the ability to climb it.
+            You can trigger automatic ledge climbing by invoking '<b>LedgeClimb();</b>' without passing any parameters, or by defining a custom condition, such as a player's key
+            press. Much like the LedgeGrab method, you can fine-tune the behavior of the ledge climb mechanic by adjusting the settings of the
+            '<a class="redirect-link" href="#">CharacterLedgeGrab</a>' component.
+            <br> <br>
+            It's important to note that if your controller is set to utilize '<b>LedgeClimb();</b>' without parameters, enabling automatic ledge climbing, this function will take
+            precedence over '<a class="redirect-link" href="ledge-grab.html">LedgeGrab();</a>'. If you intend to use both functions in your code, ensure that, at least '<b>LedgeClimb();</b>'
+            is configured to be triggered conditionally to prevent any unwanted behaviour.
+            <br> <br>
+            This example incorporates the ledge climb mechanic, specifying that the player must run toward a wall for it to be activated:
+        </p>
+
+<pre class="code-block">
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a>
+{
+    protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        base.Update();
+
+        float horizontalInput = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxis.html">Input.GetAxis</a>("Horizontal");
+        float moveDirection = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform-right.html">transform.right</a>.x;
+        bool canLedgeClimb = horizontalInput * moveDirection > 0;
+
+        LedgeClimb(canLedgeClimb);
+    }
+}
+</pre>
         <br>
         <p>
-
+            Here is an example on how you could use both ledge grab and ledge climb mechanics within your custom script:
         </p>
+
+<pre class="code-block">
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a>
+{
+    private bool canLedgeClimb = false;
+
+    protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        base.Update();
+
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.Space</a>))
+        {
+            canLedgeClimb = true;
+        }
+
+        <a class="redirect-link" href="ledge-grab.html">LedgeGrab</a>();
+        LedgeClimb(canLedgeClimb);
+
+        if (!IsLedgeClimbing && canLedgeClimb)
+        {
+            canLedgeClimb = false;
+        }
+    }
+}
+</pre>
+
     </div>
 </body>

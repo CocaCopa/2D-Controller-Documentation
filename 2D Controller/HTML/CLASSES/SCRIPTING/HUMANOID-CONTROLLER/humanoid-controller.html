@@ -21,7 +21,7 @@
             <ul>
                 <li><a href="../../../../Documentation.html">Overview</a></li>
                 <li><a href="../../../getting-started.html">Getting Started</a></li>
-                <li><a href="../../../locomotion-controller.html">Locomotion Controller</a></li>
+                <li><a href="../../../locomotion-controller.html">Locomotion System</a></li>
                 <li><a href="../../../combat-system.html">Combat System</a></li>
                 <li id="active-nav-link"><a href="../../classes.html">Classes</a></li>
             </ul>
@@ -30,6 +30,13 @@
 
     <div class="main-page-division">
         <h1>Humanoid Controller</h1>
+        
+        <p>
+            <h2>Dependencies</h2>
+            <p><b style="text-decoration: underline;">Required</b> Components: <a class="redirect-link" href="#">CharacterMovement</a>, <a class="redirect-link" href="#">CharacterEnvironmentalQuery</a>, <a class="redirect-link" href="#">Rigidbody2D</a></p>
+            <p><span>Optional</span> Components: <a class="redirect-link" href="#">CharacterSlide</a>, <a class="redirect-link" href="#">CharacterDash</a>, <a class="redirect-link" href="#">CharacterLedgeGrab</a>, <a class="redirect-link" href="#">CharacterCombat</a></p>
+        </p>
+        <br>
         <p>
             <h2>Description</h2>
             The HumanoidController class serves as an abstract base class for implementing a
@@ -45,7 +52,7 @@
             </ul>
             You can inherit from this class to create custom humanoid characters, controlled by a player and/or an AI, with dynamic and
             responsive behaviors.
-        </p>
+        </p>        
         <br>
         <div class="table-division">
             <span class="table-title">Events</span>
@@ -163,6 +170,10 @@
                 <tr>
                     <td class="label"><a class="public-methods" href="try-floor-slide.html">TryFloorSlide</a></td>
                     <td class="description">Handles the logic for initiating and exiting floor sliding.</td>
+                </tr>
+                <tr>
+                    <td class="label"><a class="public-methods" href="wall-slide.html">WallSlide</a></td>
+                    <td class="description">Handles the logic for wall sliding.</td>
                 </tr>
             </table>
         </div>

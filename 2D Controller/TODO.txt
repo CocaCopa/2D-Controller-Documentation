@@ -1,6 +1,8 @@
 humanoid-controller.html
 - Add link to 'combatSystem' property.
 - Add link to 'activeCollider' property.
+- Add to Public Methods -> WallSlide();
+- Add links to required and optional components
 
 changeHorizontalVelocity.html
 - Add link to 'IsRunning' that will direct to the 'IsRunning' property.
@@ -11,5 +13,12 @@ ledge-grab.html
 - Add link to 'CharacterEnvironmentalQuery' component.
 - Add link to 'CharacterLedgeGrab' component
 
+ledge-climb.html
+- Add link to 'CharacterLedgeGrab' component.
+- Add link to 'CharacterEnvironmentalQuery' component
+
 try-dashing.html
 - Add link to 'CharacterDash' component in the description text.
+
+try-floor-slide.html
+- Add link to 'CharacterFloorSlide' component.

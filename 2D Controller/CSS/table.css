@@ -34,6 +34,18 @@ td a {
     width: 70%;
 }
 
+.label-classes {
+    width: 80%;
+}
+
+.description-manual {
+    width: 10%;
+}
+
+.description-scripting {
+    width: 10%;
+}
+
 .events {
     width: fit-content;
     color: #D88C00;

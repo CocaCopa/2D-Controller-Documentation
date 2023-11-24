@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="../../../../Documentation.html">Overview</a></li>
                 <li><a href="../../../getting-started.html">Getting Started</a></li>
-                <li><a href="../../../locomotion-controller.html">Locomotion Controller</a></li>
+                <li><a href="../../../locomotion-controller.html">Locomotion System</a></li>
                 <li><a href="../../../combat-system.html">Combat System</a></li>
                 <li id="active-nav-link"><a href="../../classes.html">Classes</a></li>
             </ul>
@@ -25,29 +25,59 @@
     </header>
 
     <div class="main-page-division">
-        <p>
-            <h1>TryFloorSlide</h1>
-            <h2>Declaration</h2>
-            <p>protected void <b>TryFloorSlide</b>(bool <b>inputHold</b>);</p> <br>
+        <h1>TryFloorSlide</h1>
+        <h2>Declaration</h2>
+        <p>protected void <b>TryFloorSlide</b>(bool <b>inputHold</b>);</p> <br>
 
-            <div class="table-division">
-                <span class="table-title">Parameters</span>
-                <table>
-                    <tr>
-                        <td class="label"><b>inputHold</b></td>
-                        <td class="description">Determines when the floor slide should be initiated</td>
-                    </tr>
-                </table>
-            </div>
-            
-            <h2>Description</h2>
-            <p>
-                Handles the logic for initiating and exiting floor sliding.
-            </p>
-        </p>
-        <br>
+        <div class="table-division">
+            <span class="table-title">Parameters</span>
+            <table>
+                <tr>
+                    <td class="label"><b>inputHold</b></td>
+                    <td class="description">Determines when the floor slide should be initiated</td>
+                </tr>
+            </table>
+        </div>
+        
+        <h2>Description</h2>
         <p>
-
+            Handles the logic for initiating and exiting floor sliding.
         </p>
+        <ul>
+            <li>
+                When the designated key for floor sliding is pressed, the controller initiates a sequence of checks to validate the feasibility of a floor slide. Initially, it
+                examines the character's speed, ensuring it surpasses the '<b>minimumFloorSlideSpeed</b>' parameter, which can be configured within the controller's inspector.
+                If the character's speed falls short of this threshold, the function will not be executed.
+            </li>
+            <br>
+            <li>
+                Additionally, contingent on the settings of the '<a class="redirect-link" href="#">CharacterFloorSlide</a>' component, the character may experience a reduction
+                in speed during the floor slide. In such instances, if the character's speed drops below the specified value, the floor slide will automatically halt.
+            </li>
+            <br>
+            <li>
+                Lastly, should the conditions for floor sliding cease, and the character finds itself beneath a wall, where their collider cannot fit under, the controller
+                will persist in executing the floor slide until the character is no longer positioned beneath the obstructing wall.
+            </li>
+        </ul>
+        <p>
+            This example demonstrates how you can use the '<b>TryFloorSlide</b>' function within your custom script.
+        </p>
+        
+<pre class="code-block">
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a>
+{
+    protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        base.Update();
+
+        bool floorSlideKey = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKey.html">Input.GetKey</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.DownArrow.html">Keycode.DownArrow</a>);
+        TryFloorSlide(floorSlideKey);
+    }
+}
+
+</pre>
     </div>
 </body>
