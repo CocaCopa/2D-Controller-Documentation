@@ -9,21 +9,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
-    <link rel="stylesheet" href="../../../../CSS/general.css">
-    <link rel="stylesheet" href="../../../../CSS/table.css">
-    <link rel="stylesheet" href="../../../../CSS/code-block.css">
-    <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
 </head>
 <body>
-    <iframe src="../../../navigation-bar.html"></iframe>
+    <iframe src="../../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
+        
+        <h1>WallSlide</h1>
+        <h2>Declaration</h2>
+        <p>protected void <b>WallSlide</b>(bool <b>canWallSlide</b> = true);</p> <br>
+        <h2>Description</h2>
         <p>
-            <h1>WallSlide</h1>
-            <h2>Declaration</h2>
-            <p>protected void <b>WallSlide</b>(bool <b>canWallSlide</b> = true);</p> <br>
-            <h2>Description</h2>
             Handles the logic for wall sliding, based on the given condition.
         </p>
         <br>
@@ -39,7 +39,7 @@
         <br>
         <p>
             When your character is positioned on a wall, its ability to slide is determined by the conditions specified in the function. If the function
-            is called without parameters, the character will automatically initiate a slide on that wall. The speed at which your character decelerates
+            is called without parameters, the character will automatically initiate a slide on that wall. The speed at which your character accelerates
             during the slide can be controlled by configuring the settings of the '<a class="redirect-link" href="#">CharacterSlide</a>' component.
             <br> <br>
             In this example, the player needs to maintain a continuous run toward the wall for the function to be executed:
@@ -48,7 +48,7 @@
 <pre class="code-block">
 using UnityEngine;
 
-public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a>
+public class Example : <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>
 {
     protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {

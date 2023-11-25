@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnCharacterDash</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1>OnCharacterDash</h1>
+        <h2>Declaration</h2>
+        <p>public event EventHandler <b>OnCharacterDash</b>;</p>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Triggered when the character performs a dash.
+            <br> <br>
+            Upon successful execution of the <a class="redirect-link" href="../PUBLIC-METHODS/try-dashing.html">TryDashing</a> function in your custom controller,
+            your character performs a dash, triggering the <b>OnCharacterDash</b> event in the <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>.
+        </p>
+        <br>
+        <p>
+            To subscribe to this event from an external script, you must reference the equivalent <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a> class:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a> 
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a> m_HumanoidController;
+    
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        m_HumanoidController.OnCharacterDash += HumanoidController_OnCharacterDash;
+
+        // Exercise caution when subscribing to events. If you plan to initialize 'm_HumanoidController' within the 'Awake' function,
+        // ensure that event subscriptions take place in the 'Start' method.
+    }
+
+    private void HumanoidController_OnCharacterDash(object sender, System.EventArgs e)
+    {
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>(m_HumanoidController.gameObject.name + ": performed a dash");
+
+        // Code to execute when the event is triggered.
+    }
+}
+</pre>
+</div>

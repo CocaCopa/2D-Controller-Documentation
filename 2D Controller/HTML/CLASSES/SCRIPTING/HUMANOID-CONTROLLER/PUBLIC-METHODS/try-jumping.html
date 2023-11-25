@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TryJumping</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1>TryJumping</h1>
+        <h2>Declaration</h2>
+        <p>protected void <b>TryJumping</b>();</p>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Attempts to make the character jump based on certain conditions. <br>
+        </p>
+        <ul>
+            <li>
+                When the designated jump key is pressed, a series of checks are conducted to ensure the feasibility of initiating a jump. These checks encompass factors such as 
+                the remaining air jumps, which their value can be assigned in the inspector of the controller (<b>numberOfAirJumps</b>), and considerations regarding the setup
+                of the ledge grab mechanic. For instance, if the jump key is pressed while your character '<b>IsLedgeGrabbing</b>', the system evaluates the percentage
+                of the played ledge grab animation before permitting the jump. Said evaluation is based on the '<b>ledgeJumpThreshold</b>' value, set in the inspector of the 
+                controller as well.
+            </li>
+            <br>
+            <li>
+                Furthermore, the execution of a jump varies based on the character's state, distinguishing between scenarios such as wall sliding, standard jumps from the 
+                ground, or air jumps. <br>
+                You have full control over the jump behaviour by adjusting the '<b>jumpStrength</b>' value for ground jumps and air jumps, as well as the '<b>wallJumpStrength</b>'
+                value for wall jumps in the inspector of the <a class="redirect-link" href="#">CharacterMovement</a> component.
+            </li>
+            <br>
+            <li>
+                Additionally, be mindful that triggering a jump will override any ongoing attack animation within the combat system. To avoid such occurrences or implement other custom
+                restrictions, manual customization in your script is necessary. Below you can find an example, covering a scenario like this.
+            </li>
+        </ul>
+        <br>
+        <p>
+            Here's an example of calling the function to prompt your character to attempt a jump, utilizing the default behavior checks:
+        </p>
+
+<pre class="code-block">
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>
+{
+    protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        base.Update();
+
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.Space</a>))
+        {
+            TryJumping();
+        }
+    }
+}
+</pre>
+
+        <br>
+        <p>
+            If you wish to tailor the jump behavior for additional restrictions, as mentioned above, manual customization is required. Here's an example of adjusting the function call to ensure it does not cancel
+            any ongoing attacks: (Note that '<b>characterCombat</b>' is a protected property of the <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a>, enabling its
+            use without the need to reference it explicitly in your script.)
+        </p>
+
+<pre class="code-block">
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>
+{
+    protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        base.Update();
+
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.Space</a>))
+        {
+            if (!characterCombat.IsAttacking)
+            {
+                TryJumping();
+            }
+        }
+    }
+}
+</pre>
+
+    </div>
+</body>

@@ -9,23 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
-    <link rel="stylesheet" href="../../../../CSS/general.css">
-    <link rel="stylesheet" href="../../../../CSS/table.css">
-    <link rel="stylesheet" href="../../../../CSS/code-block.css">
-    <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
 </head>
 <body>
-    <iframe src="../../../navigation-bar.html"></iframe>
+    <iframe src="../../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
-        <p>
-            <h1>LedgeGrab</h1>
-            <h2>Declaration</h2>
-            <p>protected void <b>LedgeGrab</b>(bool <b>canLedgeGrab</b> = true);</p>
-        </p>
+        <h1>LedgeGrab</h1>
+        <h2>Declaration</h2>
+        <p>protected void <b>LedgeGrab</b>(bool <b>canLedgeGrab</b> = true);</p>
         <br>
-
         <div class="table-division">
             <span class="table-title">Parameters</span>
             <table>
@@ -43,8 +39,8 @@
             In accordance with the Ledge Grab configuration in the '<a class="redirect-link" href="#">CharacterEnvironmentalQuery</a>' component, when a ledge is detected, your
             character will be able to grab it. You have the option to initiate a grab either automatically, by calling '<b>LedgeGrab();</b>' without passing any parameters, or
             by specifying a custom condition, such as a key press by the player. In the inspector of the controller, you can specify the maximum time that the character is able to
-            hold a ledge, by configuring the '<b>maxLedgeGrabTime</b>' value.  Further customization of the ledge grab mechanic can be achieved by fine-tuning the settings of the
-            '<a class="redirect-link" href="#">CharacterLedgeGrab</a>' component.
+            hold a ledge, before being forced to cancel it, by configuring the '<b>maxLedgeGrabTime</b>' value.  Further customization of the ledge grab mechanic can be achieved
+            by fine-tuning the settings of the '<a class="redirect-link" href="#">CharacterLedgeGrab</a>' component.
             <br> <br>
             This example incorporates the ledge grab mechanic, specifying that the player must run toward a wall for it to be activated:
         </p>
@@ -52,7 +48,7 @@
 <pre class="code-block">
 using UnityEngine;
 
-public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a>
+public class Example : <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>
 {
     protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {

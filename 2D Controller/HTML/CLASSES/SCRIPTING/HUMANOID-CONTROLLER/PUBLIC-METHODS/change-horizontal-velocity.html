@@ -9,20 +9,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
-    <link rel="stylesheet" href="../../../../CSS/general.css">
-    <link rel="stylesheet" href="../../../../CSS/table.css">
-    <link rel="stylesheet" href="../../../../CSS/code-block.css">
-    <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
 </head>
 <body>
-    <iframe src="../../../navigation-bar.html"></iframe>
+    <iframe src="../../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
-        <p>
-            <h1>ChangeHorizontalVelocity</h1>
-            <h2>Declaration</h2>
-            <p>protected void <b>ChangeHorizontalVelocity</b>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> <b>moveDirection</b>);</p>
+        <h1>ChangeHorizontalVelocity</h1>
+        <h2>Declaration</h2>
+        <p>protected void <b>ChangeHorizontalVelocity</b>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> <b>moveDirection</b>);</p>
             <br>
             <div class="table-division">
                 <span class="table-title">Parameters</span>
@@ -35,21 +33,22 @@
             </div>
             <br>
             <h2>Description</h2>
-            Changes the character's horizontal velocity based on the provided direction. <br>
+            <p>
+                Changes the character's horizontal velocity based on the provided direction.
+            </p>
             <ul>
                 <li>This function manages the horizontal movement of the character, taking into account various factors such as the character's grounded or airborne state.</li> <br>
                 <li>It automatically limits the character's movement if another action, such as 'dash,' is being performed.</li> <br>
-                <li>Additionally, it sets the running state of the character by setting the value of the '<b>IsRunning</b>' property accordingly</li> <br>
                 <li>If a combat system is in place, it considers attack configurations and may restrict the character's movement accordingly.</li> <br>
             </ul>
-        </p>
         <p>
             This example implements the function to facilitate character movement:
         </p>
 
 <pre class="code-block">
-using UnityEngine; <br> <br>
-public class Example : <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a> <br>
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a> <br>
 {
     protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
@@ -59,7 +58,6 @@ public class Example : <a class="redirect-link" href="humanoid-controller.html">
     }
 }
 </pre>
-
     </div>
 </body>
 </html>
