@@ -24,3 +24,6 @@ try-floor-slide.html
 
 wall-slide.html
 - Add link to 'CharacterSlide' component.
+
+ledge-detected.html
+- Add link to 'CharacterEnvironmentalQuery' component

@@ -58,9 +58,17 @@ iframe {
     color: #b83c82;
 }
 
+h1 .redirect-link {
+    text-decoration: none;
+}
+
 .redirect-link:hover {
     color: #ee4ba8;
     text-decoration: none;
+}
+
+h1 .redirect-link:hover {
+    text-decoration: underline;
 }
 
 /*

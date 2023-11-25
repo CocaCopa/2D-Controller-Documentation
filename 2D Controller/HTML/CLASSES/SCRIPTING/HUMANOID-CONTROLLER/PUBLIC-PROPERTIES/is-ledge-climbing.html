@@ -19,13 +19,53 @@
     <iframe src="../../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
-        <h1>IsLedgeClimbing</h1>
+        <h1><a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>.IsLedgeClimbing</h1>
         <h2>Declaration</h2>
         <p>public bool <b>IsLedgeClimbing</b> { get; }</p>
         <br>
         <h2>Description</h2>
         <p>
             Indicates whether the character is currently climbing a ledge.
+            <br> <br>
+            This property indicates whether the character is climbing ledge. It returns <b>true</b> if <a class="redirect-link" href="ledge-detected.html">LedgeDetected</a> is true
+            and the <a class="redirect-link" href="../PUBLIC-METHODS/ledge-climb.html">LedgeClimb</a> function of the <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>
+            class is referenced in your custom controller script.
+            <br> <br>
+            If you need to access this property through a class that inherits from <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>, you can do
+            so directly. Alternatively, if you intend to access it from an external script, you need to reference the corresponding controller instance and access it accordingly.
         </p>
         <br>
-</div>
+        <p>
+            In this example, we access the propery directly:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a> 
+{
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>(<b>IsRunning</b>);
+    }
+}
+</pre>
+
+        <br>
+        <p>
+            In this example we access the property through an external script:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a> m_HumanoidController;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>(m_HumanoidController.<b>IsRunning</b>);
+    }
+}
+</pre>
+    </div>
+</body>

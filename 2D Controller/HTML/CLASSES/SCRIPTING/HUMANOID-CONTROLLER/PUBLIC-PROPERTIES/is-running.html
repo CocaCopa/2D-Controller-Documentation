@@ -19,13 +19,53 @@
     <iframe src="../../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
-        <h1>IsRunning</h1>
+        <h1><a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>.IsRunning</h1>
         <h2>Declaration</h2>
         <p>public bool <b>IsRunning</b> { get; }</p>
         <br>
         <h2>Description</h2>
         <p>
             Indicates whether the character is currently in a running state.
+            <br> <br>
+            This property represents the horizontal velocity of the character, and its value is influenced by the <a class="redirect-link" href="../PUBLIC-METHODS/change-horizontal-velocity.html">ChangeHorizontalVelocity</a>
+            function of the <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a> class. It returns <b>true</b> when the input provided to the function is not equal to
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3-zero.html">Vector3.zero</a>, and your character's speed is greater than zero.
+            <br> <br>
+            If you need to access this property through a class that inherits from <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>, you can do
+            so directly. Alternatively, if you intend to access it from an external script, you need to reference the corresponding controller instance and access it accordingly.
         </p>
         <br>
-</div>
+        <p>
+            In this example, we access the propery directly:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a> 
+{
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>(<b>IsRunning</b>);
+    }
+}
+</pre>
+
+        <br>
+        <p>
+            In this example we access the property through an external script:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a> m_HumanoidController;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>(m_HumanoidController.<b>IsRunning</b>);
+    }
+}
+</pre>
+    </div>
+</body>
