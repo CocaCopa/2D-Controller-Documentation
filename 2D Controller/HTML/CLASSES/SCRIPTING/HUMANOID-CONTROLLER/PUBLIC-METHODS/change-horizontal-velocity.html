@@ -21,26 +21,26 @@
         <h1><a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>.ChangeHorizontalVelocity</h1>
         <h2>Declaration</h2>
         <p>protected void <b>ChangeHorizontalVelocity</b>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> <b>moveDirection</b>);</p>
-            <br>
-            <div class="table-division">
-                <span class="table-title">Parameters</span>
-                <table>
-                    <tr>
-                        <td class="label"><b>moveDirection</b></td>
-                        <td class="description">Desired horizontal direction to move towards</td>
-                    </tr>
-                </table>
-            </div>
-            <br>
-            <h2>Description</h2>
-            <p>
-                Changes the character's horizontal velocity based on the provided direction.
-            </p>
-            <ul>
-                <li>This function manages the horizontal movement of the character, taking into account various factors such as the character's grounded or airborne state.</li> <br>
-                <li>It automatically limits the character's movement if another action, such as 'dash,' is being performed.</li> <br>
-                <li>If a combat system is in place, it considers attack configurations and may restrict the character's movement accordingly.</li> <br>
-            </ul>
+        <br>
+        <div class="table-division">
+            <span class="table-title">Parameters</span>
+            <table>
+                <tr>
+                    <td class="label"><b>moveDirection</b></td>
+                    <td class="description">Desired horizontal direction to move towards</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Changes the character's horizontal velocity based on the provided direction.
+        </p>
+        <ul>
+            <li>This function manages the horizontal movement of the character, taking into account various factors such as the character's grounded or airborne state.</li> <br>
+            <li>It automatically limits the character's movement if another action, such as 'dash,' is being performed.</li> <br>
+            <li>If a combat system is in place, it considers attack configurations and may restrict the character's movement accordingly.</li> <br>
+        </ul>
         <p>
             This example implements the function to facilitate character movement:
         </p>
@@ -48,7 +48,7 @@
 <pre class="code-block">
 using UnityEngine;
 
-public class Example : <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a> <br>
+public class Example : <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>
 {
     protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {

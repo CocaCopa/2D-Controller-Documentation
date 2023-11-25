@@ -31,8 +31,14 @@ iframe {
     border: none;
     margin: 0px;
     padding: 0;
-    
     border-radius: 5px;
+}
+
+hr {
+    width: 100%;
+    border: 2px solid grey;
+    background-color: grey;
+    border-radius: 2px;
 }
 
 .iframe-body {
@@ -53,6 +59,15 @@ iframe {
     line-height: 1.4;
 }
 
+.important-link {
+    color: #FF0000;
+}
+
+.important-link:hover {
+    color: #D30000;
+    text-decoration: underline;
+}
+
 .redirect-link {
     width: fit-content;
     color: #b83c82;
@@ -70,11 +85,3 @@ h1 .redirect-link {
 h1 .redirect-link:hover {
     text-decoration: underline;
 }
-
-/*
-
-
-h3 {
-    margin: 0;
-    font-weight: lighter;
-} */

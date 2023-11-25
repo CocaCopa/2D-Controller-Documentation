@@ -9,12 +9,10 @@ changeHorizontalVelocity.html
 - Add link to 'ChaacterMovement' component.
 
 ledge-grab.html
-- Add link to 'CharacterEnvironmentalQuery' component.
 - Add link to 'CharacterLedgeGrab' component
 
 ledge-climb.html
 - Add link to 'CharacterLedgeGrab' component.
-- Add link to 'CharacterEnvironmentalQuery' component
 
 try-dashing.html
 - Add link to 'CharacterDash' component in the description text.
@@ -24,6 +22,3 @@ try-floor-slide.html
 
 wall-slide.html
 - Add link to 'CharacterSlide' component.
-
-ledge-detected.html
-- Add link to 'CharacterEnvironmentalQuery' component

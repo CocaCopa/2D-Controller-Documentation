@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controller Documentation</title>
+    <title>HumanoidController</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,30 +19,32 @@
     <iframe src="../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
-        <h1>Humanoid Controller</h1>
+        <h1>HumanoidController</h1>
         
+        <h2>Dependencies</h2>
         <p>
-            <h2>Dependencies</h2>
-            <p><b style="text-decoration: underline;">Required</b> Components: <a class="redirect-link" href="#">CharacterMovement</a>, <a class="redirect-link" href="#">CharacterEnvironmentalQuery</a>, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a></p>
+            <p><b style="text-decoration: underline;">Required</b> Components: <a class="redirect-link" href="#">CharacterMovement</a>, <a class="redirect-link" href="../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a></p>
             <p><span>Optional</span> Components: <a class="redirect-link" href="#">CharacterSlide</a>, <a class="redirect-link" href="#">CharacterDash</a>, <a class="redirect-link" href="#">CharacterLedgeGrab</a>, <a class="redirect-link" href="#">CharacterCombat</a></p>
         </p>
         <br>
+        <h2>Description</h2>
         <p>
-            <h2>Description</h2>
-            The HumanoidController class serves as an abstract base class for implementing a
+            The <b>HumanoidController</b> class serves as an abstract base class for implementing a
             2D character controller. It provides a comprehensive set of functionalities for handling:
-            <ul>
-                <li>Ground/Aerial Movement</li>
-                <li>Jumping</li>
-                <li>Dashing</li>
-                <li>Ledge Grabbing</li>
-                <li>Ledge Climbing</li>
-                <li>Floor Sliding</li>
-                <li>Wall Sliding</li>
-            </ul>
-            You can inherit from this class to create custom humanoid characters, controlled by a player and/or an AI, with dynamic and
+        </p>
+        <ul>
+            <li>Movement (Ground/Aerial)</li>
+            <li>Jumping</li>
+            <li>Dashing</li>
+            <li>Ledge Grabbing</li>
+            <li>Ledge Climbing</li>
+            <li>Floor Sliding</li>
+            <li>Wall Sliding</li>
+        </ul>
+        <p>
+            You can inherit from this class to create custom humanoid characters, controlled by a <b>player</b> and/or an <b>AI</b>, with dynamic and
             responsive behaviors.
-        </p>        
+        </p>
         <br>
         <div class="table-division">
             <span class="table-title">Events</span>
@@ -150,16 +152,16 @@
                     <td class="description">Attempts to make the character jump based on certain conditions.</td>
                 </tr>
                 <tr>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/try-dashing.html">TryDashing</a></td>
+                    <td class="description">Attempts to make the character perform a dash based on certain conditions.</td>
+                </tr>
+                <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/ledge-grab.html">LedgeGrab</a></td>
                     <td class="description">Handles the logic for ledge grabbing, allowing customization of conditions.</td>
                 </tr>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/ledge-climb.html">LedgeClimb</a></td>
                     <td class="description">Handles the logic for ledge climbing, allowing customization of conditions.</td>
-                </tr>
-                <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/try-dashing.html">TryDashing</a></td>
-                    <td class="description">Attempts to make the character perform a dash based on certain conditions.</td>
                 </tr>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/try-floor-slide.html">TryFloorSlide</a></td>

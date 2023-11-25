@@ -27,7 +27,7 @@
         <p>
             Indicates whether the character is currently climbing a ledge.
             <br> <br>
-            This property indicates whether the character is climbing ledge. It returns <b>true</b> if <a class="redirect-link" href="ledge-detected.html">LedgeDetected</a> is true
+            This property indicates whether the character is climbing a ledge. It returns <b>true</b> if <a class="redirect-link" href="ledge-detected.html">LedgeDetected</a> is true
             and the <a class="redirect-link" href="../PUBLIC-METHODS/ledge-climb.html">LedgeClimb</a> function of the <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>
             class is referenced in your custom controller script.
             <br> <br>
@@ -45,7 +45,7 @@ public class Example : <a class="redirect-link" href="../humanoid-controller.htm
 {
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>(<b>IsRunning</b>);
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>(<b>IsLedgeClimbing</b>);
     }
 }
 </pre>
@@ -63,7 +63,7 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
 
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>(m_HumanoidController.<b>IsRunning</b>);
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>(m_HumanoidController.<b>IsLedgeClimbing</b>);
     }
 }
 </pre>
