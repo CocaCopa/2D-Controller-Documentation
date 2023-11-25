@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LedgeClimb</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
     <link rel="stylesheet" href="../../../../CSS/general.css">
@@ -12,50 +16,40 @@
     <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
 </head>
 <body>
-    <header class="nav-bar">
-        <div class="navbar-links">
-            <ul>
-                <li><a href="../../../../Documentation.html">Overview</a></li>
-                <li><a href="../../../getting-started.html">Getting Started</a></li>
-                <li><a href="../../../locomotion-controller.html">Locomotion System</a></li>
-                <li><a href="../../../combat-system.html">Combat System</a></li>
-                <li id="active-nav-link"><a href="../../classes.html">Classes</a></li>
-            </ul>
-        </div>
-    </header>
+    <iframe src="../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
         <p>
             <h1>LedgeClimb</h1>
             <h2>Declaration</h2>
             <p>protected void <b>LedgeClimb</b>(bool <b>canLedgeClimb</b> = true);</p> <br>
-
-            <div class="table-division">
-                <span class="table-title">Parameters</span>
-                <table>
-                    <tr>
-                        <td class="label"><b>canLedgeClimb</b></td>
-                        <td class="description">True, your character will automatically perform a ledge climb as soon as a ledge is detected</td>
-                    </tr>
-                </table>
-            </div>
-            
         </p>
+
+        <div class="table-division">
+            <span class="table-title">Parameters</span>
+            <table>
+                <tr>
+                    <td class="label"><b>canLedgeClimb</b></td>
+                    <td class="description">True, your character will automatically perform a ledge climb as soon as a ledge is detected</td>
+                </tr>
+            </table>
+        </div>
+        <br>
         <h2>Description</h2>
         <p>
             Handles the logic for ledge climbing, allowing customization of conditions.
             <br> <br>
             In alignment with the Ledge Grab configuration in the '<a class="redirect-link" href="#">CharacterEnvironmentalQuery</a>' component, the '<b>LedgeClimb();</b>'
             method operates similarly to '<a class="redirect-link" href="ledge-grab.html">LedgeGrab();</a>'. When a ledge is detected, your character gains the ability to climb it.
-            You can trigger automatic ledge climbing by invoking '<b>LedgeClimb();</b>' without passing any parameters, or by defining a custom condition, such as a player's key
-            press. Much like the LedgeGrab method, you can fine-tune the behavior of the ledge climb mechanic by adjusting the settings of the
+            You can trigger automatic ledge climbing by invoking the function without passing any parameters, or by defining a custom condition, such as a player's key
+            press. Much like the ledge grab mechanic, you can fine-tune the behaviour of the ledge climb mechanic by adjusting the settings of the
             '<a class="redirect-link" href="#">CharacterLedgeGrab</a>' component.
             <br> <br>
             It's important to note that if your controller is set to utilize '<b>LedgeClimb();</b>' without parameters, enabling automatic ledge climbing, this function will take
             precedence over '<a class="redirect-link" href="ledge-grab.html">LedgeGrab();</a>'. If you intend to use both functions in your code, ensure that, at least '<b>LedgeClimb();</b>'
             is configured to be triggered conditionally to prevent any unwanted behaviour.
             <br> <br>
-            This example incorporates the ledge climb mechanic, specifying that the player must run toward a wall for it to be activated:
+            This example incorporates the ledge climb mechanic, specifying that a certain key must be held for it to be activated:
         </p>
 
 <pre class="code-block">
@@ -67,17 +61,14 @@ public class Example : <a class="redirect-link" href="humanoid-controller.html">
     {
         base.Update();
 
-        float horizontalInput = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxis.html">Input.GetAxis</a>("Horizontal");
-        float moveDirection = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform-right.html">transform.right</a>.x;
-        bool canLedgeClimb = horizontalInput * moveDirection > 0;
-
-        LedgeClimb(canLedgeClimb);
+        bool ledgeClimbKey = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKey.html">Input.GetKey</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.F.html">KeyCode.F</a>);
+        LedgeClimb(ledgeClimbKey);
     }
 }
 </pre>
         <br>
         <p>
-            Here is an example on how you could use both ledge grab and ledge climb mechanics within your custom script:
+            Here is an example on how you could use both ledge grab and ledge climb mechanics within your custom controller script:
         </p>
 
 <pre class="code-block">
@@ -91,7 +82,7 @@ public class Example : <a class="redirect-link" href="humanoid-controller.html">
     {
         base.Update();
 
-        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.Space</a>))
+        if (IsLedgeGrabbing && <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.Space</a>))
         {
             canLedgeClimb = true;
         }

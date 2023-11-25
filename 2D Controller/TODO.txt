@@ -1,7 +1,6 @@
 humanoid-controller.html
 - Add link to 'combatSystem' property.
 - Add link to 'activeCollider' property.
-- Add to Public Methods -> WallSlide();
 - Add links to required and optional components
 
 changeHorizontalVelocity.html
@@ -21,4 +20,7 @@ try-dashing.html
 - Add link to 'CharacterDash' component in the description text.
 
 try-floor-slide.html
-- Add link to 'CharacterFloorSlide' component.
+- Add link to 'CharacterSlide' component.
+
+wall-slide.html
+- Add link to 'CharacterSlide' component.

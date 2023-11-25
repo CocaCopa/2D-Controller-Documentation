@@ -5,24 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChangeHorizontalVelocity</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
-    <link rel="stylesheet" href="../../../../CSS/general.css"">
+    <link rel="stylesheet" href="../../../../CSS/general.css">
     <link rel="stylesheet" href="../../../../CSS/table.css">
     <link rel="stylesheet" href="../../../../CSS/code-block.css">
     <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
 </head>
 <body>
-    <header class="nav-bar">
-        <div class="navbar-links">
-            <ul>
-                <li><a href="../../../../Documentation.html">Overview</a></li>
-                <li><a href="../../../getting-started.html">Getting Started</a></li>
-                <li><a href="../../../locomotion-controller.html">Locomotion System</a></li>
-                <li><a href="../../../combat-system.html">Combat System</a></li>
-                <li id="active-nav-link"><a href="../../classes.html">Classes</a></li>
-            </ul>
-        </div>
-    </header>
+    <iframe src="../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
         <p>
@@ -39,6 +33,7 @@
                     </tr>
                 </table>
             </div>
+            <br>
             <h2>Description</h2>
             Changes the character's horizontal velocity based on the provided direction. <br>
             <ul>
@@ -49,8 +44,7 @@
             </ul>
         </p>
         <p>
-            This example implements the function to facilitate character movement. It's important to highlight that inheriting from the Humanoid controller is crucial for the proper
-            functioning of this feature.
+            This example implements the function to facilitate character movement:
         </p>
 
 <pre class="code-block">
