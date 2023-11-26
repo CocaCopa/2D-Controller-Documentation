@@ -38,12 +38,14 @@
         <br>
         <h2>Returns</h2>
         <p>
-            Return value goes here.
+            True, if the overlap cast finds any colliders, otherwise false.
         </p>
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Searches for any collider in the specified range around the character based on the character's collider.
+            <br> <br>
+            You can use this function to search for any colliders around your character in the game environment in the specified distance.
         </p>
         <br>
         <p>
@@ -52,11 +54,26 @@
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
 {
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float castRange = 0.2f;
+
+    private <a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+        envQuery.<a class="redirect-link" href="../PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
+    }
+
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        
+        if (envQuery.<b>ColliderAroundCharacter</b>(overlapBox: false, castRange))
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Collider found in " + castRange + " Unity units away");
+        }
     }
 }
 </pre>

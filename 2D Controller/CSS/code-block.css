@@ -8,3 +8,7 @@
     overflow: auto;
     border-radius: 8px;
 }
+
+.code-block b {
+    color: rgb(196, 122, 38)
+}

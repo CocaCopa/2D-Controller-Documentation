@@ -24,25 +24,45 @@
         <br>
         <h2>Returns</h2>
         <p>
-            Return value goes here.
+            True, if the character is grounded, otherwise false.
         </p>
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Checks if the character steps on a platform.
+            <br> <br>
+            This function performs a capsule cast based on the character's collider.
         </p>
         <br>
         <p>
-            Method use example goes here.
+            This example demonstrates how you can use <b>GroundCheck</b> it in your code:
         </p>
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
 {
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+
+    private <a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+        envQuery.<a class="redirect-link" href="../PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
+    }
+
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        
+        if (envQuery.<b>IsGrounded</b>())
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Your character is grounded");
+        }
+        else
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Your character is in the air.");
+        }
     }
 }
 </pre>
@@ -66,25 +86,45 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
         <br>
         <h2>Returns</h2>
         <p>
-            Return value goes here.
+            True, if the character is grounded, otherwise false.
         </p>
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            With this overload, you can override both the origin and the default distance of the cast.
         </p>
         <br>
         <p>
-            Method use example goes here.
+            Here is an example of how you can use this overload:
         </p>
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
 {
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float offset = 2f;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float distance = 4f;
+
+    private <a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+        envQuery.<a class="redirect-link" href="../PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
+    }
+
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-
+        if (envQuery.<b>GroundCheck</b>(offset, distance))
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Collider found " + offset + " Unity units away " + " at the maximum height of " + distance + " Unity units.");
+        }
+        else
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("No collider found at the specified 'origin' and/or 'distance'");
+        }
     }
 }
 </pre>
@@ -112,25 +152,45 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
         <br>
         <h2>Returns</h2>
         <p>
-            Return value goes here.
+            True, if the character is grounded, otherwise false.
         </p>
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Same as above, but it also returns information about the collider hit.
         </p>
         <br>
         <p>
-            Method use example goes here.
+            Here is an example of how you can use this overload:
         </p>
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
 {
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float offset = 2f;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float distance = 4f;
+
+    private <a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+        envQuery.<a class="redirect-link" href="../PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
+    }
+
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-
+        if (envQuery.<b>GroundCheck</b>(offset, distance, out <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RaycastHit2D.html">RaycastHit2D</a> hitInfo))
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Collider: " + hitInfo.transform.name + " found " + offset + " Unity units away " + " at the maximum height of " + distance + " Unity units.");
+        }
+        else
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("No collider found at the specified 'origin' and/or 'distance'");
+        }
     }
 }
 </pre>

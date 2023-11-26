@@ -27,27 +27,79 @@
             <table>
                 <tr>
                     <td class="label"><b>value</b></td>
-                    <td class="description">The collider to set as active.</td>
+                    <td class="description">Updates the active collider of the class.</td>
                 </tr>
             </table>
         </div>
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Sets the active collider of the character.
+            <br> <br>
+            This method plays a pivotal role in the class. If your character employs a distinct collider for an upright position compared to a horizontal one, it is crucial
+            to update the class with this information. This ensures that collision queries produce accurate results.
+            <br> <br>
+            An illustrative example within this asset can be found in the <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>
+            class. When the <a class="redirect-link" href="../../HUMANOID-CONTROLLER/PUBLIC-METHODS/try-floor-slide.html">TryFloorSlide</a> function executes successfully, the active
+            collider of the character transitions from the VerticalCollider to the HorizontalCollider. This transition is communicated to the <b>CharacterEnvironmentalQuery</b> class
+            using the <b>SetActiveCollider</b> function.
         </p>
         <br>
         <p>
-            Method use example goes here.
+            if you intend to use this class outside of this asset and your character only uses two different colliders, you can use <b>SetActiveCollider</b> as follows:
         </p>
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
 {
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> mainCollider;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> secondaryCollider;
+
+    private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> activeCollider;
+    private <a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+    }
+
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        
+        envQuery.<b>SetActiveCollider</b>(activeCollider);
+    }
+
+    // Call this function whenever you wish your colliders to be swapped.
+    private void ToggleColliders(bool useSecondaryCollider)
+    {
+        mainCollider.enabled = !useSecondaryCollider;
+        secondaryCollider.enabled = useSecondaryCollider;
+
+        activeCollider = mainCollider.enabled
+            ? mainCollider
+            : secondaryCollider;
+    }
+}
+</pre>
+        <br>
+        <p>
+            if you intend to use this class outside of this asset and your character only uses one main collider, you can use <b>SetActiveCollider</b> as follows:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+
+    private <a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+        envQuery.<b>SetActiveCollider</b>(m_Collider);
     }
 }
 </pre>

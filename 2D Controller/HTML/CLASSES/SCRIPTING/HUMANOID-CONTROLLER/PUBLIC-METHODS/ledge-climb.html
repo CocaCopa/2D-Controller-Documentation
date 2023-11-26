@@ -59,7 +59,7 @@ public class Example : <a class="redirect-link" href="../humanoid-controller.htm
         base.Update();
 
         bool ledgeClimbKey = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKey.html">Input.GetKey</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.F.html">KeyCode.F</a>);
-        LedgeClimb(ledgeClimbKey);
+        <b>LedgeClimb</b>(ledgeClimbKey);
     }
 }
 </pre>
@@ -86,7 +86,7 @@ public class Example : <a class="redirect-link" href="../humanoid-controller.htm
         }
 
         <a class="redirect-link" href="ledge-grab.html">LedgeGrab</a>();
-        LedgeClimb(canLedgeClimb);
+        <b>LedgeClimb</b>(canLedgeClimb);
 
         if (!IsLedgeClimbing && canLedgeClimb)
         {

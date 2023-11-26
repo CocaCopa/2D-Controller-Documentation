@@ -43,7 +43,7 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
     
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
     {
-        m_HumanoidController.OnLedgeClimbEnter += HumanoidController_OnLedgeExit;
+        m_HumanoidController.<b>OnLedgeExit</b> += HumanoidController_OnLedgeExit;
 
         // Exercise caution when subscribing to events. If you plan to initialize 'm_HumanoidController' within the 'Awake' function,
         // ensure that the event subscription takes place in the 'Start' method instead.

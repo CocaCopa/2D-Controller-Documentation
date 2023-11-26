@@ -22,7 +22,18 @@
         <h1>CharacterEnvironmentalQuery</h1>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            The <b>CharacterEnvironmentalQuery</b> class serves as the central hub for managing collision checks within this asset. Some of the scripts in this asset, seeking
+            specific details about collisions within the game environment will utilize this class.
+            <br> <br>
+            By consolidating collision check functions into a single class, the asset's modularity and maintainability are enhanced. Encapsulating collision logic within this
+            class not only reduces code duplication but also improves the overall organization of the project.
+            <br> <br>
+            To incorporate <b>CharacterEnvironmentalQuery</b> into your project, attach it to any gameObject intended to represent a humanoid character. Once attached, you can
+            reference it in your scripts to gain access to its public methods. Ensure that <b>CharacterEnvironmentalQuery</b> is attached to the main gameObject in question, as
+            it utilizes the character's position in various scenarios.
+            <br> <br>
+            <b style="text-decoration: underline;">Important</b>: All of the method examples assume that the <b>CharacterEnvironmentalQuery</b> class, as well as each of the
+            <b>Example</b> classes are attached to the same gameObject.
         </p>        
         <br>
         <div class="table-division">
@@ -30,7 +41,7 @@
             <table>
                 <tr>
                     <td class="label"><a class="important-link" href="PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a></td>
-                    <td class="description">Sets the active collider of the character.</td>
+                    <td class="description">Updates the active collider of the class.</td>
                 </tr>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/collider-around-character.html">ColliderAroundCharacter</a></td>
