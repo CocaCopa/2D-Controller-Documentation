@@ -45,11 +45,13 @@
         <p>
             Searches for any collider in the specified range around the character based on the character's collider.
             <br> <br>
-            You can use this function to search for any colliders around your character in the game environment in the specified distance.
+            This function utilizes either <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Physics2D.OverlapBox.html">Physics2D.OverlapBox</a> or
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Physics2D.OverlapCapsule.html">Physics2D.OverlapCapsule</a>, depending on the value
+            of the <b>overlapBox</b> parameter, to search for colliders around your character within the specified radius in the game environment.
         </p>
         <br>
         <p>
-            Method use example goes here.
+            This is an example of how you could use <b>ColliderAroundCharacter</b> in your script:
         </p>
 <pre class="code-block">
 using UnityEngine;

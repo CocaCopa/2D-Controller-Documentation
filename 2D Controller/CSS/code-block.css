@@ -1,10 +1,11 @@
 .code-block {
+    font-family: Georgia, 'Times New Roman', Times, serif;
     margin: 15px 0px;
     padding: 25px;
     background-color: rgb(37, 37, 37);
     color: #d4d1d1;
     line-height: 1.5;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     overflow: auto;
     border-radius: 8px;
 }

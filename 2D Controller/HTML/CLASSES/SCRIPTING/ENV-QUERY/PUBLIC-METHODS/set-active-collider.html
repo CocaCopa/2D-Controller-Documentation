@@ -27,14 +27,14 @@
             <table>
                 <tr>
                     <td class="label"><b>value</b></td>
-                    <td class="description">Updates the active collider of the class.</td>
+                    <td class="description">The collider to set as active.</td>
                 </tr>
             </table>
         </div>
         <br>
         <h2>Description</h2>
         <p>
-            Sets the active collider of the character.
+            Sets the collider to be utilized by the class.
             <br> <br>
             This method plays a pivotal role in the class. If your character employs a distinct collider for an upright position compared to a horizontal one, it is crucial
             to update the class with this information. This ensures that collision queries produce accurate results.
@@ -46,7 +46,7 @@
         </p>
         <br>
         <p>
-            if you intend to use this class outside of this asset and your character only uses two different colliders, you can use <b>SetActiveCollider</b> as follows:
+            if you intend to use this class outside of this asset and your character controller uses <b>two</b> different colliders, you can use <b>SetActiveCollider</b> as follows:
         </p>
 <pre class="code-block">
 using UnityEngine;
@@ -62,7 +62,9 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
 
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
     {
+        activeCollider = mainCollider;
         envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+        envQuery.<b>SetActiveCollider</b>(activeCollider);
     }
 
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
@@ -84,7 +86,7 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
 </pre>
         <br>
         <p>
-            if you intend to use this class outside of this asset and your character only uses one main collider, you can use <b>SetActiveCollider</b> as follows:
+            if you intend to use this class outside of this asset and your character only uses <b>one</b> main collider, you can use <b>SetActiveCollider</b> as follows:
         </p>
 <pre class="code-block">
 using UnityEngine;

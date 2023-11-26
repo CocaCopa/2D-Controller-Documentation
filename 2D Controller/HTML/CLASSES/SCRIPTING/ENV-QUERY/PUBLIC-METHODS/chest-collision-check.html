@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<chest>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChestCollisionCheck</title>
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../../../../CSS/general.css">
     <link rel="stylesheet" href="../../../../../CSS/table.css">
     <link rel="stylesheet" href="../../../../../CSS/code-block.css">
-</head>
+</chest>
 <body>
     <iframe src="../../../../navigation-bar.html"></iframe>
 
@@ -24,25 +24,46 @@
         <br>
         <h2>Returns</h2>
         <p>
-            Return value goes here.
+            True, if there is a collider found in front of the character's chest, otherwise false.
         </p>
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Checks if there is a collider in front of the character's chest.
+            <br> <br>
+            This function performs a <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Physics2D.BoxCast.html">Physics2D.BoxCast</a> in the character's
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform-right.html">transform.right</a> direction, to check for any colliders that are
+            in front of the character's chest.
         </p>
         <br>
         <p>
-            Method use example goes here.
+            This is an example of how you can use <b>ChestCollisionCheck</b> in your script:
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
 {
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+
+    private <a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+        envQuery.<a class="redirect-link" href="../PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
+    }
+
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        
+        if (envQuery.<b>ChestCollisionCheck</b>())
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("There is a collider in front of your character's chest.");
+        }
+        else
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("No colliders found.");
+        }
     }
 }
 </pre>
@@ -62,25 +83,43 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
         <br>
         <h2>Returns</h2>
         <p>
-            Return value goes here.
+            True, if there is a collider found in front of the character's chest at a specified distance, otherwise false.
         </p>
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            With this overload you can override the default cast distance.
         </p>
         <br>
         <p>
-            Method use example goes here.
+            Here is an example of how you can use this overload in your script:
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
 {
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float distance = 4f;
+
+    private <a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+        envQuery.<a class="redirect-link" href="../PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
+    }
+
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-
+        if (envQuery.<b>ChestCollisionCheck</b>(distance))
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("There is a collider in front of your character's chest at the maximum of " + distance + " Unity units away.");
+        }
+        else
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("There are no colliders at the specified distance.");
+        }
     }
 }
 </pre>
@@ -104,25 +143,43 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
         <br>
         <h2>Returns</h2>
         <p>
-            Return value goes here.
+            True, if there is a collider found in front of the character's chest at a specified distance, otherwise false.
         </p>
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Same as above but it also returns information about the collider hit.
         </p>
         <br>
         <p>
-            Method use example goes here.
+            Here is an example of how you can use this overload in your script:
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
 {
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float distance = 4f;
+
+    private <a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+        envQuery.<a class="redirect-link" href="../PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
+    }
+
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-
+        if (envQuery.<b>ChestCollisionCheck</b>(distance))
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Collider: " + hitInfo.transform.name + " found in front of your character's chest at the maximum of " + distance + " Unity units away.");
+        }
+        else
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("There are no colliders at the specified distance.");
+        }
     }
 }
 </pre>

@@ -27,7 +27,7 @@
             <table>
                 <tr>
                     <td class="label"><b>exitLedgeGrab</b></td>
-                    <td class="description">Indicates that the ability to perform ledge grab is available or not.</td>
+                    <td class="description">Indicates that the ability to perform ledge grab is available again.</td>
                 </tr>
                 <tr>
                     <td class="label"><b>fixedOffset</b></td>
@@ -38,25 +38,63 @@
         <br>
         <h2>Returns</h2>
         <p>
-            Return value goes here.
+            True, if a ledge is detected in the game environment, otherwise false.
         </p>
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Checks if the character is able to grab onto a ledge.
+            <br> <br>
+            The function initiates a <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Physics2D.OverlapCircle.html">Physics2D.OverlapCircle</a> cast and a
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Physics2D.OverlapBox.html">Physics2D.OverlapBox</a> cast.
+            Successful detection of a ledge is confirmed if the circle cast returns true while the box cast returns false. In the event that both casts return true, it indicates the
+            presence of a wall. The position of the circle is determined by the transform provided in the inspector of the component, while the position of the box lies on top of
+            the circle.
+
+            <br> <br>
+            Note the use of <b>exitLedgeGrab</b> in the example below. When you need your character to exit a ledge grab/climb state, set this flag to true.
+            The <b>LedgeGrabCheck</b> function will then indicate when the character is ready to grab a ledge again. Once it returns false, signifying that
+            a ledge is no longer detected, it will also reset the provided boolean back to false.
         </p>
         <br>
         <p>
-            Method use example goes here.
+            In this example, upon detecting a ledge, the character's rigidbody will be set to kinematic, and will log the position of the ledge in the console.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>), typeof(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
 {
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a> characterRb;
+
+    private <a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+    private bool exitLedgeGrab = false;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterRb = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>&RightAngleBracket;();
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+        envQuery.<a class="redirect-link" href="../PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
+    }
+
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
+        bool ledgeDetected = envQuery.<b>LedgeGrabCheck</b>(ref exitLedgeGrab, out <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a> ledgePosition);
         
+        if (!exitLedgeGrab && ledgeDetected)
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Ledge position: " + ledgePosition);
+            characterRb.isKinematic = true;
+        }
+
+        // For convenience, if you wish to use this example, press the specified key below (Escape) to restore the rigidbody's state back to dynamic:
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.Escape.html">KeyCode.Escape</a>))
+        {
+            characterRb.isKinematic = false;
+            exitLedgeGrab = true;
+        }
     }
 }
 </pre>

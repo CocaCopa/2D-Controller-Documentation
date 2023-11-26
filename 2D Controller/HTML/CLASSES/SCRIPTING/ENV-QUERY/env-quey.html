@@ -31,17 +31,25 @@
             To incorporate <b>CharacterEnvironmentalQuery</b> into your project, attach it to any gameObject intended to represent a humanoid character. Once attached, you can
             reference it in your scripts to gain access to its public methods. Ensure that <b>CharacterEnvironmentalQuery</b> is attached to the main gameObject in question, as
             it utilizes the character's position in various scenarios.
-            <br> <br>
-            <b style="text-decoration: underline;">Important</b>: All of the method examples assume that the <b>CharacterEnvironmentalQuery</b> class, as well as each of the
+        </p>
+        <br>
+        <h2>Important Notes</h2>
+        <p>
+            All of the method examples assume that the <b>CharacterEnvironmentalQuery</b> class, as well as each of the
             <b>Example</b> classes are attached to the same gameObject.
-        </p>        
+            <br> <br>
+            Each method below includes <b>default cast distances</b> for the physics collision queries.
+            Additionally, the ledge grab, head, chest and feet collision queries require the provision of a transform.
+            <br>
+            Refer to the <a class="redirect-link" href="#">manual</a> for more information on the <b>CharacterEnvironmentalQuery</b> component.
+        </p>
         <br>
         <div class="table-division">
             <span class="table-title">Public Methods</span>
             <table>
                 <tr>
                     <td class="label"><a class="important-link" href="PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a></td>
-                    <td class="description">Updates the active collider of the class.</td>
+                    <td class="description">Sets the collider to be utilized by the class.</td>
                 </tr>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/collider-around-character.html">ColliderAroundCharacter</a></td>

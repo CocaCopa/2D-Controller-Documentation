@@ -1,10 +1,10 @@
+-------------------------------------- HUMANOID CONTROLLER --------------------------------------
 humanoid-controller.html
 - Add link to 'combatSystem' property.
 - Add link to 'activeCollider' property.
 - Add links to required and optional components
 
 changeHorizontalVelocity.html
-- Add link to 'IsRunning' that will direct to the 'IsRunning' property.
 - Add link to 'combatSystem' that will direct to the 'CombatSystem' page.
 - Add link to 'ChaacterMovement' component.
 
@@ -22,3 +22,8 @@ try-floor-slide.html
 
 wall-slide.html
 - Add link to 'CharacterSlide' component.
+
+
+-------------------------------------- ENVIRONMENTAL QUERY --------------------------------------
+env-query.html
+- Add link to 'manual' (Important Notes section)

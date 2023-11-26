@@ -31,7 +31,8 @@
         <p>
             Checks if the character steps on a platform.
             <br> <br>
-            This function performs a capsule cast based on the character's collider.
+            This function performs a <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Physics2D.BoxCast.html">Physics2D.BoxCast</a> in the downward direction, taking
+            into account the size and position of the <a class="redirect-link" href="set-active-collider.html">activeCollider</a>.
         </p>
         <br>
         <p>
@@ -55,9 +56,9 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
 
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        if (envQuery.<b>IsGrounded</b>())
+        if (envQuery.<b>GroundCheck</b>())
         {
-            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Your character is grounded");
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Your character is grounded.");
         }
         else
         {
@@ -119,11 +120,11 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
     {
         if (envQuery.<b>GroundCheck</b>(offset, distance))
         {
-            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Collider found " + offset + " Unity units away " + " at the maximum height of " + distance + " Unity units.");
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Collider found " + offset + " Unity units away " + " at the maximum of " + distance + " Unity units below.");
         }
         else
         {
-            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("No collider found at the specified 'origin' and/or 'distance'");
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("There are no colliders at the specified 'origin' and/or 'distance'.");
         }
     }
 }
@@ -185,11 +186,11 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
     {
         if (envQuery.<b>GroundCheck</b>(offset, distance, out <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RaycastHit2D.html">RaycastHit2D</a> hitInfo))
         {
-            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Collider: " + hitInfo.transform.name + " found " + offset + " Unity units away " + " at the maximum height of " + distance + " Unity units.");
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Collider: " + hitInfo.transform.name + " found " + offset + " Unity units away " + " at the maximum of " + distance + " Unity units below.");
         }
         else
         {
-            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("No collider found at the specified 'origin' and/or 'distance'");
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("There are no colliders at the specified 'origin' and/or 'distance'.");
         }
     }
 }
