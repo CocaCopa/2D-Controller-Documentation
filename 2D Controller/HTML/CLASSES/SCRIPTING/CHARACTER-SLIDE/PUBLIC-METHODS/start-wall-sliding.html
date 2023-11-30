@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StartWallSliding</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../character-slide.html">CharacterSlide</a>.StartWallSliding</h1>
+        <h2>Declaration</h2>
+        <p>public float <b>StartWallSliding</b>();</p>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Controls the behaviour of the character for as long as the character is wall sliding.
+            <br> <br>
+            When called, this function will reset the velocity of the character's <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>
+            and set the gravity scale to 0. It implements its own gravity logic, allowing you to control the 'hardness' of the gravitational pull by configuring the
+            '<b>wallSlideAcceleration</b>' value through the controller's inspector.
+        </p>
+        <br>
+        <p>
+            This is an example of how you can call <b>StartWallSliding</b> in your script. <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> is
+            also being used, to help with the wall detection, as well as <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> to identify
+            when the character is grounded:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-slide.html">CharacterSlide</a>), typeof(<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>))]
+public class Example : <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> 
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../character-slide.html">CharacterSlide</a> characterSlide;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] privte <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterSlide = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../character-slide.html">CharacterSlide</a>&RightAngleBracket;();
+        envQuey = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="../../HUMANOID-CONTROLLER/PUBLIC-PROPERTIES/is-grounded.html">IsGrounded</a> && envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/wall-in-front.html">WallInFront</a>())
+        {
+            characterSlide.<b>StartWallSliding</b>();
+        }
+        else
+        {
+            characterSlide.<a class="redirect-link" href="end-wall-sliding.html">EndWallSliding</a>();
+        }
+    }
+}
+</pre>
+    </div>
+</body>

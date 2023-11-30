@@ -27,3 +27,6 @@ wall-slide.html
 -------------------------------------- ENVIRONMENTAL QUERY --------------------------------------
 env-query.html
 - Add link to 'manual' (Important Notes section)
+
+ledge-grab-check.html
+- Add link to 'manual' (Description section)

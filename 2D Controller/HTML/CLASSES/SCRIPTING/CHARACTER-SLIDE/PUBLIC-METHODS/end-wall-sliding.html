@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EndWallSliding</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../character-slide.html">CharacterSlide</a>.EndWallSliding</h1>
+        <h2>Declaration</h2>
+        <p>public float <b>EndWallSliding</b>();</p>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Resets certain values when the character exits the wall slide.
+            <br> <br>
+            This function should be called after calling <a class="redirect-link" href="start-wall-sliding.html">StartWallSliding</a> to reset the character's state back to default.
+        </p>
+        <br>
+        <p>
+            This is an example of how you can call <b>EndWallSliding</b> in your script. <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> is
+            also being used, to help with the wall detection, as well as <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> to identify
+            when the character is grounded:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-slide.html">CharacterSlide</a>), typeof(<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>))]
+public class Example : <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> 
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../character-slide.html">CharacterSlide</a> characterSlide;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] privte <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterSlide = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../character-slide.html">CharacterSlide</a>&RightAngleBracket;();
+        envQuey = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="../../HUMANOID-CONTROLLER/PUBLIC-PROPERTIES/is-grounded.html">IsGrounded</a> && envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/wall-in-front.html">WallInFront</a>())
+        {
+            characterSlide.<a class="redirect-link" href="start-wall-sliding.html">StartWallSliding</a>();
+        }
+        else
+        {
+            characterSlide.<b>EndWallSliding</b>();
+        }
+    }
+}
+</pre>
+    </div>
+</body>

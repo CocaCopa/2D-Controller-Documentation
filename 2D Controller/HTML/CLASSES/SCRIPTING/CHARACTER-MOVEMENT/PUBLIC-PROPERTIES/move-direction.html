@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoveDirection</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../character-movement.html">CharacterMovement</a>.MoveDirection</h1>
+        <h2>Declaration</h2>
+        <p>public float <b>MoveDirection</b> { get; set; }</p>
+        <br>
+        <h2>Description</h2>
+        <p>
+            This property represents the direction your character is facing.
+            <br> <br>
+            It is important to note that the <b>CharacterMovement</b> class operates independently of external changes in your character's direction. In the
+            event of a sudden shift in movement direction, it is crucial to manually adjust the <b>MoveDirection</b> property accordingly.
+        </p>
+        <br>
+        <p>
+        Unfortunately, providing a specific example demonstrating when and how to update the value of <b>MoveDirection</b> is not feasible here, as it requires a custom action
+        to precede it. Instead of presenting an example in this context, please refer to the <b>CharacterDash_OnDashDistanceCovered</b> event listener in the
+        <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> script. Navigate to your project files: <br>
+        <b>Assets -> 2D Character Controller -> _Scripts -> Character -> Controllers -> HumanoidController.cs</b>
+        <br> <br>
+        When the character executes a dash, the <b>MoveDirection</b> property is updated with the value of the character's right direction
+        (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform-right.html">transform.right</a>). This is done because it is possible for your
+        character to jump, running toward the left direction, but the dash could be performed in the right direction and vice versa. This would result to your character
+        travelling toward the right direction as expected, but as soon as the dash was completed, they would change their travel direction again, to the left direction.
+        <br>Updating the value of the <b>MoveDirection</b> property accordingly, solves this issue.
+        </p>
+    </div>
+</body>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CharacterMovement</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1>CharacterMovement</h1>
+        <h2>Description</h2>
+        <p>
+            This class manages your character's movement, seamlessly combining animation curves with Unity's <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>
+            component. This dynamic setup empowers you to create various types of movement, whether snappy or smooth.
+            <br> <br>
+            In the inspector of the component, exposed properties allow you to fine-tune both '<b>ground</b>' and '<b>aerial</b>' movement, providing animation curves for acceleration
+            and deceleration. Additionally, dedicated values enable control over the evaluation speed of these curves. These values play a crucial role in determining how quickly your
+            character reaches the designated top speed, as defined by the '<b>moveSpeed</b>' variable.
+        </p>
+        <br>
+        <div class="table-division">
+            <span class="table-title">Public Properties</span>
+            <table>
+                <tr>
+                    <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/top-speed.html">TopSpeed</a></td>
+                    <td class="description">The character's set movement speed.</td>
+                </tr>
+                <tr>
+                    <td class="label"><a class="important-link" href="PUBLIC-PROPERTIES/current-speed.html">CurrentSpeed</a></td>
+                    <td class="description">The current speed of your character.</td>
+                </tr>
+                <tr>
+                    <td class="label"><a class="important-link" href="PUBLIC-PROPERTIES/move-direction.html">MoveDirection</a></td>
+                    <td class="description">The direction that your character is facing.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-division">
+            <span class="table-title">Public Methods</span>
+            <table>
+                <tr>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/set-character-move-speed.html">SetCharacterMoveSpeed</a></td>
+                    <td>Let's you change the default top speed of your character.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>

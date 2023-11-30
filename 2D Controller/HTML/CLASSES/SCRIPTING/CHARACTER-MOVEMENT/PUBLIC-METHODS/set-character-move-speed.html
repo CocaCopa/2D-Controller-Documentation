@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SetCharacterMoveSpeed</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../character-movement.html">CharacterMovement</a>.SetCharacterMoveSpeed</h1>
+        <h2>Declaration</h2>
+        <p>public float <b>SetCharacterMoveSpeed</b>(float <b>value</b>);</p>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Set a new movement speed (top speed) for your character.
+        </p>
+        <br>
+        <p>
+            This example, demonstrates how <b>SetChacterMoveSpeed</b> could be used:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private CharacterMovement characterMovement;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/TooltipAttribute.html">Tooltip</a>("Assigned values greater than 1 will result in buffing the speed, while values below 1 will nerf the speed instead.")]
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float speedBuffMultiplier;
+    
+    public bool PlayerHasSpeedBuff { get; set; }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterMovement = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>&RightAngleBracket;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (PlayerHasSpeedBuff)
+        {
+            // Change your character speed based on a multiplier set in the inspector.
+            float newMovementSpeed = characterMovement.<a class="redirect-link" href="../PUBLIC-PROPERTIES/top-speed.html">TopSpeed</a> * speedBuffMultiplier;
+            characterMovement.<b>SetCharacterMoveSpeed</b>(newMovementSpeed);
+        }
+        else
+        {
+            // Revert back to the default speed.
+            characterMovement.<b>SetCharacterMoveSpeed</b>(characterMovement.<a class="redirect-link" href="../PUBLIC-PROPERTIES/top-speed.html">TopSpeed</a>);
+        }
+    }
+}
+</pre>
+    </div>
+</body>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrentSpeed</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../character-movement.html">CharacterMovement</a>.CurrentSpeed</h1>
+        <h2>Declaration</h2>
+        <p>public float <b>CurrentSpeed</b> { get; set; }</p>
+        <br>
+        <h2>Description</h2>
+        <p>
+            This property represents the current speed of your character.
+            <br> <br>
+            It is important to note that the <b>CharacterMovement</b> class operates independently of external changes in your character's speed. In the
+            event of a sudden velocity change outside of this script, it is crucial to manually adjust the <b>CurrentSpeed</b> property accordingly.
+        </p>
+        <br>
+        <p>
+            In this example, the provided class inherits from <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>
+            and is set up to let you move your gameObject in your scene. It is assumed that the <b>Example</b> class is attached to the same gameObject as the
+            <b>CharacterMovement</b> class:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>))]
+public class Example : <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> 
+{
+    private <a class="redirect-link" href="../character-movement.html">CharacterMovement</a> characterMovement;
+    
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterMovement = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>&RightAngleBracket;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        Vector2 moveDirection = Input.GetAxis("Horizontal");
+        <a class="redirect-link" href="../../HUMANOID-CONTROLLER/PUBLIC-METHODS/change-horizontal-velocity.html">ChangeHorizontalVelocity</a>(moveDirection);
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("The current speed of your character is: " + characterMovement.CurrentSpeed + " Unity units per second");
+    }
+}
+</pre>
+        <br>
+        <p>
+        Unfortunately, providing a specific example demonstrating when and how to update the value of <b>CurrentSpeed</b> is not feasible here, as it requires a custom action
+        to precede it. Instead of presenting an example in this context, please refer to the <b>CharacterDash_OnDashDistanceCovered</b> event listener in the
+        <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> script.
+        <br> <br>
+        When the character executes a dash, their speed surpasses the designated <a class="redirect-link" href="top-speed.html">TopSpeed</a>. This is the moment when you
+        should ensure that CurrentSpeed reflects this change. Neglecting this step could lead to undesired outcomes; for instance, if the character dashes immediately
+        after jumping, with a horizontal velocity of 0, without updating the <b>CurrentSpeed</b> value, the character would end up with a speed of 0 when the dash is completed,
+        instead of maintaining their momentum. The update of the <b>CurrentSpeed</b> value resolves this issue.
+        </p>
+    </div>
+</body>
