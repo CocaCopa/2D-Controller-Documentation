@@ -22,12 +22,12 @@
         <h1>CharacterDash</h1>
         <h2>Dependencies</h2>
         <p>
-            <p><b style="text-decoration: underline;">Required</b> Component: <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a></p>
+            <p><b style="text-decoration: underline;">Required</b> Components: <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a>, <a class="redirect-link" href="../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a></p>
         </p>
         <br>
         <h2>Description</h2>
         <p>
-            
+            This class is designed to handle the behaviour of your character while dashing.
         </p>
         <br>
 
@@ -35,8 +35,8 @@
             <span class="table-title">Public Properties</span>
             <table>
                 <tr>
-                    <td class="label"><a class="events" href="EVENTS/">OnDashDistanceCovered</a></td>
-                    <td class="description">Current velocity of the character on the Y-axis.</td>
+                    <td class="label"><a class="events" href="EVENTS/on-dash-distance-covered.html">OnDashDistanceCovered</a></td>
+                    <td class="description">Triggered when the dash action has been completed.</td>
                 </tr>
             </table>
         </div>
@@ -45,12 +45,12 @@
             <span class="table-title">Public Properties</span>
             <table>
                 <tr>
-                    <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/">DashSpeed</a></td>
-                    <td class="description">Current velocity of the character on the Y-axis.</td>
+                    <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/dash-speed.html">DashSpeed</a></td>
+                    <td class="description">The speed of your character while dashing.</td>
                 </tr>
                 <tr>
-                    <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/">MaximumDashDistance</a></td>
-                    <td class="description">Current velocity of the character on the X-axis.</td>
+                    <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/maximum-dash-distance.html">MaximumDashDistance</a></td>
+                    <td class="description">The maximum distance your character can cover while dashing.</td>
                 </tr>
             </table>
         </div>
@@ -59,8 +59,8 @@
             <span class="table-title">Public Methods</span>
             <table>
                 <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/">Dash</a></td>
-                    <td>Sets your character's state to Ledge Grab.</td>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/dash.html">Dash</a></td>
+                    <td>Makes your character dash.</td>
                 </tr>
             </table>
         </div>

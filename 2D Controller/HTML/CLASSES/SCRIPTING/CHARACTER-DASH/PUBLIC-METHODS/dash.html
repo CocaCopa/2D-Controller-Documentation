@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../character-dash.html">CharacterDash</a>.Dash</h1>
+        <h2>Declaration</h2>
+        <p>public void <b>Dash</b>(float <b>characterHeight</b>, bool <b>isGrounded</b>, bool <b>adjustPosition</b> = true);</p>
+        <br>
+        <div class="table-division">
+            <span class="table-title">Parameters</span>
+            <table>
+                <tr>
+                    <td class="label"><b>characterHeight</b></td>
+                    <td class="description">Character's height (You can get that value using your character's collider).</td>
+                </tr>
+                <tr>
+                    <td class="label"><b>isGrounded</b></td>
+                    <td class="description">Whether the character is grounded or not.</td>
+                </tr>
+                <tr>
+                    <td class="label"><b>adjustPosition</b></td>
+                    <td class="description">Determines whether your character's position should be adjusted, to avoid collision with a wall.</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Makes your character dash.
+            <br> <br>
+            Upon invoking this function, it examines the potential collisions within the specified maximum dash distance range, particularly focusing on the character's <b>feet</b> and <b>head</b>.
+            If an impending collision is detected, the character's position is subtly adjusted based on the value designated in the '<b>adjustDashPosition</b>' field within the component's
+            inspector.
+            <br>
+            Subsequently, the function verifies if the character is on course to collide with a wall before completing the maximum dash distance. In such a scenario, the dash
+            distance is truncated to ensure it concludes just prior to encountering the identified wall.
+        </p>
+        <br>
+        <p>
+            This example demonstrates how you can use the <b>Dash</b> function in your script, utilizing the <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>
+            class to be able to detect if the character is grounded:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-dash.html">CharacterDash</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../character-dash.html">CharacterDash</a> characterDash;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private float characterHeight;
+    private bool isGrounded;
+    
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterDash = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-dash.html">CharacterDash</a>&gt;();
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>&gt;();
+
+        characterHeight = m_Collider.bounds.size.y;
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        isGrounded = envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/ground-check.html">GroundCheck</a>();
+        
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.LeftShift.html">KeyCode.LeftShift</a>))
+        {
+            characterDash.<a class="redirect-link" href="../PUBLIC-METHODS/dash.html">Dash</a>(characterHeight, isGrounded);
+        }
+    }
+}
+</pre>
+</div>
