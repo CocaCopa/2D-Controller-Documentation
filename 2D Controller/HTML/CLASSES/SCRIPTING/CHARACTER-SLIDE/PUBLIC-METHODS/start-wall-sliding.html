@@ -33,16 +33,16 @@
         </p>
         <br>
         <p>
-            This is an example of how you can call <b>StartWallSliding</b> in your script. <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> is
-            also being used, to help with the wall detection, as well as <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> to identify
-            when the character is grounded:
+            This is an example of how you can call <b>EndWallSliding</b> in your script utilizing the <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>
+            class, to help with the wall and ground detection:
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-slide.html">CharacterSlide</a>), typeof(<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>))]
-public class Example : <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> 
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../character-slide.html">CharacterSlide</a> characterSlide;
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] privte <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
 
@@ -50,11 +50,12 @@ public class Example : <a class="redirect-link" href="../../HUMANOID-CONTROLLER/
     {
         characterSlide = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../character-slide.html">CharacterSlide</a>&RightAngleBracket;();
         envQuey = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+        envQuery.<a class="redirect-link" href="../PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
     }
 
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        if (<a class="redirect-link" href="../../HUMANOID-CONTROLLER/PUBLIC-PROPERTIES/is-grounded.html">IsGrounded</a> && envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/wall-in-front.html">WallInFront</a>())
+        if (envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/ground-check.html">GroundCheck</a>() && envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/wall-in-front.html">WallInFront</a>())
         {
             characterSlide.<b>StartWallSliding</b>();
         }

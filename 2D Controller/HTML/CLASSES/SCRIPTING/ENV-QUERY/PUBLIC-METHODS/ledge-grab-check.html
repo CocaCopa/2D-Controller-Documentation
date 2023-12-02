@@ -50,7 +50,6 @@
             Successful detection of a ledge is confirmed if the circle cast returns true while the box cast returns false. In the event that both casts return true, it indicates the
             presence of a wall. The position of the circle is determined by the transform provided in the inspector of the component, while the position of the box lies on top of
             the circle. Refer to the <a class="redirect-link" href="#">manual</a> for more information.
-
             <br> <br>
             Note the use of the <b>exitLedgeGrab</b> flag in the example below. When the character needs to exit a ledge grab/climb state, this flag is set to true.
             The <b>LedgeGrabCheck</b> function will then indicate when the character is ready to grab a ledge again. Once it returns false, signifying that

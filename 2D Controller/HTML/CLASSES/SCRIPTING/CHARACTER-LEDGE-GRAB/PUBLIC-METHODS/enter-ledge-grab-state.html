@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnterLedgeGrabState</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../character-ledge-grab.html">CharacterLedgeGrab</a>.EnterLedgeGrabState</h1>
+        <h2>Declaration</h2>
+        <p>public float <b>EnterLedgeGrabState</b>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a> <b>ledgePosition</b>);</p>
+        <br>
+        <div class="table-division">
+            <span class="table-title">Parameters</span>
+            <table>
+                <tr>
+                    <td class="label"><b>ledgePosition</b></td>
+                    <td class="description">The ledge position detected by your collision query.</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Sets your character's state to Ledge Grab.
+            <br> <br>
+            This function is designed to be invoked upon detecting a ledge through your collision query. Upon execution, it configures your character's <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>
+            to kinematic and resets its velocity to zero, effectively immobilizing the character. Additionally, it relocates your sprites to the specified ledge position, as provided in the parameters,
+            and adjusts the character's sprites based on the designated offset, which is set in the component's inspector to match the correct position that your character should have, while they are
+            grabbing the ledge.
+            <br> <br>
+            Note the use of the <b>exitLedgeGrab</b> flag in the example below. When the character needs to exit a ledge grab/climb state, this flag is set to true.
+            The <a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/ledge-grab-check.html">LedgeGrabCheck</a> function will then indicate when the character is ready to grab a ledge again. Once it returns false, signifying that
+            a ledge is no longer detected, it will also reset the provided boolean back to false.
+        </p>
+        <br>
+        <p>
+            This is an example of how you can call <b>EnterLedgeGrabState</b> in your script, utilizing the <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>
+            class, to help with the ledge detection:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>), typeof(<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>), typeof(<a class="redirect-link" href="../character-ledge-grab.html">CharacterLedgeGrab</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../character-ledge-grab.html">CharacterLedgeGrab</a> characterLedgeGrab;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>&RightAngleBracket;();
+        envQuery.<a class="redirect-link" href="../PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        bool ledgeDetected = envQuery.LedgeGrabCheck>(ref exitLedgeGrab, out <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a> ledgePosition);
+        
+        if (!exitLedgeGrab && ledgeDetected)
+        {
+            characterLedgeGrab.<b>EnterLedgeGrabState</b>(ledgePosition);
+        }
+
+        // For convenience, if you wish to use this example, press the specified key below (Space) to restore the rigidbody's state back to dynamic:
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            characterLedgeGrab.<a class="redirect-link" href="../PUBLIC-METHODS/exit-ledge-grab-state.html">ExitLedgeGrabState</a>();
+
+            // This will force the above 'if' statement to not be executed, preventing the character from re-entering 'ledge grab' state.
+            exitLedgeGrab = true;
+        }
+    }
+}
+</pre>
+    </div>
+</body>

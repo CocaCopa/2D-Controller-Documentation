@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CharacterSlide</title>
+    <title>CharacterDash</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
     <iframe src="../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
-        <h1>CharacterSlide</h1>
+        <h1>CharacterDash</h1>
         <h2>Dependencies</h2>
         <p>
             <p><b style="text-decoration: underline;">Required</b> Component: <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a></p>
@@ -27,23 +27,40 @@
         <br>
         <h2>Description</h2>
         <p>
-            This class is responsible for controlling your character when they are sliding either on a <b>floor</b> or on a <b>wall</b>.
+            
         </p>
         <br>
+
+        <div class="table-division">
+            <span class="table-title">Public Properties</span>
+            <table>
+                <tr>
+                    <td class="label"><a class="events" href="EVENTS/">OnDashDistanceCovered</a></td>
+                    <td class="description">Current velocity of the character on the Y-axis.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-division">
+            <span class="table-title">Public Properties</span>
+            <table>
+                <tr>
+                    <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/">DashSpeed</a></td>
+                    <td class="description">Current velocity of the character on the Y-axis.</td>
+                </tr>
+                <tr>
+                    <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/">MaximumDashDistance</a></td>
+                    <td class="description">Current velocity of the character on the X-axis.</td>
+                </tr>
+            </table>
+        </div>
+
         <div class="table-division">
             <span class="table-title">Public Methods</span>
             <table>
                 <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/floor-slide.html">FloorSlide</a></td>
-                    <td>Controls the behaviour of the character for as long as the character is floor sliding.</td>
-                </tr>
-                <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/start-wall-sliding.html">StartWallSliding</a></td>
-                    <td>Controls the behaviour of the character for as long as the character is wall sliding.</td>
-                </tr>
-                <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/end-wall-sliding.html">EndWallSliding</a></td>
-                    <td>Resets certain values when the character exits the wall slide.</td>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/">Dash</a></td>
+                    <td>Sets your character's state to Ledge Grab.</td>
                 </tr>
             </table>
         </div>
