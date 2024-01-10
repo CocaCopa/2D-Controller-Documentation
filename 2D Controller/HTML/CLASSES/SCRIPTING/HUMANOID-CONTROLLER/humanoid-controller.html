@@ -42,7 +42,7 @@
         </ul>
         <p>
             You can inherit from this class to create custom humanoid characters, controlled by a <b>player</b> and/or an <b>AI</b>, with dynamic and
-            responsive behaviors.
+            responsive behaviours.
         </p>
         <br>
         <div class="table-division">
@@ -76,7 +76,7 @@
             <table>
                 <tr>
                     <td class="label"><a class="properties" href="#">characterRb</a></td>
-                    <td class="description">The '<a class="properties" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a>' component attached to the character</td>
+                    <td class="description">The '<a class="properties" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>' component attached to the character</td>
                 </tr>
                 <tr>
                     <td class="label"><a class="properties" href="#">combatSystem</a></td>
@@ -84,7 +84,7 @@
                 </tr>
                 <tr>
                     <td class="label"><a class="properties" href="#">activeCollider</a></td>
-                    <td class="description">Reference to the active '<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider.html">collider</a>' of the character</td>
+                    <td class="description">Reference to the active '<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a>' of the character</td>
                 </tr>
             </table>
         </div>
@@ -92,6 +92,14 @@
         <div class="table-division">
             <span class="table-title">Public Properties</span>
             <table>
+                <tr>
+                    <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/dash-cooldown.html">DashCooldown</a></td>
+                    <td class="description">The set cooldown of the dash mechaninc in seconds.</td>
+                </tr>
+                <tr>
+                    <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/ledge-grab-hold-time.html">LedgeGrabHoldTime</a></td>
+                    <td class="description">The set time that the character is able to stay idle while grabbing a ledge, before they are forced to exit 'LedgeGrab' state.</td>
+                </tr>
                 <tr>
                     <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/vertical-velocity.html">VerticalVelocity</a></td>
                     <td class="description">Current velocity of the character on the Y-axis.</td>
@@ -140,11 +148,11 @@
             <table>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/flip-character.html">FlipCharacter</a></td>
-                    <td>Reorients the character to face the specified horizontal direction.</td>
+                    <td class="description">Reorients the character to face the specified horizontal direction.</td>
                 </tr>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/change-horizontal-velocity.html">ChangeHorizontalVelocity</a></td>
-                    <td>Changes the character's horizontal velocity based on the provided direction.</td>
+                    <td class="description">Changes the character's horizontal velocity based on the provided direction.</td>
                 </tr>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/try-jumping.html">TryJumping</a></td>
