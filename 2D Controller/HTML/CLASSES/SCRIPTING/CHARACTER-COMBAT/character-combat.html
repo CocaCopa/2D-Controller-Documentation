@@ -22,11 +22,14 @@
         <h1>CharacterCombat</h1>
         <h2>Dependencies</h2>
         <p>
-            <p><b style="text-decoration: underline;">Required</b> Components: <a class="redirect-link" href="../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a></p>
+            <p><b style="text-decoration: underline;">Required</b> Components: <a class="redirect-link" href="../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a></p>
         </p>
         <br>
         <h2>Description</h2>
         <p>
+            <hr>
+            <p><b>*NOTE*</b> Remember to add the link to the <b>AttackSO</b>. </p>
+            <hr>
             Description of the character combat system class goes here.
         </p>
         <br>
@@ -42,8 +45,8 @@
                     <td class="description">Triggered when the character starts charging an attack.</td>
                 </tr>
                 <tr>
-                    <td class="label"><a class="events" href="EVENTS/on-charged-attack-fully-charged.html">OnChargedAttackFullyCharged</a></td>
-                    <td class="description">Triggered when a charged attack is fully charged.</td>
+                    <td class="label"><a class="events" href="EVENTS/on-charge-attack-fully-charged.html">OnChargeAttackFullyCharged</a></td>
+                    <td class="description">Triggered when a charge attack is fully charged.</td>
                 </tr>
                 <tr>
                     <td class="label"><a class="events" href="EVENTS/on-release-charge-attack.html">OnReleaseChargeAttack</a></td>
@@ -59,7 +62,7 @@
                 </tr>
                 <tr>
                     <td class="label"><a class="events" href="EVENTS/on-projectile-thrown.html">OnProjectileThrown</a></td>
-                    <td class="description">Triggered when a projectile is thrown by an attack.</td>
+                    <td class="description">Triggered when an attack spawns a projectile.</td>
                 </tr>
             </table>
         </div>
@@ -114,15 +117,15 @@
                     <td class="description">Performs a normal single or combo attack.</td>
                 </tr>
                 <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/perform-charged-attack.html">PerformChargedAttack</a></td>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/perform-charge-attack.html">PerformChargeAttack</a></td>
                     <td class="description">Starts charging the specified charge attack.</td>
                 </tr>
                 <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/try-release-charged-attack.html">TryReleaseChargedAttack</a></td>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/try-release-charge-attack.html">TryReleaseChargeAttack</a></td>
                     <td class="description">Releases the current charge attack.</td>
                 </tr>
                 <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/cancel-charged-attack.html">CancelChargedAttack</a></td>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/cancel-charge-attack.html">CancelChargeAttack</a></td>
                     <td class="description">Cancels the current charge attack.</td>
                 </tr>
                 <tr>

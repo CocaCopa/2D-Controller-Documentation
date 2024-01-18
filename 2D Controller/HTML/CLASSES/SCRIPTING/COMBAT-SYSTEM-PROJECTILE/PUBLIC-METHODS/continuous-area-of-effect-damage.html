@@ -3,44 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OnProjectileThrown</title>
+    <title>ContinuousAreaOfEffectDamage</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
     <link rel="stylesheet" href="../../../../../CSS/general.css">
     <link rel="stylesheet" href="../../../../../CSS/table.css">
     <link rel="stylesheet" href="../../../../../CSS/code-block.css">
-    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
 </head>
 <body>
     <iframe src="../../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
-        <h1><a class="redirect-link" href="../character-combat.html">CharacterCombat</a>.OnProjectileThrown</h1>
+        <h1><a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>.ContinuousAreaOfEffectDamage</h1>
         <h2>Declaration</h2>
-        <p>public event EventHandler&lt;<b>OnProjectileThrownEventArgs</b>&gt; <b>OnProjectileThrown</b>;</p>
+        <p>public void <b>ContinuousAreaOfEffectDamage</b>(float <b>damageAgainInSeconds</b>);</p>
         <br>
         <div class="table-division">
-            <span class="table-title">Event Arguments</span>
+            <span class="table-title">Parameters</span>
             <table>
                 <tr>
-                    <td class="label"><b>attackData</b></td>
-                    <td class="description">The ongoing attack's current data.</td>
-                </tr>
-                <tr>
-                    <td class="label"><b>projectile</b></td>
-                    <td class="description">The projectile game object instance created by the attack.</td>
+                    <td class="label"><b>damageAgainInSeconds</b></td>
+                    <td class="description">Damage frequency.</td>
                 </tr>
             </table>
         </div>
         <br>
         <h2>Description</h2>
         <p>
-            Triggered when an attack spawns a projectile.
-            <br> <br>
             Description goes here.
         </p>
         <br>
@@ -51,9 +44,9 @@
 <pre class="code-block">
 using UnityEngine;
 
-public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code
+    // Code.
 }
 </pre>
 </div>
