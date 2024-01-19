@@ -1,12 +1,7 @@
 -------------------------------------- HUMANOID CONTROLLER --------------------------------------
-humanoid-controller.html
-- Add link to 'combatSystem' property.
-- Add link to 'activeCollider' property.
-- Add links to required and optional components
-
 changeHorizontalVelocity.html
 - Add link to 'combatSystem' that will direct to the 'CombatSystem' page.
-- Add link to 'ChaacterMovement' component.
+- Add link to 'CharacterMovement' component.
 
 ledge-grab.html
 - Add link to 'CharacterLedgeGrab' component
