@@ -3,22 +3,6 @@ changeHorizontalVelocity.html
 - Add link to 'combatSystem' that will direct to the 'CombatSystem' page.
 - Add link to 'CharacterMovement' component.
 
-ledge-grab.html
-- Add link to 'CharacterLedgeGrab' component
-
-ledge-climb.html
-- Add link to 'CharacterLedgeGrab' component.
-
-try-dashing.html
-- Add link to 'CharacterDash' component in the description text.
-
-try-floor-slide.html
-- Add link to 'CharacterSlide' component.
-
-wall-slide.html
-- Add link to 'CharacterSlide' component.
-
-
 -------------------------------------- ENVIRONMENTAL QUERY --------------------------------------
 env-query.html
 - Add link to 'manual' (Important Notes section)
