@@ -41,19 +41,53 @@
         <p>
             Triggered when an attack spawns a projectile.
             <br> <br>
-            Description goes here.
+            Attacks can be customized to launch a projectile using the <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> (Scriptable Object). In such instances, when the attack spawns the designated projectile,
+            an associated event is triggered. This event sends the attack's data along with the newly instantiated projectile game object, providing the opportunity to
+            implement additional actions, such as spawning visual effects (VFX).
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            Here is an example of how you can listen to the event.
         </p>
 
 <pre class="code-block">
 using UnityEngine;
 
-public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> exampleAttack;
+    
+    private <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> characterCombat;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterCombat = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html">Start</a>()
+    {
+        characterCombat.<b>OnProjectileThrown</b> += Combat_OnProjectileThrown;
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.C</a>))
+        {
+            characterCombat.<a class="redirect-link" href="../PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a>(exampleAttack);
+        }
+    }
+
+    private void Combat_OnProjectileThrown(object sender, <a class="redirect-link" href="../character-combat.html">CharacterCombat</a>.OnProjectileThrownEventArgs e)
+    {
+        if (e.attackData == exampleAttack)
+        {
+            string attackName = e.attackData.AttackName;
+            string projectileName = e.projectile.name;
+
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("The attack: " + attackName + ", spawned the " + projectileName + " game object.");
+        }
+    }
 }
 </pre>
 </div>

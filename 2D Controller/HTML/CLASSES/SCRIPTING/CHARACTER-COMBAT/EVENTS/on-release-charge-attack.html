@@ -37,19 +37,56 @@
         <p>
             Triggered when the character releases a charged attack.
             <br> <br>
-            Description goes here.
+            Upon the successful execution of the <a class="redirect-link" href="../PUBLIC-METHODS/try-release-charge-attack.html">TryReleaseChargeAttack</a> function, this event
+            will be triggered. The data of the released attack will be sent as an event argument, enabling the implementation of various actions, such as spawning particles.
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            Here is an example of how you can listen to the event. You need a reference to the attack (<a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a>) that will be
+            initiated and then you can compare it with the <b>attackData</b> received by the event to distinguish it from other attacks.
         </p>
 
 <pre class="code-block">
 using UnityEngine;
 
-public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> exampleAttack;
+    
+    private <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> characterCombat;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterCombat = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html">Start</a>()
+    {
+        characterCombat.<b>OnReleaseChargeAttack</b> += Combat_OnReleaseChargeAttack;
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            characterCombat.<a class="redirect-link" href="../PUBLIC-METHODS/perform-charge-attack.html">PerformChargeAttack</a>(exampleAttack);
+        }
+        else if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyUp.html">Input.GetKeyUp</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            characterCombat.<a class="redirect-link" href="../PUBLIC-METHODS/try-release-charge-attack.html">TryReleaseChargeAttack</a>();
+        }
+    }
+
+    private void Combat_OnReleaseChargeAttack(object sender, <a class="redirect-link" href="../character-combat.html">CharacterCombat</a>.CurrentAttackEventArgs e)
+    {
+        if (e.attackData == exampleAttack)
+        {
+            string attackName = e.attackData.AttackName;
+
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("The attack: " + attackName + ", has been released.");
+        }
+    }
 }
 </pre>
 </div>

@@ -25,18 +25,39 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Indicates whether the character is currently charging an attack.
+            <br><br>
+            After the successful execution of the <a class="redirect-link" href="../PUBLIC-METHODS/perform-charge-attack.html">PerformChargeAttack</a> function, the <b>IsCharging</b>
+            property will remain true as long as the function is being called.
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            Here is an example of how you can access the property.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code.
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> exampleAttack;
+    
+    private <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> characterCombat;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterCombat = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKey.html">Input.GetKey</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            characterCombat.<a class="redirect-link" href="../PUBLIC-METHODS/perform-charge-attack.html">PerformChargeAttack</a>(exampleAttack);
+        }
+
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Your character is charging: " + characterCombat.<b>IsCharging</b>);
+    }
 }
 </pre>
 </div>

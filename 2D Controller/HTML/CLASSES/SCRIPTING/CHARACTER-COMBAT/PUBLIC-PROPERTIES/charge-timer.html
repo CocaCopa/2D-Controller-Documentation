@@ -25,18 +25,43 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Indicates the amount of time an attack needs in order to be fully charged in seconds.
+            <br><br>
+            If the attack is set up as a chargeable attack, this property monitors the timer according to the charge time specified in the attack's
+            <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> scriptable object. This information is valuable for
+            coding visuals that correspond to the attack's charge time.
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            Here is an example of how you can access the property.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code.
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> exampleAttack;
+    
+    private <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> characterCombat;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterCombat = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKey.html">Input.GetKey</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            characterCombat.<a class="redirect-link" href="../PUBLIC-METHODS/perform-charge-attack.html">PerformChargeAttack</a>(exampleAttack);
+        }
+
+        if (characterCombat.IsAttacking && characterCombat.<b>ChargeTimer</b> == 0)
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("The attack is fully charged.");
+        }
+    }
 }
 </pre>
 </div>

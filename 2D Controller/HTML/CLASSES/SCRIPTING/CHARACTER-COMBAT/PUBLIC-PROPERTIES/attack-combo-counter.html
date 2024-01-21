@@ -25,18 +25,47 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Specifies the current combo attack's sequence number.
+            <br><br>
+            Attacks can be set up to be part of a combo sequence, where a counter is utilized to designate the attack's sequence number within the combo. This counter is
+            instrumental in tracking the presently executing attack within the combo sequence. Primarily, this property is employed in combination with the
+            <a class="redirect-link" href="../PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a> function.
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            Here is how you can access the property.
+            <br>
+            For additional information on invoking the <a class="redirect-link" href="../PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a> function during
+            a combo attack, refer to the method's documentation. It contains detailed instructions on effectively utilizing this function within the context of a combo sequence.
         </p>
 <pre class="code-block">
+using System.Collections.Generic;
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code.
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private List&lt;<a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a>&gt; comboAttacks;
+    
+    private <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> characterCombat;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterCombat = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.C</a>))
+        {
+            if (characterCombat.<b>AttackComboCounter</b> &lt; comboAttacks.Count)
+            {
+                characterCombat.<a class="redirect-link" href="../PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a>(comboAttacks[characterCombat.<b>AttackComboCounter</b>], isPartOfCombo: true);
+            }
+
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Attack number: " + characterCombat.<b>AttackComboCounter</b>);
+        }
+    }
 }
 </pre>
 </div>

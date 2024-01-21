@@ -30,6 +30,10 @@
                     <td class="label"><b>attackData</b></td>
                     <td class="description">The ongoing attack's current data.</td>
                 </tr>
+                <tr>
+                    <td class="label"><b>damagedObject</b></td>
+                    <td class="description">The collider's root game object that took damage.</td>
+                </tr>
             </table>
         </div>
         <br>
@@ -37,19 +41,52 @@
         <p>
             Triggered when an attack successfully deals damage to a damageable object.
             <br> <br>
-            Description goes here.
+            Upon a successful execution of an attack, if a damageable object is encountered throughout the attack duration, this event will be activated. The attack's data, along with
+            the game object that took damage, will be sent as an event argument, enabling you to implement various actions, such as spawning damage numbers.
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            Here is an example of how you can listen to the event. For simplicity, a normal attack will be used, utilizing the <a class="redirect-link" href="../PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a> function.
         </p>
 
 <pre class="code-block">
 using UnityEngine;
 
-public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> exampleAttack;
+    
+    private <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> characterCombat;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterCombat = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html">Start</a>()
+    {
+        characterCombat.<b>OnAttackDealtDamage</b> += Combat_OnAttackDealtDamage;
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.C</a>))
+        {
+            characterCombat.<a class="redirect-link" href="../PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a>(exampleAttack);
+        }
+    }
+
+    private void Combat_OnAttackDealtDamage(object sender, <a class="redirect-link" href="../character-combat.html">CharacterCombat</a>.OnAttackDealtDamageEventArgs e)
+    {
+        if (e.attackData == exampleAttack)
+        {
+            string attackName = e.attackData.AttackName;
+            GameObject damagedObject = e.damagedObject;
+
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("The attack: " + attackName + ", dealt damage to the: " + damagedObject.name);
+        }
+    }
 }
 </pre>
 </div>

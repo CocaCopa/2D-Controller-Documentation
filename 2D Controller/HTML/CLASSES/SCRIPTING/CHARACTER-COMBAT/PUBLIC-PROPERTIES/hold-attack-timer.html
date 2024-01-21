@@ -25,18 +25,43 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Indicates the amount of time an attack can be held before the character is forced to release/cancel it.
+            <br><br>
+            If the attack has been configured as chargeable, this property monitors the duration for which the attack can be held. Through additional customization in
+            the attack's <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> scriptable object, you can decide whether the attack should be
+            forcefully canceled or released after that specified time.
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            Here is an example of how you can access the property.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code.
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> exampleAttack;
+    
+    private <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> characterCombat;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterCombat = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.C</a>))
+        {
+            characterCombat.<a class="redirect-link" href="../PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a>(exampleAttack);
+        }
+
+        if (characterCombat.IsCharging)
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Your character will be forced to take an action in: " + characterCombat.<b>HoldAttackTimer</b> + " seconds.");
+        }
+    }
 }
 </pre>
 </div>
