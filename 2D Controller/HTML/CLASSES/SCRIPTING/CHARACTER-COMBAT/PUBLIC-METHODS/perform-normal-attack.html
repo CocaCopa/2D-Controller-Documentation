@@ -42,19 +42,107 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Performs a normal single or combo attack.
+            <br><br>
+            This function, in combination with the <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> scriptable object, enables you to utilize the combat system
+            within the asset. You can invoke it to chain <b>multiple</b> attacks, creating a combo attack, or execute a <b>single</b> attack. If the attack is configured to launch a
+            projectile, you must provide the function with the spawn point of the projectile. Note that the attack's scriptable object needs to be configured as: <b>IsChargeableAttack</b> = <b>false</b>;
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            In the example below, the function is used to execute a <b>single</b> attack. A reference to an <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> scriptable object is required.
         </p>
 
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code.
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> exampleAttack;
+    
+    private <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> characterCombat;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterCombat = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            characterCombat.<b>PerformNormalAttack</b>(exampleAttack);
+        }
+    }
+}
+</pre>
+
+        <br><hr><br>
+        <p>
+            In the example below, the function is used to execute a <b>combo</b> attack. A reference to a list of <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a>
+            scriptable objects is required. Note that in order for the combo sequence to be executed correctly, you need to read the
+            <a class="redirect-link" href="../PUBLIC-PROPERTIES/attack-combo-counter.html">AttackComboCounter</a> property of
+            the <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> class.
+        </p>
+
+<pre class="code-block">
+using UnityEngine;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private List&lt;<a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a>&gt; comboAttacks;
+    
+    private <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> characterCombat;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterCombat = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.C</a>))
+        {
+            if (characterCombat.<a class="redirect-link" href="../PUBLIC-PROPERTIES/attack-combo-counter.html">AttackComboCounter</a> &lt; comboAttacks.Count)
+            {
+                characterCombat.<b>PerformNormalAttack</b>(comboAttacks[characterCombat.<a class="redirect-link" href="../PUBLIC-PROPERTIES/attack-combo-counter.html">AttackComboCounter</a>], isPartOfCombo: true);
+            }
+        }
+    }
+}
+</pre>
+
+        <br><hr><br>
+        <p>
+            In the following example, a reference to a spawn point for a projectile is passed to the function. It's important to highlight that the attack must be configured to launch a
+            projectile (<b>ThrowsProjectile</b> = <b>true</b>). This holds true regardless of whether the attack is designated as a <b>normal</b> or <b>chargeable</b> attack.
+        </p>
+
+<pre class="code-block">
+using UnityEngine;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> exampleAttack;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a> spawnTransform;
+
+    private <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> characterCombat;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterCombat = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            characterCombat.<b>PerformNormalAttack</b>(exampleAttack, isPartOfCombo: false, spawnTransform);
+        }
+    }
 }
 </pre>
 </div>
