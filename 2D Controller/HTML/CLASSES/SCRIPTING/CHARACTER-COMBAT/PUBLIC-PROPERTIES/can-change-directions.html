@@ -27,12 +27,16 @@
         <p>
             Indicates whether the character is able to change directions while attacking.
             <br><br>
-            Depending on the configuration of the attack's <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> scriptable object,
-            the character's movement can be restricted.
+            Depending on the configuration of the attack's <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> scriptable object, the character's
+            movement can be restricted. If the attack is configured to disallow changes in direction while attacking, you need to consider this in your custom controller's
+            script and constrain the direction change by reading the value of the corresponding property.
+            <br>
+            It's worth noting that the <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>
+            class is already designed to handle such restrictions.
         </p>
         <br>
         <p>
-            Here is an example of how you can access the property.
+            Here is an example of how you can make use of the property.
         </p>
 <pre class="code-block">
 using UnityEngine;
@@ -56,6 +60,18 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
             characterCombat.<a class="redirect-link" href="../PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a>(exampleAttack);
             <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Can change directions: " + characterCombat.<b>CanChangeDirections</b>);
         }
+
+        FlipCharacter();
+    }
+
+    private void FlipCharacter()
+    {
+        if (!characterCombat.<b>CanChangeDirections</b>)
+        {
+            return;
+        }
+
+        // Your code that handles change in directions for your character.
     }
 }
 </pre>

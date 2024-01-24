@@ -48,9 +48,68 @@
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code.
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> exampleAttack;
+    
+    private <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> characterCombat;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterCombat = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKey.html">Input.GetKey</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            characterCombat.<a class="redirect-link" href="perform-charge-attack.html">PerformChargeAttack</a>(exampleAttack);
+        }
+        else if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyUp.html">Input.GetKeyUp</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            characterCombat.<b>TryReleaseChargeAttack</b>();
+        }
+    }
+}
+</pre>
+
+        <br><hr><br>
+        <p>
+            In the provided example, the function is utilized to perform a chargeable attack, incorporating the launch of a projectile. Furthermore, it is essential to have
+            a reference to a transform point for the attack to use as a spawn point for the projectile. It is noteworthy that both functions rely on the transform reference.
+            This dependency is critical, especially when the attack is set to trigger a release if the character holds it for a duration exceeding the specified time (<a class="redirect-link" href="../PUBLIC-PROPERTIES/hold-attack-timer.html">HoldAttackTimer</a>).
+            In such cases, the <a class="redirect-link" href="perform-charge-attack.html">PerformChargeAttack</a> function will automatically invoke <b>TryReleaseChargeAttack</b>,
+            which also requires the transform reference.
+        </p>
+
+<pre class="code-block">
+using UnityEngine;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> exampleAttack;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a> projectileSpawnPoint;
+    
+    private <a class="redirect-link" href="../character-combat.html">CharacterCombat</a> characterCombat;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterCombat = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-combat.html">CharacterCombat</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKey.html">Input.GetKey</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            characterCombat.<a class="redirect-link" href="perform-charge-attack.html">PerformChargeAttack</a>(exampleAttack, projectileSpawnPoint);
+        }
+        else if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyUp.html">Input.GetKeyUp</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            characterCombat.<b>TryReleaseChargeAttack</b>(projectileSpawnPoint);
+        }
+    }
 }
 </pre>
 </div>

@@ -28,7 +28,11 @@
             Indicates whether the character is able to move while attacking.
             <br><br>
             Depending on the configuration of the attack's <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> scriptable object,
-            the character's movement can be restricted.
+            the character's movement can be restricted. If the attack is configured to disallow movement while attacking, you need to consider this in
+            your custom controller's script and constrain the character's movement by reading the value of the corresponding property.
+            <br>
+            It's worth noting that the <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>
+            class is already designed to handle such restrictions.
         </p>
         <br>
         <p>
