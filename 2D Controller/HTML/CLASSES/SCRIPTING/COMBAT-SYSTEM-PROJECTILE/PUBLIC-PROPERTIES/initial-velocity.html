@@ -25,18 +25,30 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            The initial velocity of the projectile when it's launched.
+            <br><br>
+            When the <a class="redirect-link" href="../../CHARACTER-COMBAT/PUBLIC-METHODS/try-release-charge-attack.html">TryReleaseChargeAttack</a> function spawns a
+            projectile, it determines the initial velocity of the projectile by considering both the current charge level of the attack and the configured parameters
+            of the attack. The velocity is set accordingly, taking into account the charging duration and the specific characteristics defined for the attack configuration.
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            In the example below, the spawned projectile will log its initial velocity once it is spawned.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code.
+    private <a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a> csProjectile;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        csProjectile = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>&gt;();
+        
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> initialVelocity = csProjectile.<b>InitialVelocity</b>;
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Initial Projectile Velocity: " + initialVelocity);
+    }
 }
 </pre>
 </div>

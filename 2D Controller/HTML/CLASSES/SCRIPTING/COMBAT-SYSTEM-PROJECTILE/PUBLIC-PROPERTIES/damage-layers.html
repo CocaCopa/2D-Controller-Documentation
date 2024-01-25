@@ -25,18 +25,29 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Indicates which layers can be damaged.
+            <br><br>
+            When the <a class="redirect-link" href="../../CHARACTER-COMBAT/PUBLIC-METHODS/try-release-charge-attack.html">TryReleaseChargeAttack</a> function spawns a
+            projectile, it automatically configures the layers that the projectile can damage based on the attack's configuration.
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            In the example below, the spawned projectile will log the layers that can get damaged, upon collision.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code.
+    private <a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a> csProjectile;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        csProjectile = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>&gt;();
+        
+        int layers = csProjectile.<b>DamageLayers</b>;
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("I can damage layers: " + layers);
+    }
 }
 </pre>
 </div>
