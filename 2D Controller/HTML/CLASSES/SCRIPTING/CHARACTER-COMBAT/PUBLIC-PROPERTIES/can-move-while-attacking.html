@@ -60,6 +60,18 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
             characterCombat.<a class="redirect-link" href="../PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a>(exampleAttack);
             <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Can move while attacking: " + characterCombat.<b>CanMoveWhileAttacking</b>);
         }
+
+        CharacterMovement();
+    }
+
+    private void CharacterMovement()
+    {
+        if (!characterCombat.<b>CanMoveWhileAttacking</b>)
+        {
+            return;
+        }
+        
+        // Your code to handle the character's movement.
     }
 }
 </pre>
