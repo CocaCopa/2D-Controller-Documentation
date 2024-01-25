@@ -27,7 +27,22 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description of the character combat system class goes here.
+            This class is specifically crafted to manage the combat mechanics of a humanoid character. Paired with the <a class="redirect-link" href="../ATTACK-SO/attack-so.html">AttackSO</a>
+            (Scriptable Object) and the <a class="redirect-link" href="../COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a> class, it
+            offers functionality to implement three types of attacks:
+        </p>
+        <ul>
+            <li>Single normal attacks</li>
+            <li>Combo normal attacks</li>
+            <li>Single charge attacks</li>
+        </ul>
+        <p>
+            Both <b>normal</b> and <b>charge</b> attacks can be configured to launch a projectile upon activation. Projectiles spawned through the combat system must have
+            the <a class="redirect-link" href="../COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a> component attached for proper calculation
+            and functioning of their velocity and damage.
+            <br>
+            The configuration of an attack, determining aspects such as the animation to be played and the attack's statistics, is customizable by creating a new
+            <a class="redirect-link" href="../ATTACK-SO/attack-so.html">AttackSO</a> (Scriptable Object) and configuring its parameters.
         </p>
         <br>
         <div class="table-division">
@@ -96,11 +111,11 @@
                     <td class="description">Indicates the amount of time an attack can be held before the character is forced to release/cancel it.</td>
                 </tr>
                 <tr>
-                    <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/can-move-while-attacking.html">CanMoveWhileAttacking</a></td>
+                    <td class="label"><a class="important-link" href="PUBLIC-PROPERTIES/can-move-while-attacking.html">CanMoveWhileAttacking</a></td>
                     <td class="description">Indicates whether the character is able to move while attacking.</td>
                 </tr>
                 <tr>
-                    <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/can-change-directions.html">CanChangeDirections</a></td>
+                    <td class="label"><a class="important-link" href="PUBLIC-PROPERTIES/can-change-directions.html">CanChangeDirections</a></td>
                     <td class="description">Indicates whether the character is able to change directions while attacking.</td>
                 </tr>
             </table>
