@@ -27,27 +27,53 @@
         <p>
             The initial velocity of the projectile when it's launched.
             <br><br>
-            When the <a class="redirect-link" href="../../CHARACTER-COMBAT/PUBLIC-METHODS/try-release-charge-attack.html">TryReleaseChargeAttack</a> function spawns a
-            projectile, it determines the initial velocity of the projectile by considering both the current charge level of the attack and the configured parameters
-            of the attack. The velocity is set accordingly, taking into account the charging duration and the specific characteristics defined for the attack configuration.
+            Although this property can be directly set through the inspector, having a public get; set; property can be highly useful in scenarios where you want your projectile to
+            exhibit different initial speeds based on specific conditions. For instance, as demonstrated in the asset, if you intend to spawn a projectile with a lower speed than the
+            one indicated in the inspector during a charge attack that did not completely charge, you can manipulate the initial velocity through this property.
+            <br>
+            It's worth noting that the <a class="redirect-link" href="../../CHARACTER-COMBAT/character-combat.html">CharacterCombat</a> class within the asset
+            is already configured to handle this correctly for chargeable attacks.
         </p>
         <br>
         <p>
-            In the example below, the spawned projectile will log its initial velocity once it is spawned.
+            In the example below, each time the projectile is spawned, it will possess a distinct initial velocity determined by the duration the input was held.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    private <a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a> csProjectile;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> projectilePrefab;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a> spawnTransform;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float chargeTime;
+    
+    private bool tickTimer = false;
+    private float timerValue;
 
-    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        csProjectile = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>&gt;();
-        
-        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> initialVelocity = csProjectile.<b>InitialVelocity</b>;
-        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Initial Projectile Velocity: " + initialVelocity);
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            tickTimer = true;
+            timerValue = chargeTime;
+        }
+        else if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyUp.html">Input.GetKeyUp</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> projectile = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Instantiate</a>(projectilePrefab, spawnTransform.position, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Quaternion-identity.html">Quaternion.identity</a>);
+            <a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a> csProjectile = projectile.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>&gt;();
+            
+            float speedMultiplier = 1 - (timerValue / chargeTime);
+            csProjectile.<b>InitialVelocity</b> *= speedMultiplier;
+            
+            tickTimer = false;
+            timerValue = 0f;
+        }
+
+        if (tickTimer == true)
+        {
+            timerValue -= <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Time-deltaTime.html">Time.deltaTime</a>;
+            timerValue = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Mathf.Clamp.html">Mathf.Clamp</a>(timerValue, 0f, chargeTime);
+        }
     }
 }
 </pre>

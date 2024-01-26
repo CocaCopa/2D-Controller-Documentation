@@ -28,8 +28,8 @@
         <h2>Description</h2>
         <p>
             This class is specifically crafted to manage the combat mechanics of a humanoid character. Paired with the <a class="redirect-link" href="../ATTACK-SO/attack-so.html">AttackSO</a>
-            (Scriptable Object) and the <a class="redirect-link" href="../COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a> class, it
-            offers functionality to implement three types of attacks:
+            (Scriptable Object), the <a class="redirect-link" href="../COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a> class and the <a class="redirect-link" href="../ENTITY-HEALTH/entity-health.html">EntityHealth</a>
+            class, it offers functionality to implement three types of attacks:
         </p>
         <ul>
             <li>Single normal attacks</li>
@@ -37,12 +37,18 @@
             <li>Single charge attacks</li>
         </ul>
         <p>
-            Both <b>normal</b> and <b>charge</b> attacks can be configured to launch a projectile upon activation. Projectiles spawned through the combat system must have
+            - The configuration of an attack, determining aspects such as the animation to be played and the attack's statistics, is customizable by creating a new
+            <a class="redirect-link" href="../ATTACK-SO/attack-so.html">AttackSO</a> (Scriptable Object) and configuring its parameters.
+            <br>
+            - Both <b>normal</b> and <b>charge</b> attacks can be configured to launch a projectile upon activation. Projectiles spawned through the combat system of this asset, must have
             the <a class="redirect-link" href="../COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a> component attached for proper calculation
             and functioning of their velocity and damage.
             <br>
-            The configuration of an attack, determining aspects such as the animation to be played and the attack's statistics, is customizable by creating a new
-            <a class="redirect-link" href="../ATTACK-SO/attack-so.html">AttackSO</a> (Scriptable Object) and configuring its parameters.
+            - In order for any object to take damage within the combat system of the asset, it needs to have the <a class="redirect-link" href="../ENTITY-HEALTH/entity-health.html">EntityHealth</a> component attached to the root game object that you intend to be damageable.
+            <br><br>
+            Public methods highlighted in red need to interact with the class(es) responsible for controlling your character's movement to ensure the correct execution of certain
+            functionalities within the <b>CharacterCombat</b> class. It's worth noting that the <a class="redirect-link" href="../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>
+            class is already designed to handle such restrictions.
         </p>
         <br>
         <div class="table-division">

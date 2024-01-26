@@ -25,18 +25,56 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Indicates the amount of damage the projectile will deal upon collision with a damageable object.
+            <br><br>
+            While this property can be directly set through the inspector, having a public get; set; property can be highly useful in scenarios where you want your projectile to exhibit
+            different damage numbers based on specific conditions. For example, as demonstrated in the asset, if you intend your projectile to deal less damage due to an attack not being
+            fully charged, you can manipulate the damage amount through this property accordingly.
+            <br>
+            It's worth noting that the <a class="redirect-link" href="../../CHARACTER-COMBAT/character-combat.html">CharacterCombat</a> class within the asset
+            is already configured to handle this correctly for chargeable attacks.
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            In the example below, each time the projectile is spawned, it will possess a distinct damage value determined by the duration the input was held.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code.
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> projectilePrefab;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a> spawnTransform;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float chargeTime;
+    
+    private bool tickTimer = false;
+    private float timerValue;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            tickTimer = true;
+            timerValue = chargeTime;
+        }
+        else if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyUp.html">Input.GetKeyUp</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> projectile = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Instantiate</a>(projectilePrefab, spawnTransform.position, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Quaternion-identity.html">Quaternion.identity</a>);
+            <a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a> csProjectile = projectile.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>&gt;();
+            
+            float damageMultiplier = 1 - (timerValue / chargeTime);
+            csProjectile.<b>DamageAmount</b> *= damageMultiplier;
+            
+            tickTimer = false;
+            timerValue = 0f;
+        }
+
+        if (tickTimer == true)
+        {
+            timerValue -= <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Time-deltaTime.html">Time.deltaTime</a>;
+            timerValue = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Mathf.Clamp.html">Mathf.Clamp</a>(timerValue, 0f, chargeTime);
+        }
+    }
 }
 </pre>
 </div>

@@ -27,26 +27,32 @@
         <p>
             Indicates which layers can be damaged.
             <br><br>
-            When the <a class="redirect-link" href="../../CHARACTER-COMBAT/PUBLIC-METHODS/try-release-charge-attack.html">TryReleaseChargeAttack</a> function spawns a
-            projectile, it automatically configures the layers that the projectile can damage based on the attack's configuration.
+            Upon spawning a projectile, it is crucial to set the layers that the projectile should damage in the event of a collision.
+            <br>
+            It's worth noting that the <a class="redirect-link" href="../../CHARACTER-COMBAT/character-combat.html">CharacterCombat</a> class within the asset
+            is already configured to handle this correctly in the event that a projectile is spawned by an attack.
         </p>
         <br>
         <p>
-            In the example below, the spawned projectile will log the layers that can get damaged, upon collision.
+            The example below demonstrates the appropriate method for setting the property.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    private <a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a> csProjectile;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> projectilePrefab;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a> spawnTransform;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/LayerMask.html">LayerMask</a> damageableLayers;
 
-    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        csProjectile = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>&gt;();
-        
-        int layers = csProjectile.<b>DamageLayers</b>;
-        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("I can damage layers: " + layers);
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.X</a>))
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> projectile = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Instantiate</a>(projectilePrefab, spawnTransform.position, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Quaternion-identity.html">Quaternion.identity</a>);
+            <a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a> csProjectile = projectile.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>&gt;();
+            csProjectile.DamageLayers = damageableLayers;
+        }
     }
 }
 </pre>
