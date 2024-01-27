@@ -34,19 +34,46 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Deals damage instantly to any new colliders that enter the specified hitbox and then deals damage again, to all targets, every 'x' amount of seconds.
+            <br><br>
+            This function is intended to be invoked every frame, causing damage to any object within the specified hitbox that is considered damageable. Objects are
+            classified as damageable if they implement the <b>IDamageable</b> interface.
+            <br>
+            It's worth noting that the functionality of taking damage is already handled by the <a class="redirect-link" href="../../ENTITY-HEALTH/entity-health.html">EntityHealth</a> class.
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            Here is an example of how to invoke the function. Attach this script to a projectile object, and add a <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a>
+            component as well as a <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a> component. Configure the collider to be set
+            as a <b>trigger</b>, and set the <b>gravity scale</b> of the Rigidbody2D to 0. Finally, add the projectile prefab you created to the scene.
         </p>
 
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code.
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/LayerMask.html">LayerMask</a> damageableLayers;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float damageEverySecond;
+    
+    private <a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a> csProjectile;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        csProjectile = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>&gt;();
+        csProjectile.<a class="redirect-link" href="../PUBLIC-PROPERTIES/damage-layers.html">DamageLayers</a> = damageableLayers;
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html">Start</a>()
+    {
+        csProjectile.enabled = true;
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        csProjectile.<b>ContinuousAreaOfEffectDamage</b>(damageEverySecond);
+    }
 }
 </pre>
 </div>

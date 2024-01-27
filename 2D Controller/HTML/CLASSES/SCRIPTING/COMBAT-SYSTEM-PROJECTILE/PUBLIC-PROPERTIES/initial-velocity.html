@@ -37,12 +37,15 @@
         <br>
         <p>
             In the example below, each time the projectile is spawned, it will possess a distinct initial velocity determined by the duration the input was held.
+            <br>
+            It is essential to <b>enable</b> the component after specifying the velocity, as failure to do so may result in the property not being set correctly.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
+    // Note that the provided prefab should have the CombatSystemProjectile component attached.
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> projectilePrefab;
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a> spawnTransform;
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float chargeTime;
@@ -64,6 +67,9 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
             
             float speedMultiplier = 1 - (timerValue / chargeTime);
             csProjectile.<b>InitialVelocity</b> *= speedMultiplier;
+
+            // Important line:
+            csProjectile.enabled = true;
             
             tickTimer = false;
             timerValue = 0f;

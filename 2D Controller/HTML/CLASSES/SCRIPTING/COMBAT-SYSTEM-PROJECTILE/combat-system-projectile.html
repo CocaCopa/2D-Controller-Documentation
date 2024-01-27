@@ -22,7 +22,7 @@
         <h1>ComatSystemProjectile</h1>
         <h2>Dependencies</h2>
         <p>
-            <p><b style="text-decoration: underline;">Required</b> Components: <a class="redirect-link" href="../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a></p>
+            <p><b style="text-decoration: underline;">Required</b> Components: <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a>, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a></p>
         </p>
         <br>
         <h2>Description</h2>
@@ -48,10 +48,6 @@
                     <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/damage-amount.html">DamageAmount</a></td>
                     <td class="description">Indicates the amount of damage the projectile will deal upon collision with a damageable object.</td>
                 </tr>
-                <tr>
-                    <td class="label"><a class="properties" href="PUBLIC-PROPERTIES/hitbox-shape.html">HitboxShape</a></td>
-                    <td class="description">Indicates the shape of the projectile's hitbox. It can be a cirle or a box.</td>
-                </tr>
             </table>
         </div>
 
@@ -68,7 +64,7 @@
                 </tr>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/explode-on-contact.html">ExplodeOnContact</a></td>
-                    <td class="description">Deals damage to all colliders inside the specified hitbox and then destroys the projectile.</td>
+                    <td class="description">Deals damage to all colliders inside the specified hitbox.</td>
                 </tr>
                 </table>
         </div>

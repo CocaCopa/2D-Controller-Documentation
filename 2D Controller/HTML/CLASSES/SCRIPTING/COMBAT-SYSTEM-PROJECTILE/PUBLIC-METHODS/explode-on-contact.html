@@ -20,11 +20,27 @@
     <div class="main-page-division">
         <h1><a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>.ExplodeOnContact</h1>
         <h2>Declaration</h2>
-        <p>public void <b>ExplodeOnContact</b>();</p>
+        <p>public void <b>ExplodeOnContact</b>(bool <b>destroyProjectile</b> = true);</p>
+        <br>
+        <div class="table-division">
+            <span class="table-title">Parameters</span>
+            <table>
+                <tr>
+                    <td class="label"><b>destroyProjectile</b></td>
+                    <td class="description">True, the game object, to which this component is attached, will be destroyed upon completion of the function's execution.</td>
+                </tr>
+            </table>
+        </div>
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Deals damage to all colliders inside the specified hitbox.
+            <br><br>
+            Upon executing this function, it will search for a game objects that implements the <b>IDamageable</b> interface within the specified hitbox.
+            Any game object found inside said hitbox, will incur damage.
+            <br>
+            It's worth noting that the functionality of taking damage is already handled by the <a class="redirect-link" href="../../ENTITY-HEALTH/entity-health.html">EntityHealth</a>
+            class.
         </p>
         <br>
         <p>
@@ -34,9 +50,21 @@
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code.
+    private <a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a> csProjectile;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        csProjectile = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionEnter2D.html">OnCollisionEnter2D</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collision2D.html">Collision2D</a> collision)
+    {
+        csProjectile.<b>ExplodeOnContact</b>();
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Object.Destroy.html">Destroy</a>(gameObject);
+    }
 }
 </pre>
 </div>

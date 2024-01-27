@@ -24,19 +24,37 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description goes here.
+            Deals damage to the first collider that enters the specified hit box.
+            <br><br>
+            Upon executing this function, it will search for a game object that implements the <b>IDamageable</b> interface within the specified hitbox.
+            Upon successfully finding such a game object, damage will be inflicted upon it.
+            <br>
+            It's worth noting that the functionality of taking damage is already handled by the <a class="redirect-link" href="../../ENTITY-HEALTH/entity-health.html">EntityHealth</a>
+            class.
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            The following example illustrates how to utilize this function.
         </p>
 
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code.
+    private <a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a> csProjectile;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        csProjectile = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionEnter2D.html">OnCollisionEnter2D</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collision2D.html">Collision2D</a> collision)
+    {
+        csProjectile.<b>DealDamageOnContact</b>();
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Object.Destroy.html">Destroy</a>(gameObject);
+    }
 }
 </pre>
 </div>
