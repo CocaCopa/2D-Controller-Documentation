@@ -48,8 +48,7 @@
             The function initiates a <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Physics2D.OverlapCircle.html">Physics2D.OverlapCircle</a> cast and a
             <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Physics2D.OverlapBox.html">Physics2D.OverlapBox</a> cast.
             Successful detection of a ledge is confirmed if the circle cast returns true while the box cast returns false. In the event that both casts return true, it indicates the
-            presence of a wall. The position of the circle is determined by the transform provided in the inspector of the component, while the position of the box lies on top of
-            the circle. Refer to the <a class="redirect-link" href="#">manual</a> for more information.
+            presence of a wall and the function will return <b>false</b>.
             <br> <br>
             Note the use of the <b>exitLedgeGrab</b> flag in the example below. When the character needs to exit a ledge grab/climb state, this flag is set to true.
             The <b>LedgeGrabCheck</b> function will then indicate when the character is ready to grab a ledge again. Once it returns false, signifying that
@@ -57,7 +56,7 @@
         </p>
         <br>
         <p>
-            In this example, upon detecting a ledge, the character's rigidbody will be set to kinematic, and will log the position of the ledge in the console.
+            In this example, upon detecting a ledge, the character's rigidbody will be set to kinematic, and will log the position of the ledge to the console.
         </p>
 <pre class="code-block">
 using UnityEngine;
