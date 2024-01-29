@@ -172,7 +172,7 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
 
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        if (envQuery.<b>ChestCollisionCheck</b>(distance))
+        if (envQuery.<b>ChestCollisionCheck</b>(out <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RaycastHit2D.html">RaycastHit2D</a> hitInfo, distance))
         {
             <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Collider: " + hitInfo.transform.name + " found in front of your character's chest at the maximum of " + distance + " Unity units away.");
         }
