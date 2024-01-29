@@ -53,6 +53,7 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
             <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> projectile = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Instantiate</a>(projectilePrefab, spawnTransform.position, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Quaternion-identity.html">Quaternion.identity</a>);
             <a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a> csProjectile = projectile.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../combat-system-projectile.html">CombatSystemProjectile</a>&gt;();
             csProjectile.<b>DamageLayers</b> = damageableLayers;
+            csProjectile.enabled = true;
         }
     }
 }

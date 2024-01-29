@@ -65,6 +65,7 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
             
             float damageMultiplier = 1 - (timerValue / chargeTime);
             csProjectile.<b>DamageAmount</b> *= damageMultiplier;
+            csProjectile.enabled = true;
             
             tickTimer = false;
             timerValue = 0f;
