@@ -46,6 +46,13 @@
             <br>
             You can inherit from this class to create custom humanoid characters, controlled by a <b>player</b> and/or an <b>AI</b>, with dynamic and
             responsive behaviours.
+            <br><br>
+            <b>Important:</b> When using <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionEnter2D.html">OnCollisionEnter2D</a>
+            or <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html">OnTriggerEnter2D</a> and attempting to access the
+            <b>HumanoidController</b> component with '<b>collision.GetComponent&lt;HumanoidController&gt;()</b>', be aware that it will not function as expected. This is because
+            the collider is attached to a <b>child</b> object, not the <b>root</b> object.
+            <br>
+            To address this, use '<b>collision.transform.root.GetComponent&lt;HumanoidController&gt;()</b>' instead.
         </p>
         <br>
         <div class="table-division">
