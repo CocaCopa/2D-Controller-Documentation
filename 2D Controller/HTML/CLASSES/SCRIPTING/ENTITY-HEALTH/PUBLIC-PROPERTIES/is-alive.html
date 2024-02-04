@@ -29,14 +29,31 @@
         </p>
         <br>
         <p>
-            Example.
+            Here's an example demonstrating the utility of this property: Assuming the following class represents a player controller, we can leverage the property's value to constrain
+            the player's controls when their character is dead.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../entity-health.html">EntityHealth</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code
+    private <a class="redirect-link" href="../entity-health.html">EntityHealth</a> healthScript;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        healthScript = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../entity-health.html">EntityHealth</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (healthScript.<b>IsAlive</b> == false)
+        {
+            return;
+        }
+
+        // Your character controller code.
+    }
 }
 </pre>
 </div>

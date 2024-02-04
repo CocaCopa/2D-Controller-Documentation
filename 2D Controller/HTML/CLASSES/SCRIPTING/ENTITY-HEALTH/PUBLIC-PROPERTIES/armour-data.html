@@ -25,18 +25,39 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description.
+            The armour data (if any) of the entity.
+            <br><br>
+            By creating an <a class="redirect-link" href="../../ARMOUR-SO/armour-so.html">ArmourSO</a> scriptable object, you can assign it to the <a class="redirect-link" href="../entity-health.html">EntityHealth</a>
+            component and give your character armour stats.
         </p>
         <br>
         <p>
-            Example.
+            Here is an example of how you could use the property. Create a new game object with a collider of your choice and set it as a trigger. Add to that newly created game
+            object the tag "<b>ArmourPowerUp</b>". Attach this script to a character. When the character collides with that game object, the armour data of the <a class="redirect-link" href="../entity-health.html">EntityHealth</a>
+            script will change to the one defined by the following script.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../entity-health.html">EntityHealth</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ARMOUR-SO/armour-so.html">ArmourSO</a> empoweredArmour;
+
+    private <a class="redirect-link" href="../entity-health.html">EntityHealth</a> healthScript;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        healthScript = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../entity-health.html">EntityHealth</a>&gt;();
+    }
+    
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html">OnTriggerEnter2D</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a> collider)
+    {
+        if (collider.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.CompareTag.html">CompareTag</a>("ArmourPowerUp"))
+        {
+            healthScript.<b>ArmourData</b> = empoweredArmour;
+        }
+    }
 }
 </pre>
 </div>
