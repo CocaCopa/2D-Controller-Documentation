@@ -82,9 +82,9 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
         if (e.attackData == exampleAttack)
         {
             string attackName = e.attackData.AttackName;
-            GameObject damagedObject = e.damagedObject;
+            string damagedObjectName = e.damagedObject.name;
 
-            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("The attack: " + attackName + ", dealt damage to the: " + damagedObject.name);
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("The attack: " + attackName + ", dealt damage to the: " + damagedObjectName);
         }
     }
 }
