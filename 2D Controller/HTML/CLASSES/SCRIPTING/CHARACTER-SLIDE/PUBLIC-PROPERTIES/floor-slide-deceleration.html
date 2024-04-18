@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FloorSlide</title>
+    <title>FloorSlideDeceleration</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,34 +19,21 @@
     <iframe src="../../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
-        <h1><a class="redirect-link" href="../character-slide.html">CharacterSlide</a>.FloorSlide</h1>
+        <h1><a class="redirect-link" href="../character-slide.html">CharacterSlide</a>.FloorSlideDeceleration</h1>
         <h2>Declaration</h2>
-        <p>public float <b>FloorSlide</b>(float <b>minimumSpeed</b>);</p>
-        <br>
-        <div class="table-division">
-            <span class="table-title">Parameters</span>
-            <table>
-                <tr>
-                    <td class="label"><b>minimumSpeed</b></td>
-                    <td class="description">Character speed will stop being reduced when it reaches the specified value.</td>
-                </tr>
-            </table>
-        </div>
+        <p>public float <b>FloorSlideDeceleration</b> { get; set; }</p>
         <br>
         <h2>Description</h2>
         <p>
-            Manages the character's behaviour, allowing for a floor slide during the ongoing function call.
-            <br> <br>
-            Once this function gets called, your character will start sliding on the floor, decreasing the speed of their <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>
-            until it reaches 0, or a specified value determined in your custom controller.
-            <br> <br>
-            Note that the function only executes the raw part of the mechanic. If additional behaviour, such as continuing the slide when the character is
-            under a ceiling, is required, you must implement it independently. It's worth noting that the <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>
-            class is already designed to handle such behaviour.
+            The speed at which the character decelerates during a floor slide.
+            <br><br>
+            You can adjust this value based on the surface onto which the character is sliding to vary surface friction levels.
         </p>
         <br>
         <p>
-            This is an example of how you can call <b>FloorSlide</b> in your script:
+            In this example, the value of the property will change depending on the surface the character is sliding on.
+            <br>
+            Note that the wall surfaces must be tagged as <b>"LowFriction"</b> and <b>"NormalFriction"</b> in order for the example below to work correctly.
         </p>
 <pre class="code-block">
 using UnityEngine;
@@ -54,10 +41,10 @@ using UnityEngine;
 [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-slide.html">CharacterSlide</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
 {
-    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float minimumSlideSpeed;    
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float minimumSlideSpeed;
 
     private <a class="redirect-link" href="../character-slide.html">CharacterSlide</a> characterSlide;
-
+    
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
     {
         characterSlide = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-slide.html">CharacterSlide</a>&gt;();
@@ -70,10 +57,23 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
         
         if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKey.html">Input.GetKey</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.DownArrow.html">Keycode.DownArrow</a>))
         {
-            characterSlide.<b>FloorSlide</b>(minimumSlideSpeed);
+            characterSlide.<a class="redirect-link" href="../PUBLIC-METHODS/floor-slide.html">FloorSlide</a>(minimumSlideSpeed);
+        }
+    }
+    
+    private void <a class="redirect-link" herf="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnCollisionEnter2D.html">OnCollisionEnter2D</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collision2D.html">Collision2D</a> col)
+    {
+        if (col.gameObject.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.CompareTag.html">CompareTag</a>("LowFriction"))
+        {
+            characterSlide.<b>FloorSlideDeceleration</b> = characterSlide.DefaultFloorDeceleration / 2f;
+        }
+
+        if (col.gameObject.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.CompareTag.html">CompareTag</a>("NormalFriction"))
+        {
+            characterSlide.<b>FloorSlideDeceleration</b> = characterSlide.DefaultFloorDeceleration;
         }
     }
 }
 </pre>
-    </div>
+</div>
 </body>
