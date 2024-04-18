@@ -85,3 +85,8 @@ h1 .redirect-link {
 h1 .redirect-link:hover {
     text-decoration: underline;
 }
+
+.uninteractable-link {
+    width: fit-content;
+    color: #bd3a84;
+}
