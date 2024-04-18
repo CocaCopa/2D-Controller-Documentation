@@ -22,199 +22,205 @@
         <h1>AttackSO</h1>
         <h2>Description</h2>
         <p>
-            Description of the AttackSO scriptable object class goes here.
+            The <b>AttackSO</b> is a <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-ScriptableObject.html">Scriptable Object</a> that stores the data of an attack.
+            Within the <a class="redirect-link" href="../CHARACTER-COMBAT/character-combat.html">CharacterCombat</a> class, this data is accessed to dictate the character's actions, enabling the character to execute attacks based on specified parameters.
         </p>
         <br>
         <div class="table-division">
             <span class="table-title">Public Properties</span>
             <table>
                 <tr>
-                    <td class="label"><span class="properties">AttackName</span></td>
+                    <td class="label"><span class="uninteractable-link">AttackName</span></td>
                     <td class="description">String literal of the attack name.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">AttackIcon</span></td>
+                    <td class="label"><span class="uninteractable-link">AttackIcon</span></td>
                     <td class="description">Sprite to be stored as the icon of the attack.</td>
                 </tr>
             </table>
 
             <br><br>
 
+            <span class="table-title">Attack Stats</span>
             <table>
                 <tr>
-                    <td class="label"><span class="properties">AttackAnimation</span></td>
+                    <td class="label"><span class="uninteractable-link">AttackAnimation</span></td>
                     <td class="description">The animation clip of the attack.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">HitboxShape</span></td>
+                    <td class="label"><span class="uninteractable-link">HitboxShape</span></td>
                     <td class="description">Define the shape of this attack's hitbox.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">DamageableLayers</span></td>
+                    <td class="label"><span class="uninteractable-link">DamageableLayers</span></td>
                     <td class="description">Specify which layers can be damaged.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">DamageAmount</span></td>
+                    <td class="label"><span class="uninteractable-link">DamageAmount</span></td>
                     <td class="description">How much damage should be dealt by this attack.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ScalableDamage</span></td>
+                    <td class="label"><span class="uninteractable-link">ScalableDamage</span></td>
                     <td class="description">Determines if the attack damage should scale with the level of charge applied.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">MinimumDamage</span></td>
+                    <td class="label"><span class="uninteractable-link">MinimumDamage</span></td>
                     <td class="description">Minimum damage of the attack.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">Cooldown</span></td>
+                    <td class="label"><span class="uninteractable-link">Cooldown</span></td>
                     <td class="description">Attack cooldown in seconds.</td>
                 </tr>
             </table>
 
             <br><br>
 
+            <span class="table-title">General Settings</span>
             <table>
                 <tr>
-                    <td class="label"><span class="properties">DisableCastOnWall</span></td>
+                    <td class="label"><span class="uninteractable-link">DisableCastOnWall</span></td>
                     <td class="description">Whether or not your character should be able to cast the attack, if a wall is detected in front of them.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">WallCastDistance</span></td>
+                    <td class="label"><span class="uninteractable-link">WallCastDistance</span></td>
                     <td class="description">Specify at what distance away from a wall your character must be, in order to allow them to cast the attack.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ResetVelocity</span></td>
-                    <td class="description">True, sets your character's velocity to Vector3.zero when the attack is initiated. False, your character will continue moving at a constant speed based on their velocity before the attack.</td>
+                    <td class="label"><span class="uninteractable-link">ResetVelocity</span></td>
+                    <td class="description">True, sets your character's velocity to <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3-zero.html">Vector3.zero</a> when the attack is initiated. False, your character will continue moving at a constant speed based on their velocity before the attack.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">CanChangeDirections</span></td>
+                    <td class="label"><span class="uninteractable-link">CanChangeDirections</span></td>
                     <td class="description">Determines Whether or not your character can change directions while they're attacking.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">AdjustPositionOnAttackEnd</span></td>
+                    <td class="label"><span class="uninteractable-link">AdjustPositionOnAttackEnd</span></td>
                     <td class="description">If your animation offsets your character during the attack, you can adjust their position by setting an offset. After the attack, your character will teleport to that offseted position.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">CanMoveWhileAttacking</span></td>
+                    <td class="label"><span class="uninteractable-link">CanMoveWhileAttacking</span></td>
                     <td class="description">Determines if the character should be able to move while they cast an attack.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">AttackMoveSpeedPercentage</span></td>
+                    <td class="label"><span class="uninteractable-link">AttackMoveSpeedPercentage</span></td>
                     <td class="description">Adjusts the character's movement speed as a percentage of their maximum speed.</td>
                 </tr>
             </table>
 
             <br><br>
 
+            <span class="table-title">Push Settings</span>
             <table>
                 <tr>
-                    <td class="label"><span class="properties">AttackPushesCharacter</span></td>
+                    <td class="label"><span class="uninteractable-link">AttackPushesCharacter</span></td>
                     <td class="description">If 'true,' a force will be applied to the character in the direction they are facing when the attack is initiated.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">AttackPushMode</span></td>
-                    <td class="description">Choose when your character should be pushed. OnInitiate: Once the attack is initiated. OnRelease: Once the attack is released.</td>
+                    <td class="label"><span class="uninteractable-link">AttackPushMode</span></td>
+                    <td class="description">Determines when your character should be pushed. <b>OnInitiate:</b> Once the attack is initiated. <b>OnRelease:</b> Once the attack is released.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ForceMode</span></td>
-                    <td class="description">Choose which Rigidbody.AddForce() force mode should be applied.</td>
+                    <td class="label"><span class="uninteractable-link">ForceMode</span></td>
+                    <td class="description">Determines which <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.AddForce.html">Rigidbody2D.AddForce()</a> force mode should be applied.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">Force</span></td>
+                    <td class="label"><span class="uninteractable-link">Force</span></td>
                     <td class="description">How much force should be applied.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">DelayForceTime</span></td>
+                    <td class="label"><span class="uninteractable-link">DelayForceTime</span></td>
                     <td class="description">Specifies the delay in seconds before applying force. The specified delay time should be less than the duration of the animation clip; otherwise, it will not be considered and the desired force will not be applied.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">UseGravity</span></td>
+                    <td class="label"><span class="uninteractable-link">UseGravity</span></td>
                     <td class="description">Whether the character should be affected by gravity for the duration of the attack.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">DragCoefficient</span></td>
-                    <td class="description">Change the drag coefficient of the Rigidbody2D for the duration of the attack.</td>
+                    <td class="label"><span class="uninteractable-link">DragCoefficient</span></td>
+                    <td class="description">Change the drag coefficient of the <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a> for the duration of the attack.</td>
                 </tr>
             </table>
 
             <br><br>
 
+            <span class="table-title">Charge Settings</span>
             <table>
                 <tr>
-                    <td class="label"><span class="properties">IsChargeableAttack</span></td>
+                    <td class="label"><span class="uninteractable-link">IsChargeableAttack</span></td>
                     <td class="description">Whether or not this attack can be charged.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">InitiateChargeAnimation</span></td>
+                    <td class="label"><span class="uninteractable-link">InitiateChargeAnimation</span></td>
                     <td class="description">Animation to play when the attack is initiated. Can be null.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ChargeAnimation</span></td>
+                    <td class="label"><span class="uninteractable-link">ChargeAnimation</span></td>
                     <td class="description">Animation to play when the attack is charging.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ChargeTime</span></td>
+                    <td class="label"><span class="uninteractable-link">ChargeTime</span></td>
                     <td class="description">How much time should it take for the attack to be fully charged in seconds.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">HoldChargeTime</span></td>
+                    <td class="label"><span class="uninteractable-link">HoldChargeTime</span></td>
                     <td class="description">For how long should your character be able to hold their charged attack in seconds, before being forced to release/cancel it.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ChargeOverTime</span></td>
+                    <td class="label"><span class="uninteractable-link">ChargeOverTime</span></td>
                     <td class="description">Specify the action to be taken when the attack is held for longer than the designated hold charge time.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">CooldownIfCanceled</span></td>
+                    <td class="label"><span class="uninteractable-link">CooldownIfCanceled</span></td>
                     <td class="description">Cooldown to set the attack on, if is held more than 'holdChargeTime' or if the attack is canceled.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">CanMoveWhileCharging</span></td>
+                    <td class="label"><span class="uninteractable-link">CanMoveWhileCharging</span></td>
                     <td class="description">If 'true', your character will be allowed to move while they charge the attack.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ChargeMoveSpeedPercentage</span></td>
+                    <td class="label"><span class="uninteractable-link">ChargeMoveSpeedPercentage</span></td>
                     <td class="description">Adjusts the character's movement speed as a percentage of their maximum speed.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">CanMoveOnReleaseAttack</span></td>
+                    <td class="label"><span class="uninteractable-link">CanMoveOnReleaseAttack</span></td>
                     <td class="description">True if you want your character to be allowed to move as soon as the attack is released.</td>
                 </tr>
             </table>
 
             <br><br>
 
+            <span class="table-title">Projectile Settings</span>
             <table>
                 <tr>
-                    <td class="label"><span class="properties">ThrowsProjectile</span></td>
+                    <td class="label"><span class="uninteractable-link">ThrowsProjectile</span></td>
                     <td class="description">Set to 'true' if your attack should throw a projectile.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ScalableProjectileDamage</span></td>
+                    <td class="label"><span class="uninteractable-link">ScalableProjectileDamage</span></td>
                     <td class="description">Determines if the damage of the projectile should scale with the level of charge applied.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ScalableProjectileVelocity</span></td>
+                    <td class="label"><span class="uninteractable-link">ScalableProjectileVelocity</span></td>
                     <td class="description">Determines if the velocity of the projectile should scale with the level of charge applied.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ChooseRandomFromList</span></td>
+                    <td class="label"><span class="uninteractable-link">ChooseRandomFromList</span></td>
                     <td class="description">Enabling this option allows multiple prefabs to be assigned as projectiles. Upon attacking, a random prefab will be chosen.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ProjectilePrefab</span></td>
+                    <td class="label"><span class="uninteractable-link">ProjectilePrefab</span></td>
                     <td class="description">Projectile to spawn.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ProjectilePrefabs</span></td>
-                    <td class="description">Projectile to spawn. (Choose random from list)</td>
+                    <td class="label"><span class="uninteractable-link">ProjectilePrefabs</span></td>
+                    <td class="description">Projectile to spawn. (Chooses a random projectile prefab from a list)</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">ThrowAtPercentage</span></td>
+                    <td class="label"><span class="uninteractable-link">ThrowAtPercentage</span></td>
                     <td class="description">Indicates the exact timing for launching the projectile during the 'AttackAnimation', based on a specified percentage.</td>
                 </tr>
                 <tr>
-                    <td class="label"><span class="properties">DelayProjectileThrow</span></td>
+                    <td class="label"><span class="uninteractable-link">DelayProjectileThrow</span></td>
                     <td class="description">Specifies the delay, in seconds, before the projectile is thrown.</td>
                 </tr>
             </table>
