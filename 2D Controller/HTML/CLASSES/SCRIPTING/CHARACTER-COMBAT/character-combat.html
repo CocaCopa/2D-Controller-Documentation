@@ -45,8 +45,11 @@
             and functioning of their velocity and damage.
             <br>
             - In order for any object to take damage within the combat system of the asset, it needs to have the <a class="redirect-link" href="../ENTITY-HEALTH/entity-health.html">EntityHealth</a> component attached to the root game object that you intend to be damageable.
-            <br><br>
-            Public methods highlighted in <span style="color:red; text-decoration:underline;">red</span> need to interact with the class(es) responsible for controlling your character's movement to ensure the correct execution of certain
+        </p>
+        <br>
+        <h2>Important Note</h2>
+        <p>
+            Public methods/properties highlighted in <span style="color:red; text-decoration:underline;">red</span> need to interact with the class(es) responsible for controlling your character's movement to ensure the correct execution of certain
             functionalities within the <b>CharacterCombat</b> class. It's worth noting that the <a class="redirect-link" href="../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>
             class is already designed to handle such restrictions.
         </p>
@@ -131,6 +134,10 @@
             <span class="table-title">Public Methods</span>
             <table>
                 <tr>
+                    <td class="label"><a class="important-link" href="PUBLIC-METHODS/can-move-while-casting-attack.html">CanMoveWhileCastingAttack</a></td>
+                    <td class="description">Manipulates the velocity of the character for the duration of the attack.</td>
+                </tr>
+                <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a></td>
                     <td class="description">Performs a normal single or combo attack.</td>
                 </tr>
@@ -145,10 +152,6 @@
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/cancel-charge-attack.html">CancelChargeAttack</a></td>
                     <td class="description">Cancels the current charge attack.</td>
-                </tr>
-                <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/can-move-while-casting-attack.html">CanMoveWhileCastingAttack</a></td>
-                    <td class="description">Manipulates the velocity of the character for the duration of the attack.</td>
                 </tr>
             </table>
         </div>
