@@ -39,11 +39,10 @@
             In alignment with the Ledge Grab configuration in the '<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>' component, the '<b>LedgeClimb();</b>'
             method operates similarly to '<a class="redirect-link" href="ledge-grab.html">LedgeGrab();</a>'. When a ledge is detected, your character gains the ability to climb it.
             You can trigger automatic ledge climbing by invoking the function without passing any parameters, or by defining a custom condition, such as a player's key
-            press. Much like the ledge grab mechanic, you can fine-tune the behaviour of the ledge climb mechanic by adjusting the settings of the
-            '<a class="redirect-link" href="../../CHARACTER-LEDGE-GRAB/character-ledge-grab.html">CharacterLedgeGrab</a>' component.
+            press.
             <br> <br>
-            It's important to note that if your controller is set to utilize '<b>LedgeClimb();</b>' without parameters, enabling automatic ledge climbing, this function will take
-            precedence over '<a class="redirect-link" href="ledge-grab.html">LedgeGrab();</a>'. If you intend to use both mechanics, ensure that, at least '<b>LedgeClimb();</b>'
+            It's important to note that if your controller is set to utilize '<b>LedgeClimb();</b>' without overriding the default parameter, enabling automatic ledge climbing, this function
+            will take precedence over '<a class="redirect-link" href="ledge-grab.html">LedgeGrab();</a>'. If you intend to use both mechanics, ensure that, at least '<b>LedgeClimb();</b>'
             is configured to be triggered conditionally in order to prevent any unwanted behaviour.
             <br> <br>
             This example incorporates the ledge climb mechanic, specifying that a certain key must be held for it to be activated:

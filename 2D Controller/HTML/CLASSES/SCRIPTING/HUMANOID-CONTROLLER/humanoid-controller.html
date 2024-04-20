@@ -33,7 +33,7 @@
         </p>
         <ul>
             <li>Movement (Ground/Aerial)</li>
-            <li>Jumping</li>
+            <li>Jumping (Normal/Wall)</li>
             <li>Dashing</li>
             <li>Ledge Grabbing</li>
             <li>Ledge Climbing</li>
@@ -47,7 +47,10 @@
             You can inherit from this class to create custom humanoid characters, controlled by a <b>player</b> and/or an <b>AI</b>, with dynamic and
             responsive behaviours.
             <br><br>
-            <b>Important:</b> When using collision queries in an attempt access to the <b>HumanoidController</b> component, be aware that using
+        </p>
+        <h2>Important Note</h2>
+        <p>
+            When using collision queries in an attempt access to the <b>HumanoidController</b> component, be aware that using
             '<b>collision.GetComponent&lt;HumanoidController&gt;()</b>', will return a <b>null</b> result. This is because the collider is attached
             to a <b>child</b> object, not the <b>root</b> object.
             <br>

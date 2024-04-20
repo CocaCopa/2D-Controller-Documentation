@@ -21,15 +21,17 @@
     <div class="main-page-division">
         <h1><a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>.DashCooldown</h1>
         <h2>Declaration</h2>
-        <p>public float <b>DashCooldown</b> { get; }</p>
+        <p>public float <b>DashCooldown</b> { get; set; }</p>
         <br>
         <h2>Description</h2>
         <p>
             The set cooldown of the dash mechaninc in seconds.
+            <br><br>
+            You can use this property to read the current cooldown of the dash, or change it if certain conditions are met.
         </p>
         <br>
         <p>
-            In this example, we access the propery directly:
+            In this example, we access the property directly, reading the cooldown of the dash:
         </p>
 <pre class="code-block">
 using UnityEngine;
@@ -45,18 +47,21 @@ public class Example : <a class="redirect-link" href="../humanoid-controller.htm
 
         <br>
         <p>
-            In this example we access the property through an external script:
+            In this example, the cooldown of the dash will be reset whenever the character collects a power-up.
+            Create a gameObject of any shape and attach a collider to it, ensuring it's set as a trigger.
+            Finally, attach the provided class below to the object.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">Monobehaviour</a>
 {
-    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a> m_HumanoidController;
-
-    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html">OnTriggerEnter2D</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a> col)
     {
-        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>(m_HumanoidController.<b>DashCooldown</b>);
+        if (col.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.TryGetComponent.html">TryGetComponent</a>&lt;<a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>&gt;(out var controller))
+        {
+            controller.<b>DashCooldown</b> = 0f;
+        }
     }
 }
 </pre>

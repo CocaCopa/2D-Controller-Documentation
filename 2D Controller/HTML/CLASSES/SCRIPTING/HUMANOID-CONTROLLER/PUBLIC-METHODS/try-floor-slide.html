@@ -39,22 +39,21 @@
         <ul>
             <li>
                 When the designated key for floor sliding is pressed, the controller initiates a sequence of checks to validate the feasibility of a floor slide. Initially, it
-                examines the character's speed, ensuring it surpasses the '<b>minimumFloorSlideSpeed</b>' parameter, which can be configured within the controller's inspector.
-                If the character's speed falls short of this threshold, the function will not be executed.
+                examines the character's speed, ensuring it surpasses the specified threshold. If the character's speed falls short of the threshold, the function will not execute its logic.
             </li>
             <br>
             <li>
-                Additionally, contingent on the settings of the '<a class="redirect-link" href="../../CHARACTER-SLIDE/character-slide.html">CharacterSlide</a>' component, the character may experience a reduction
-                in speed during the floor slide. In such instances, if the character's speed drops below the specified value, the floor slide will automatically halt.
+                Additionally, contingent on the settings of the '<a class="redirect-link" href="../../../MANUAL/CHARACTER-SLIDE/character-slide.html">CharacterSlide</a>' component, the character may experience a reduction
+                in speed during the floor slide. In such instances, if the character's speed drops below the floor slide threshold, the function will automatically halt its execution.
             </li>
             <br>
             <li>
                 Lastly, should the conditions for floor sliding cease, and the character finds themselves beneath a wall, where their collider cannot fit under, the controller
-                will persist in executing the floor slide until the character is no longer positioned beneath the obstructing wall.
+                will persist in executing its logic, until the character is no longer positioned beneath the obstructing wall.
             </li>
         </ul>
         <p>
-            This example demonstrates how you can use the function within your custom controller script:
+            This example demonstrates how you can call the function within your custom controller script:
         </p>
         
 <pre class="code-block">

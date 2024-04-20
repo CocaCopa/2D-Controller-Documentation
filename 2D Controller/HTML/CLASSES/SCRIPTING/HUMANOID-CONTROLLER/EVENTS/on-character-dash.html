@@ -28,7 +28,7 @@
             Triggered when the character performs a dash.
             <br> <br>
             Upon successful execution of the <a class="redirect-link" href="../PUBLIC-METHODS/try-dashing.html">TryDashing</a> function in your custom controller,
-            your character performs a dash, triggering the <b>OnCharacterDash</b> event in the <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>.
+            your character performs a dash, triggering the <b>OnCharacterDash</b> event.
         </p>
         <br>
         <p>
@@ -41,12 +41,9 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
 {
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a> m_HumanoidController;
     
-    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html">Start</a>()
     {
         m_HumanoidController.<b>OnCharacterDash</b> += HumanoidController_OnCharacterDash;
-
-        // Exercise caution when subscribing to events. If you plan to initialize 'm_HumanoidController' within the 'Awake' function,
-        // ensure that the event subscription takes place in the 'Start' method instead.
     }
 
     private void HumanoidController_OnCharacterDash(object sender, System.EventArgs e)
