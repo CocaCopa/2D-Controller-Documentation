@@ -38,9 +38,8 @@
             Sets your character's state to Ledge Grab.
             <br> <br>
             This function is designed to be invoked upon detecting a ledge through your collision query. Upon execution, it configures your character's <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>
-            to kinematic and resets its velocity to zero, effectively immobilizing the character. Additionally, it relocates your sprites to the specified ledge position, as provided in the parameters,
-            and adjusts the character's sprites based on the designated offset, which is set in the component's inspector to match the correct position that your character should have, while they are
-            grabbing the ledge.
+            to kinematic and resets its velocity to zero, effectively immobilizing the character. Additionally, it <b>relocates the character sprites</b> to the specified ledge position, as provided in the parameters,
+            and fine tunes their position based on a designated offset. <b>(The actual position of the character is not affected)</b>
             <br> <br>
             Note the use of the <b>exitLedgeGrab</b> flag in the example below. When the character needs to exit a ledge grab/climb state, this flag is set to true.
             The <a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/ledge-grab-check.html">LedgeGrabCheck</a> function will then indicate when the character is ready to grab a ledge again. Once it returns false, signifying that
@@ -60,6 +59,8 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../character-ledge-grab.html">CharacterLedgeGrab</a> characterLedgeGrab;
+
+    private bool exitLedgeGrab = true;
 
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
     {
