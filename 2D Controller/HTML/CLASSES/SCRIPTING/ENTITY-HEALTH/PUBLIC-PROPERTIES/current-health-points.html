@@ -26,17 +26,31 @@
         <h2>Description</h2>
         <p>
             The current health points of the entity.
+            <br><br>
+            This property dynamically tracks the entity's current health status during gameplay, reflecting any changes due to damage taken, healing effects, or other interactions.
+            Note that setting the current health points of the character to a value exceeding the <b>EntityHealth</b>.<a class="redirect-link" href="max-health-points.html">MaxHealthPoints</a> will result in the
+            property being set to that maximum instead.
         </p>
         <br>
         <p>
-            Example.
+            In this example, if the character picks up a health power-up, their current health points will be doubled.
+            <br>
+            Create a game object of any shape with a <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a> of your choice
+            and set it as a <b>trigger</b>. Finally attach the provided class to the object.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html">OnTriggerEnter2D</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a> col)
+    {
+        if (col.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.TryGetComponent.html">TryGetComponent</a>&lt;<a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>&gt;(out var controller))
+        {
+            <a class="redirect-link" href="../entity-health.html">EntityHealth</a> healthScript = controller.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../entity-health.html">EntityHealth</a>&gt;();
+            healthScript.<b>CurrentHealthPoints</b> *= 2f;
+        }
+    }
 }
 </pre>
 </div>

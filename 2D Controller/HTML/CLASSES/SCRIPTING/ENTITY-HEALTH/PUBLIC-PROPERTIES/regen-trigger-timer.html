@@ -21,22 +21,39 @@
     <div class="main-page-division">
         <h1><a class="redirect-link" href="../entity-health.html">EntityHealth</a>.RegenTriggerTimer</h1>
         <h2>Declaration</h2>
-        <p>public float <b>RegenTriggerTimer</b> { get; set; }</p>
+        <p>public float <b>RegenTriggerTimer</b> { get; }</p>
         <br>
         <h2>Description</h2>
         <p>
             Triggers health regeneration when this value reaches 0.
+            <br><br>
+            This property is pivotal in controlling the timing of health recovery mechanics within the gameplay. Once the timer reaches 0,
+            it triggers the activation of health regeneration, allowing the entity to gradually restore its health points over time.
         </p>
         <br>
         <p>
-            Example.
+            You can utilize this property to generate visual cues for the player, indicating when the regeneration is about to take effect or other related behaviours.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../entity-health.html">EntityHealth</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code
+    private <a class="redirect-link" href="../entity-health.html">EntityHealth</a> healthScript;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        healthScript = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../entity-health.html">EntityHealth</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (healthScript.<a class="redirect-link" href="can-regen-health.html">CanRegenHealth</a> && healthScript.<a class="redirect-link" href="current-health-points.html">CurrentHealthPoints</a> != healthScript.<a class="redirect-link" href="max-health-points.html">MaxHealthPoints</a>)
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("Health regeneration will take effect in: " + healthScript.<b>RegenTriggerTimer</b> + " seconds");
+        }
+    }
 }
 </pre>
 </div>

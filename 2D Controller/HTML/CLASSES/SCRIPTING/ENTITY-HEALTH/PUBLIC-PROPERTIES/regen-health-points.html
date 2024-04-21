@@ -25,18 +25,31 @@
         <br>
         <h2>Description</h2>
         <p>
-            The amount of health points the entity should regenrate, once the health regeneration effect has been triggered.
+            The amount of health points the entity should regenerate, once the health regeneration effect has been triggered.
+            <br><br>
+            This property determines the amount of health restored to the entity over a specified duration, providing a means for replenishing health during gameplay. Adjusting this
+            property allows for fine-tuning the effectiveness of health regeneration mechanics, balancing the pace and sustainability of healing within the game environment.
         </p>
         <br>
         <p>
-            Example.
+            In this example, if the character picks up a health power-up, the amount of health points gained during health regeneration will be doubled.
+            <br>
+            Create a game object of any shape with a <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a> of your choice
+            and set it as a <b>trigger</b>. Finally attach the provided class to the object.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html">OnTriggerEnter2D</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a> col)
+    {
+        if (col.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.TryGetComponent.html">TryGetComponent</a>&lt;<a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>&gt;(out var controller))
+        {
+            <a class="redirect-link" href="../entity-health.html">EntityHealth</a> healthScript = controller.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../entity-health.html">EntityHealth</a>&gt;();
+            healthScript.<b>RegenHealthPoints</b> *= 2f;
+        }
+    }
 }
 </pre>
 </div>

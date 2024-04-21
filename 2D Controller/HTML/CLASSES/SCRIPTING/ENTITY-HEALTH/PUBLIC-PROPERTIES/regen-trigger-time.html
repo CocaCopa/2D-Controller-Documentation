@@ -26,17 +26,30 @@
         <h2>Description</h2>
         <p>
             Time in seconds before health regeneration triggers.
+            <br><br>
+            This property dictates the delay between the occurrence of health recovery. Adjusting this property allows
+            for precise control over the timing and frequency of health restoration actions within the gameplay dynamics.
         </p>
         <br>
         <p>
-            Example.
+            In this example, if the character picks up a health power-up, the time needed for the health regeneration of the character to take effect is halved.
+            <br>
+            Create a game object of any shape with a <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a> of your choice
+            and set it as a <b>trigger</b>. Finally attach the provided class to the object.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html">OnTriggerEnter2D</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a> col)
+    {
+        if (col.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.TryGetComponent.html">TryGetComponent</a>&lt;<a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>&gt;(out var controller))
+        {
+            <a class="redirect-link" href="../entity-health.html">EntityHealth</a> healthScript = controller.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../entity-health.html">EntityHealth</a>&gt;();
+            healthScript.<b>RegenTriggerTime</b> /= 2f;
+        }
+    }
 }
 </pre>
 </div>

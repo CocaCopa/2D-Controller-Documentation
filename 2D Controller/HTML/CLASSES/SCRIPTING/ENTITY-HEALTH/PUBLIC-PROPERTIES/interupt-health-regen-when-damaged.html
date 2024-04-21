@@ -26,17 +26,43 @@
         <h2>Description</h2>
         <p>
             Indicates whether your entity should stop regenerating health, when they take damage.
+            <br><br>
+            This property controls whether the entity's ongoing health regeneration process is interrupted upon sustaining damage during gameplay. When set to true, any ongoing
+            health regeneration will cease immediately upon the entity taking damage, preventing the simultaneous recovery of health and damage. Conversely, when set to false,
+            the entity's health regeneration continues uninterrupted even when damage is sustained, allowing for potential simultaneous healing and damage-taking.
         </p>
         <br>
         <p>
-            Example.
+            In this example, the character will be able to regenerate health without interruption only when their current health exceeds 50%. The following script
+            should be attached to your character.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../entity-health.html">EntityHealth</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    // Code
+    private <a class="redirect-link" href="../entity-health.html">EntityHealth</a> healthScript;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        healthScript = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../entity-health.html">EntityHealth</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        float currentHealth = healthScript.<a class="redirect-link" href="current-health-points.html">CurrentHealthPoints</a>;
+        float maxHealth = healthScript.<a class="redirect-link" href="max-health-points.html">MaxHealthPoints</a>;
+
+        if (currentHealth / maxHealth > 0.5f)
+        {
+            healthScript.<b>InteruptHealthRegenWhenDamaged</b> = true;
+        }
+        else
+        {
+            healthScript.<b>InteruptHealthRegenWhenDamaged</b> = false;
+        }
+    }
 }
 </pre>
 </div>
