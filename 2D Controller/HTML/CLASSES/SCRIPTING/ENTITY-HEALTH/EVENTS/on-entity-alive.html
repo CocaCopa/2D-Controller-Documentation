@@ -25,18 +25,51 @@
         <br>
         <h2>Description</h2>
         <p>
-            Description.
+            This event is triggered when the entity is spawned into the game world.
+            <br><br>
+            This event is triggered when the entity is spawned into the game world. This event serves as a notification mechanism to inform other game components or systems about
+            the entity's existence and readiness for interaction within the game environment. You can subscribe to this event to perform initialization tasks or set up initial
+            conditions for the entity upon its creation, such as positioning the entity, initializing properties, activating behaviors, or spawning associated objects.
         </p>
         <br>
         <p>
-            Example.
+            To use the example below, attach the provided script to a 2D game object of your choice. When you press the '<b>Escape</b>' key on your keyboard, a message will be logged
+            in the console, indicating that the entity has respawned.
         </p>
 <pre class="code-block">
 using UnityEngine;
 
-public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../entity-health.html">EntityHealth</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    
+    private <a class="redirect-link" href="../entity-health.html">EntityHealth</a> healthScript;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        healthScript = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../entity-health.html">EntityHealth</a>&gt;();
+        healthScript.<a class="redirect-link" href="../PUBLIC-PROPERTIES/max-health-points.html">MaxHealthPoints</a> = 100f;
+        healthScript.<a class="redirect-link" href="../PUBLIC-PROPERTIES/current-health-points.html">CurrentHealthPoints</a> = 100f;
+
+        healthScript.<b>OnEntityAlive</b> += HealthScript_OnEntityAlive;
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html">Start</a>()
+    {
+        healthScript.<a class="redirect-link" href="../PUBLIC-METHODS/take-damage.html">TakeDamage</a>(100f);
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.Escape.html">KeyCode.Escape</a>))
+        {
+            healthScript.<a class="redirect-link" href="../PUBLIC-METHODS/alive.html">Alive</a>();
+        }
+    }
+
+    private void HealthScript_OnEntityAlive(object sender, EventArgs e)
+    {
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("The entity respawned at full health.");
+    }  
 }
 </pre>
 </div>

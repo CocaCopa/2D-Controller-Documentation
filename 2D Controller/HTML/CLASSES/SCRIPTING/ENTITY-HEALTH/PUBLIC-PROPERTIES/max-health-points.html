@@ -35,8 +35,10 @@
         <p>
             In this example, if the character picks up a health power-up, their maximum health points will be doubled.
             <br>
-            Create a game object of any shape with a <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a> of your choice
-            and set it as a <b>trigger</b>. Finally attach the provided class to the object.
+            Assign the "<b>Player</b>" tag to your character object and attach both a <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a>
+            and <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a> component to it. Create another game object with any shape and a
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a> component, setting it as a <b>trigger</b>. Lastly, attach the provided
+            class to this object.
         </p>
 <pre class="code-block">
 using UnityEngine;
@@ -45,9 +47,9 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
 {
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html">OnTriggerEnter2D</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Collider2D.html">Collider2D</a> col)
     {
-        if (col.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.TryGetComponent.html">TryGetComponent</a>&lt;<a class="redirect-link" href="../humanoid-controller.html">HumanoidController</a>&gt;(out var controller))
+        if (col.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.CompareTag.html">CompareTag</a>("Player"))
         {
-            <a class="redirect-link" href="../entity-health.html">EntityHealth</a> healthScript = controller.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../entity-health.html">EntityHealth</a>&gt;();
+            <a class="redirect-link" href="../entity-health.html">EntityHealth</a> healthScript = col.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../entity-health.html">EntityHealth</a>&gt;();
             healthScript.<b>MaxHealthPoints</b> *= 2f;
         }
     }

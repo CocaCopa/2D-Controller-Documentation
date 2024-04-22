@@ -22,7 +22,8 @@
         <h1>EntityHealth</h1>
         <h2>Description</h2>
         <p>
-            Description of the EntityHealth class goes here.
+            This class manages health-related aspects for entities in the game, including tracking health points, handling damage events, and managing
+            health regeneration. It provides extensible functionality to implement specialized health behaviours and integrate additional features as needed.
         </p>
         <br>
         <div class="table-division">
@@ -30,15 +31,15 @@
             <table>
                 <tr>
                     <td class="label"><a class="events" href="EVENTS/on-entity-alive.html">OnEntityAlive</a></td>
-                    <td class="description"></td>
+                    <td class="description">This event is triggered when the entity is spawned into the game world.</td>
                 </tr>
                 <tr>
                     <td class="label"><a class="events" href="EVENTS/on-entity-death.html">OnEntityDeath</a></td>
-                    <td class="description"></td>
+                    <td class="description">This event is triggered when an entity dies or is destroyed within the game world.</td>
                 </tr>
                 <tr>
                     <td class="label"><a class="events" href="EVENTS/on-take-damage.html">OnTakeDamage</a></td>
-                    <td class="description"></td>
+                    <td class="description">This event is triggered when an entity receives damage from an external source.</td>
                 </tr>
             </table>
         </div>
@@ -93,12 +94,12 @@
             <span class="table-title">Public Methods</span>
             <table>
                 <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/alive.html">Alive</a></td>
-                    <td class="description">Respawns the entity.</td>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/take-damage.html">TakeDamage</a></td>
+                    <td class="description">Inflicts damage on the entity.</td>
                 </tr>
                 <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/kill-entity.html">KillEntity</a></td>
-                    <td class="description">Kills the entity.</td>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/entity-respawned.html">EntityRespawned</a></td>
+                    <td class="description">Resets entity health values upon respawn.</td>
                 </tr>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/start-health-regeneration.html">StartHealthRegeneration</a></td>

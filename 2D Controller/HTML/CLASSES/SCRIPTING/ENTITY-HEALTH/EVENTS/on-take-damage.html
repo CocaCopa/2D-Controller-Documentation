@@ -28,26 +28,54 @@
             <table>
                 <tr>
                     <td class="label"><b>damageAmount</b></td>
-                    <td class="description">The amount of damage the entity received</td>
+                    <td class="description">The amount of damage the entity received.</td>
                 </tr>
             </table>
         </div>
         <br>
         <h2>Description</h2>
         <p>
-            Description.
+            This event is triggered when an entity receives damage from an external source.
+            <br><br>
+            This event is triggered whenever an entity sustains damage from an external source within the game world. This event provides a notification mechanism
+            for informing other game components or systems about the occurrence of damage to the entity. You can subscribe to this event to implement reactive behaviors
+            or responses, such as playing hit animations, applying damage effects, updating health status, or triggering defensive actions.
         </p>
         <br>
         <p>
-            Example.
+            To use the example below, attach the provided script to a 2D game object of your choice. When you press the '<b>Escape</b>' key on your keyboard, a message will be logged
+            in the console, showing the amount of damage the entity received.
         </p>
 
 <pre class="code-block">
 using UnityEngine;
 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../entity-health.html">EntityHealth</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
-    
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float damageAmount = 5f;
+
+    private <a class="redirect-link" href="../entity-health.html">EntityHealth</a> healthScript;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        healthScript = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../entity-health.html">EntityHealth</a>&gt;();
+        healthScript.<b>OnTakeDamage</b> += HealthScript_OnTakeDamage;
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (Input.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.Escape.html">KeyCode.Escape</a>))
+        {
+            healthScript.<a class="redirect-link" href="../PUBLIC-METHODS/take-damage.html">TakeDamage</a>(damageAmount);
+        }
+    }
+
+    private void HealthScript_OnTakeDamage(object sender, <a class="redirect-link" href="../entity-health.html">EntityHealth</a>.OnTakeDamageEventArgs e)
+    {
+        float damagePoints = e.damageAmount;
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("The entity took " + damagePoints + " points of damage. Health points remaining: " + healthScript.<a class="redirect-link" href="../PUBLIC-PROPERTIES/current-health-points.html">CurrentHealthPoints</a>);
+    }
 }
 </pre>
 </div>
