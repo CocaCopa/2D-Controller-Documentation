@@ -41,6 +41,10 @@ hr {
     border-radius: 2px;
 }
 
+img {
+    max-width: 437px;
+}
+
 .iframe-body {
     background-color: #222C37;
     overflow-y: hidden;

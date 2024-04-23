@@ -14,12 +14,34 @@
     <link rel="stylesheet" href="../../../../CSS/general.css">
     <link rel="stylesheet" href="../../../../CSS/table.css">
     <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
+    <link rel="stylesheet" href="../../../../CSS/class-title.css">
 </head>
 <body>
     <iframe src="../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
-        
+        <div class="title-container">
+            <h1>HumanoidController</h1>
+            <a class="manual-or-scripting-button" href="../../SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">Scripting</a>
+        </div>
+        <p>
+            To utilize this script, it cannot be directly attached to a game object as it functions as an abstract class. Instead, you must create a new class that inherits from
+            <a class="redirect-link" href="../../SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> rather than <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>.
+            Once your custom script is prepared, you can then attach it to your character object.
+            <br><br>
+            Note that the HumanoidController requires some components in order to work properly. Those would be the following:
+            <br>
+            CharacterMovement,
+            <br>
+            CharacterEnvironmentalQuery,
+            <br>
+            Rigidbody2D
+            <br><br>
+            Attaching the script to your character object will also automatically attach the referenced script as well.
+        </p>
+        <br>
+        <h2>Inspector</h2>
+        <img src="../../../../IMAGES/HUMANOID-CONTROLLER/HumanoidController_1.png" alt="Description of your image">
     </div>
 </body>
 </html>
