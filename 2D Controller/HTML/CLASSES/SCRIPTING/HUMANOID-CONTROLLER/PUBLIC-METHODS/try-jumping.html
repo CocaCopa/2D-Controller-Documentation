@@ -24,29 +24,14 @@
         <br>
         <h2>Description</h2>
         <p>
-            Attempts to make the character jump based on certain conditions. <br>
+            Attempts to make the character jump based on certain conditions.
+            <br><br>
+            Responsible for initiating a jump action for the character based on specific conditions. Upon invocation, the method evaluates predefined conditions, such as the character's
+            grounded state or any imposed jump restrictions. If the conditions are satisfied, the character is prompted to execute a jump, ensuring adherence to established gameplay mechanics.
+            <br>
+            Moreover, triggering a jump will override any ongoing attack animation within the combat system. To mitigate such occurrences or implement other custom restrictions, manual
+            customization within your script is necessary. Below, an example scenario is provided to illustrate potential customizations.
         </p>
-        <ul>
-            <li>
-                When the designated jump key is pressed, a series of checks are conducted to ensure the feasibility of initiating a jump. These checks encompass factors such as 
-                the remaining air jumps, which their value can be assigned in the inspector of the controller (<b>numberOfAirJumps</b>), and considerations regarding the setup
-                of the ledge grab mechanic. For instance, if the jump key is pressed while your character '<b>IsLedgeGrabbing</b>', the system evaluates the percentage
-                of the played ledge grab animation before permitting the jump. Said evaluation is based on the '<b>ledgeJumpThreshold</b>' value, set in the inspector of the 
-                controller as well.
-            </li>
-            <br>
-            <li>
-                Furthermore, the execution of a jump varies based on the character's state, distinguishing between scenarios such as wall sliding, standard jumps from the 
-                ground, or air jumps. <br>
-                You have full control over the jump behaviour by adjusting the '<b>jumpStrength</b>' value for ground jumps and air jumps, as well as the '<b>wallJumpStrength</b>'
-                value for wall jumps in the inspector of the <a class="redirect-link" href="#">CharacterMovement</a> component.
-            </li>
-            <br>
-            <li>
-                Additionally, be mindful that triggering a jump will override any ongoing attack animation within the combat system. To avoid such occurrences or implement other custom
-                restrictions, manual customization in your script is necessary. Below you can find an example, covering a scenario like this.
-            </li>
-        </ul>
         <br>
         <p>
             Here's an example of calling the function to prompt your character to attempt a jump, utilizing the default behavior checks:
@@ -87,7 +72,7 @@ public class Example : <a class="redirect-link" href="../humanoid-controller.htm
 
         if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.Space</a>))
         {
-            if (!characterCombat.IsAttacking)
+            if (!characterCombat.<a class="redirect-link" href="../../CHARACTER-COMBAT/PUBLIC-PROPERTIES/is-attacking.html">IsAttacking</a>)
             {
                 <b>TryJumping</b>();
             }

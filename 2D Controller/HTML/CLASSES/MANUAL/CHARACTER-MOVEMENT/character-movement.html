@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
     <link rel="stylesheet" href="../../../../CSS/general.css">
     <link rel="stylesheet" href="../../../../CSS/table.css">
     <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
@@ -22,8 +21,101 @@
     <div class="main-page-division">
         <div class="title-container">
             <h1>CharacterMovement</h1>
-            <a class="manual-or-scripting-button" href="../../SCRIPTING/CHARACTER-MOVEMENT/character-movement.html">Scripting</a>
+            <a class="manual-or-scripting-button" href="../../SCRIPTING/CHARACTER-MOVEMENT/character-movement.html">SWITCH TO SCRIPTING</a>
         </div>
+        <h2>Overview</h2>
+        <p>
+            The <b>CharacterMovement</b> script is a versatile component designed to handle character movement within a Unity project.
+            <br><br>
+            To utilize the component in your Unity project, proceed by attaching the script to the root object of your character in the
+            Unity Editor, and then configure the parameters exposed in the Inspector to customize the character's movement behaviour.
+            <br><br>
+            While the script can operate independently without any required components, exercise caution when altering the <b>movement speed</b>
+            or <b>direction</b> of your character from external sources at runtime. It's crucial to inform the script of any sudden changes that
+            occur outside of it. Failure to do so may result in unexpected behaviour and cause your character to deviate from its intended
+            functionality. (See also: <a class="redirect-link" href="../../SCRIPTING/CHARACTER-MOVEMENT/character-movement.html">Scripting</a>)
+        </p>
+        <h2>Inspector</h2>
+        <img src="../../../../IMAGES/CHARACTER-MOVEMENT/CharacterMovement.png" alt="CharacterMovement_Inspector">
+        <br>
+        <h2>Ground Movement</h2>
+        <table>
+            <tr>
+                <td class="label"><b>AccelerationCurve</b></td>
+                <td class="description">Curve of the character's acceleration.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>DecelerationCurve</b></td>
+                <td class="description">
+                    Curve of the character's desceleration.
+                    <br>
+                    It's important to note that the deceleration intensity progresses from 0 to 1 along the vertical axis of the curve and not from 1 to 0 as
+                    it could be expected. Ensure that your adjustments reflect this progression, starting from minimal deceleration and increasing to maximum
+                    deceleration as needed. 
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>CurveEvaluationSpeed</b></td>
+                <td class="description">How fast should the acceleration curves be evaluated.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>MoveSpeed</b></td>
+                <td class="description">
+                    Character's top speed. (m/s)
+                    <br>
+                    Your character will gradually reach the specified movement speed, influenced by the acceleration curve and the designated
+                    evaluation speed of this curve.
+                </td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <h2>Aerial Movement</h2>
+        <table>
+            <tr>
+                <td class="label"><b>AirAccelerationCurve</b></td>
+                <td class="description">Curve of the character's on air acceleration.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>AirDecelerationCurve</b></td>
+                <td class="description">
+                    Curve of the character's on air desceleration.
+                    <br>
+                    It's important to note that the deceleration intensity progresses from 0 to 1 along the vertical axis of the curve and not from 1 to 0 as
+                    it could be expected. Ensure that your adjustments reflect this progression, starting from minimal deceleration and increasing to maximum
+                    deceleration as needed. 
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>OnAirEvaluationSpeed</b></td>
+                <td class="description">How fast should the 'on-air' acceleration curves be evaluated.</td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <h2>Jump</h2>
+        <table>
+            <tr>
+                <td class="label"><b>JumpStrength</b></td>
+                <td class="description">Velocity change of the character, on the Y axis, when a jump is performed.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>WallJumpStrength</b></td>
+                <td class="description">Velocity change of the character, on the X and Y axis, when a jump is performed against the wall.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>AirDeceleration</b></td>
+                <td class="description">How fast should the character lose speed when no input is given, while on air.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>MaxStandStillSpeed</b></td>
+                <td class="description">
+                    The maximum speed the character is allowed to reach, from a stand still jump.
+                    <br>
+                    If your character jumps while grounded and then attempts to move while in the air, their aerial speed will not surpass this specified value.
+                </td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

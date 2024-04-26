@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
     <link rel="stylesheet" href="../../../../CSS/general.css">
     <link rel="stylesheet" href="../../../../CSS/table.css">
     <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
@@ -22,8 +21,41 @@
     <div class="main-page-division">
         <div class="title-container">
             <h1>CharacterSlide</h1>
-            <a class="manual-or-scripting-button" href="../../SCRIPTING/CHARACTER-SLIDE/character-slide.html">Scripting</a>
+            <a class="manual-or-scripting-button" href="../../SCRIPTING/CHARACTER-SLIDE/character-slide.html">SWITCH TO SCRIPTING</a>
         </div>
+        <h2>Overview</h2>
+        <p>
+            The <b>CharacterSlide</b> script provides functionality for character sliding behaviour in a Unity project. It allows
+            characters to slide on floors and walls, offering customizable parameters to control the sliding mechanics.
+            <br><br>
+            To utilize the component in your Unity project, proceed by attaching the script to the root object of your character in the Unity Editor,
+            and then configure the parameters exposed in the Inspector to customize the sliding behaviour as per your requirements.
+            <br><br>
+            Note that the CharacterSlide <b>requires</b> a <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-Rigidbody2D.html">Rigidbody2D</a>
+            component for proper operation. Attaching the script to your character object will automatically add this required component.
+        </p>
+        <h2>Inspector</h2>
+        <img src="../../../../IMAGES/CHARACTER-SLIDE/CharacterSlide.png" alt="CharacterSlide_Inspector">
+        <br>
+        <table>
+            <tr>
+                <td class="label"><b>FloorSlideDeceleration</b></td>
+                <td class="description">
+                    How fast should the character's speed decrease when floor sliding?
+                    <br>
+                    Once the character starts slinding, their speed will be decreased based on the specified value.
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>WallSlideAcceleration</b></td>
+                <td class="description">
+                    Exponential acceleration when the character is wall sliding.
+                    <br>
+                    When colliding with a wall, the character's speed along the Y-axis will reset to 0. Subsequently,
+                    the character will commence accelerating downwards based on the specified value.
+                </td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

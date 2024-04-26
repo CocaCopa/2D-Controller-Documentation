@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
     <link rel="stylesheet" href="../../../../CSS/general.css">
     <link rel="stylesheet" href="../../../../CSS/table.css">
     <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
@@ -22,8 +21,93 @@
     <div class="main-page-division">
         <div class="title-container">
             <h1>CharacterLedgeGrab</h1>
-            <a class="manual-or-scripting-button" href="../../SCRIPTING/CHARACTER-LEDGE-GRAB/character-ledge-grab.html">Scripting</a>
+            <a class="manual-or-scripting-button" href="../../SCRIPTING/CHARACTER-LEDGE-GRAB/character-ledge-grab.html">SWITCH TO SCRIPTING</a>
         </div>
+        <h2>Overview</h2>
+        <p>
+            The <b>CharacterLedgeGrab</b> provides functionality for handling ledge grabbing and climbing behaviors for characters in a Unity project.
+            It allows characters to grab onto ledges and climb up to reach higher areas.
+            <br><br>
+            To utilize the component in your Unity project, proceed by attaching the script to the root object of your character in the Unity Editor,
+            and then configure the parameters exposed in the Inspector to customize the ledge grab and climb behaviour as per your requirements.
+            <br><br>
+            Note that the CharacterLedgeGrab <b>requires</b> a <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-Rigidbody2D.html">Rigidbody2D</a>
+            component for proper operation. Attaching the script to your character object will automatically add this required component.
+        </p>
+        <h2>Inspector</h2>
+        <img src="../../../../IMAGES/CHARACTER-LEDGE-GRAB/CharacterLedgeGrab.png" alt="CharacterLedgeGrab_Inspector">
+        <br>
+        <table>
+            <tr>
+                <td class="label"><b>SpriteHolderTransform</b></td>
+                <td class="description">
+                    The transform of the parent object that holds the GameObject with the <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-SpriteRenderer.html">SpriteRenderer</a> component attached.
+                    <br>
+                    The object containing the <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-SpriteRenderer.html">SpriteRenderer</a> should always be nested under an empty parent object. This arrangement is essential because the CharacterLedgeGrab's effects impact the position of this object,
+                    while the <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-SpriteRenderer.html">SpriteRenderer</a>'s position should remain unaffected.
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>ColliderTransform</b></td>
+                <td class="description">
+                    Transform of the character's vertical collider.
+                    <br>
+                    If you do not intend to offset the collider's position when the character is grabbing a ledge, you can leave this field empty.
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>LedgeClimbEndTransform</b></td>
+                <td class="description">A <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Physics.Raycast.html">Raycast</a> will be fired downward to determine the precise location where the character should be positioned after performing the ledge climb.</td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <h2>Tied properties</h2>
+        <table>
+            <tr>
+                <td class="label"><b>IsAnimationStill</b></td>
+                <td class="description">
+                    True, if all frames of the Ledge Climb animation are at the same position. False, if the frames of the Ledge Climb animation vary in position.
+                    <br>
+                    This boolean property determines the behaviour of character movement in relation to the animation. When set to true, indicating a static sprite sheet,
+                    the character object will be moved by the code for the duration of the animation. In contrast, when set to false for a dynamic sprite sheet, the code
+                    will wait for the animation to complete, after which it will teleport the character object to the position of the last frame of the animation.
+                    <br><br>
+                    Setting this property to true will enable the '<b>LedgeClimbSpeed</b>' property in the inspector as well.
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>LedgeClimbSpeed</b></td>
+                <td class="description">
+                    How fast should the character climb off a ledge.
+                    <br>
+                    This property will determine the speed at which the character will reach the position at the top of the ledge,
+                    starting from the frame the ledge was detected.
+                    <br><br>
+                    This property will be hidden from the inspector, if the '<b>isAnimationStill</b>' property is set to false.
+                </td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <br>
+        <table>
+            <tr>
+                <td class="label"><b>OffsetSprite</b></td>
+                <td class="description">
+                    Your character is expected to be offseted. Adjust this value to set it back to the intended position.
+                    <br>
+                    Once a ledge is detected, the '<b>SpriteHolder</b>' will automatically be teleported to the position of the ledge. This ensures that
+                    no matter where the character is in relation to the ledge when it's detected, the sprites will always have a default starting position
+                    relative to the edge. Adjusting the offset will ensure that every time your character hits a ledge, they will be positioned correctly.
+                    <b>Note that the actual position of the character object, will not be affected.</b>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>OffsetColliderHeight</b></td>
+                <td class="description">Offset the character's collider if it doesn't correspond to the player's position.</td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

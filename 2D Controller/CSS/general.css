@@ -22,7 +22,15 @@ h2 {
     font-size: larger;
 }
 
+hr {
+    width: 100%;
+    border: 2px solid grey;
+    background-color: grey;
+    border-radius: 2px;
+}
+
 iframe {
+    z-index: 1;
     position: sticky;
     top: 0;
     width: 100%;
@@ -34,15 +42,9 @@ iframe {
     border-radius: 5px;
 }
 
-hr {
-    width: 100%;
-    border: 2px solid grey;
-    background-color: grey;
-    border-radius: 2px;
-}
-
 img {
-    max-width: 437px;
+    max-width: 440px;
+    z-index: 0;
 }
 
 .iframe-body {

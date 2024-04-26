@@ -1,14 +1,15 @@
 .title-container {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
 }
 
 .manual-or-scripting-button {
-    margin-left: 25px;
+    margin-bottom: 25px;
     padding: 7px;
     color: #fafafa;
     text-decoration: none;
+    font-size: smaller;
     border: 1px solid #222C37;
     border-radius: 10px;
     background-color: #222C37;

@@ -10,11 +10,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../CSS/navigation-bar.css">
     <link rel="stylesheet" href="../../../../CSS/general.css">
     <link rel="stylesheet" href="../../../../CSS/table.css">
     <link rel="stylesheet" href="../../../../CSS/scroll-bar.css">
     <link rel="stylesheet" href="../../../../CSS/class-title.css">
+
+    <style>
+        .add-margin-bottom {
+            margin-bottom: 4px;
+        }
+    </style>
 </head>
 <body>
     <iframe src="../../../navigation-bar.html"></iframe>
@@ -22,26 +27,154 @@
     <div class="main-page-division">
         <div class="title-container">
             <h1>HumanoidController</h1>
-            <a class="manual-or-scripting-button" href="../../SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">Scripting</a>
+            <a class="manual-or-scripting-button" href="../../SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">SWITCH TO SCRIPTING</a>
         </div>
+        <h2>Overview</h2>
         <p>
-            To utilize this script, it cannot be directly attached to a game object as it functions as an abstract class. Instead, you must create a new class that inherits from
+            To utilize this script, it cannot be directly attached to a game object as it functions as an <b>abstract</b> class. Instead, you must create a new class that <b>inherits</b> from
             <a class="redirect-link" href="../../SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> rather than <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>.
             Once your custom script is prepared, you can then attach it to your character object.
+        </p>
+        <br>
+        <p>
+            Note that the HumanoidController <b>requires</b> the following components to operate correctly:
+        </p>
+        <ul>
+            <li><a class="redirect-link" href="../CHARACTER-MOVEMENT/character-movement.html">CharacterMovement</a></li>
+            <li><a class="redirect-link" href="../ENV-QUERY/env-query.html">CharacterEnvironmentalQuery</a></li>
+            <li><a class="redirect-link" href="https://docs.unity3d.com/Manual/class-Rigidbody2D.html">Rigidbody2D</a></li>
+        </ul>
+
+        <p>
+            When attaching the script to your character object, the referenced scripts will automatically be included.
             <br><br>
-            Note that the HumanoidController requires some components in order to work properly. Those would be the following:
-            <br>
-            CharacterMovement,
-            <br>
-            CharacterEnvironmentalQuery,
-            <br>
-            Rigidbody2D
-            <br><br>
-            Attaching the script to your character object will also automatically attach the referenced script as well.
+            Additionally, the component is compatible with the following locomotion mechanics:
+        </p>
+        <ul>
+            <li><a class="redirect-link" href="../CHARACTER-DASH/character-dash.html">CharacterDash</a></li>
+            <li><a class="redirect-link" href="../CHARACTER-SLIDE/character-slide.html">CharacterSlide</a></li>
+            <li><a class="redirect-link" href="../CHARACTER-LEDGE-GRAB/character-ledge-grab.html">CharacterLedgeGrab</a></li>
+        </ul>
+        <p>
+            These are <b>optional</b> and can be paired with the <b>HumanoidController</b> for enhanced movement capabilities.
         </p>
         <br>
         <h2>Inspector</h2>
-        <img src="../../../../IMAGES/HUMANOID-CONTROLLER/HumanoidController_1.png" alt="Description of your image">
+        <p>
+            The settings inherited from <a class="redirect-link" href="../../SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> can be collapsed by
+            clicking the '<b>Controller Options</b>' dropdown button at the top of the component, facilitating a clear separation between the provided settings and your custom ones.
+        </p>
+        <br>
+        <img src="../../../../IMAGES/HUMANOID-CONTROLLER/HumanoidController_Default.png" alt="HumanoidController_Default">
+        <br>
+        <table>
+            <tr>
+                <td class="label"><b>TimeScale</b></td>
+                <td class="description">
+                    Adjusts the time scale directly, affecting the overall speed of time in the game.
+                    <br>
+                    You can use this to debug your character at runtime, but be cautious as having multiple
+                    HumanoidControllers in the scene will cause each one to override the others' values.
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>HorizontalCollider</b></td>
+                <td class="description">
+                    Collider to use when the character is sliding.
+                    <br>
+                    Properly referencing a collider is essential for the sliding behaviour to function correctly and avoid triggering errors.
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>VerticalCollider</b></td>
+                <td class="description">
+                    Collider to use when the character is in an upright position.
+                    <br>
+                    Failing to reference a collider will result in faulty behaviour and will trigger errors.
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>SmoothMovement</b></td>
+                <td class="description">
+                    Adjusts the smoothness of character movement.
+                    <br>
+                    Higher values result in snappier movement, while lower values yield smoother motion.
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>CoyoteTime</b></td>
+                <td class="description">Time in seconds where jump can be performed if the character leaves 'Grounded' state.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>NumberOfAirJumps</b></td>
+                <td class="description">
+                    Number of jumps the character is allowed to perform while on air.
+                    <br>
+                    Jumping while grounded will not decrease this counter.
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>AlwaysDecreaseJumpCounter</b></td>
+                <td class="description">True means that wall jumps and ledge jumps will be considered as air jumps, while false indicates that only standard air jumps will be counted.</td>
+            </tr>
+        </table>
+        <br>
+        <p>
+            By adding the optional components mentioned above to your character, more options will appear within the <b>HumanoidController</b> component.
+        </p>
+        <br>
+        <p class="add-margin-bottom">
+            Adding <a class="redirect-link" href="../CHARACTER-DASH/character-dash.html">CharacterDash</a>:
+        </p>
+        <img src="../../../../IMAGES/HUMANOID-CONTROLLER/HumanoidController_Dash.png" alt="HumanoidController_Dash">
+        <br>
+        <table>
+            <tr>
+                <td class="label"><b>DashCooldown</b></td>
+                <td class="description">Dash cooldown in seconds.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>MinimumDashDistance</b></td>
+                <td class="description">
+                    Dash will be allowed only if the travel distance exceeds the specified value.
+                    <br>
+                    Attempting to dash in front of a wall with a distance from the character object less than this value will prevent the character from dashing.
+                </td>
+            </tr>
+        </table>
+        <br><br>
+        <p class="add-margin-bottom">
+            Adding <a class="redirect-link" href="../CHARACTER-SLIDE/character-slide.html">CharacterSlide</a>:
+        </p>
+        <img src="../../../../IMAGES/HUMANOID-CONTROLLER/HumanoidController_Slide.png" alt="HumanoidController_Slide">
+        <br>
+        <table>
+            <tr>
+                <td class="label"><b>MinimumFloorSlideSpeed</b></td>
+                <td class="description">When the character reaches the specified speed, the floor slide should be canceled, transitioning the character's state back to running.</td>
+            </tr>
+        </table>
+        <br><br>
+        <p class="add-margin-bottom">
+            Adding <a class="redirect-link" href="../CHARACTER-LEDGE-GRAB/character-ledge-grab.html">CharacterLedgeGrab</a>:
+        </p>
+        <img src="../../../../IMAGES/HUMANOID-CONTROLLER/HumanoidController_Ledge.png" alt="HumanoidController_Ledge">
+        <br>
+        <table>
+            <tr>
+                <td class="label"><b>LedgeJumpThreshold</b></td>
+                <td class="description">What percentage of the 'Ledge Enter' animation must be completed before the character can jump while in the 'LedgeGrab' state?</td>
+            </tr>
+            <tr>
+                <td class="label"><b>MaxLedgeGrabTime</b></td>
+                <td class="description">For how long should the character be able to hang from a ledge before being forced to fall.</td>
+            </tr>
+        </table>
+        <br><br>
+        <p class="add-margin-bottom">
+            For reference, here is how the component would appear when paired with every other optional component attached.
+        </p>
+        <img src="../../../../IMAGES/HUMANOID-CONTROLLER/HumanoidController_Complete.png" alt="HumanoidController_Complete">
     </div>
 </body>
 </html>
