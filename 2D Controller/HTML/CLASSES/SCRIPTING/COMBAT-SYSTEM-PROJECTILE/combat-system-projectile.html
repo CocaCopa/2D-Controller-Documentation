@@ -37,6 +37,13 @@
             It is worth noting that this class pairs well with the <a class="redirect-link" href="../CHARACTER-COMBAT/character-combat.html">CharacterCombat</a> class.
         </p>
         <br>
+        <h2>Important Note</h2>
+        <p>
+            Exercise caution when instantiating or enabling objects with the <b>CombatSystemProjectile</b> component attached, as it is initially disabled by default.
+            Without explicit activation, the component may not operate as expected. To ensure that your projectile functions with its intended behaviour, you must enable
+            it through code, typically achieved by setting <b>CombatSystemProjectile.enabled = true;</b>. (See also <b>CombatSystemProjectile</b>.<a class="redirect-link" href="PUBLIC-PROPERTIES/initial-velocity.html">InitialVelocty</a> for more information)
+        </p>
+        <br>
         <div class="table-division">
             <span class="table-title">Public Properties</span>
             <table>

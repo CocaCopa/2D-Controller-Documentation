@@ -36,7 +36,7 @@
         <p>
             Deals damage to all colliders inside the specified hitbox.
             <br><br>
-            Upon executing this function, it will search for a game objects that implements the <b>IDamageable</b> interface within the specified hitbox.
+            Upon executing this function, it will search for all game objects that implement the <b>IDamageable</b> interface within the specified hitbox.
             Any game object found inside said hitbox, will incur damage.
             <br>
             It's worth noting that the functionality of taking damage is already handled by the <a class="redirect-link" href="../../ENTITY-HEALTH/entity-health.html">EntityHealth</a>
@@ -44,7 +44,7 @@
         </p>
         <br>
         <p>
-            Example paragraph goes here.
+            The example below demonstrates a simple way to utilize this function. Once the projectile collides with an object, it will deal damage to every damageable object around the specified area.
         </p>
 
 <pre class="code-block">

@@ -23,6 +23,65 @@
             <h1>CombatSystemProjectile</h1>
             <a class="manual-or-scripting-button" href="../../SCRIPTING/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">SWITCH TO SCRIPTING</a>
         </div>
+        <h2>Overview</h2>
+        <p>
+            The <b>CombatSystemProjectile</b> component is crafted to handle the behaviour of any object, meant to act as a projectile in your game.
+            <br><br>
+            To utilize the component in your Unity project, proceed by attaching the script to the <b>root</b> object of the projectile in the Unity Editor,
+            and then configure the parameters exposed in the Inspector to customize its behaviour as per your requirements.
+            <br><br>
+            Note that the CombatSystemProjectile <b>requires</b> a <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-Rigidbody2D.html">Rigidbody2D</a>
+            component for proper operation. Attaching the script to your projectile object will automatically add this required component.
+        </p>
+        <br>
+        <h2>Inspector</h2>
+        <img src="../../../../IMAGES/COMBAT-SYSTEM-PROJECTILE/CombatSystemProjectile.png" alt="CombatSystemProjectile_Inspector">
+        <br>
+        <h2>Speed</h2>
+        <table>
+            <tr>
+                <td class="label"><b>InitialVelocity</b></td>
+                <td class="description">The initial velocity of the projectile when it's launched.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>MinimumInitialVelocity</b></td>
+                <td class="description">If the '<b>initialVelocity</b>' of the projectile is modified by an external script, it is ensured that the new value will not fall below the specified minimum.</td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <h2>Damage</h2>
+        <table>
+            <tr>
+                <td class="label"><b>DamageAmount</b></td>
+                <td class="description">The amount of damage the projectile should deal upon colliding with a damageable object.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>MinimumDamageAmount</b></td>
+                <td class="description">If the '<b>damageAmount</b>' of the projectile is modified by an external script, it is ensured that the new value will not fall below the specified minimum.</td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <h2>Hitbox</h2>
+        <table>
+            <tr>
+                <td class="label"><b>HitboxTranform</b></td>
+                <td class="description">The transform of the hitbox object attached to the projectile object.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>VisualizeHitbox</b></td>
+                <td class="description">Visualizes shape and size of the hitbox in the scene.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>HitboxShape</b></td>
+                <td class="description">The shape of the hitbox.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>HitboxRadius</b></td>
+                <td class="description">The radius of the hitbox.</td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

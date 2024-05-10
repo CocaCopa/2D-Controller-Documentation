@@ -23,6 +23,60 @@
             <h1>CharacterDash</h1>
             <a class="manual-or-scripting-button" href="../../SCRIPTING/CHARACTER-DASH/character-dash.html">SWITCH TO SCRIPTING</a>
         </div>
+        <h2>Overview</h2>
+        <p>
+            The <b>CharacterDash</b> script enhances character movement by enabling a dash mechanic. Upon attaching this class to your characters,
+            they gain the ability to swiftly dash in a designated direction, with customizable parameters enabling precise control over the dash
+            behaviour.
+            <br><br>
+            To utilize the component in your Unity project, attach the script to the <b>root</b> object of your character within the Unity
+            Editor. Configuration involves adjusting parameters exposed in the Inspector window to tailor the dash behaviour.
+        </p>
+        <br>
+        <p>
+            Note that the CharacterDash <b>requires</b> the following components to operate correctly:
+        </p>
+        <ul>
+            <li><a class="redirect-link" href="https://docs.unity3d.com/Manual/class-Rigidbody2D.html">Rigidbody2D</a></li>
+            <li><a class="redirect-link" href="../ENV-QUERY/env-query.html">CharacterEnvironmentalQuery</a></li>
+        </ul>
+
+        <p>
+            When attaching the script to your character object, the referenced scripts will automatically be included.
+        </p>
+        <h2>Inspector</h2>
+        <img src="../../../../IMAGES/CHARACTER-DASH/CharacterDash.png" alt="CharacterDash_Inspector">
+        <br>
+        <table>
+            <tr>
+                <td class="label"><b>AfterImageObject</b></td>
+                <td class="description">The GameObject to be spawned as the afterimage for the dash. (Optional)</td>
+            </tr>
+            <tr>
+                <td class="label"><b>AfterImageCount</b></td>
+                <td class="description">The number of afterimages to be spawned.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>DashSpeed</b></td>
+                <td class="description">The speed at which the character travels during the dash. (m/s)</td>
+            </tr>
+            <tr>
+                <td class="label"><b>MaxDashDistance</b></td>
+                <td class="description">The maximum distance the character will cover in meters.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>WallOffset</b></td>
+                <td class="description">
+                    The distance from a wall at which the character stops dashing.
+                    <br>
+                    This means that if your character would hit a wall before covering the entire dash distance, they will stop in front of that wall at the specified range.
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>AdjustDashPosition</b></td>
+                <td class="description">Adjusts the character's position to the platform's height plus the specified offset if their feet or head would collide with a wall during the dash, ensuring a smooth start to the dash.</td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

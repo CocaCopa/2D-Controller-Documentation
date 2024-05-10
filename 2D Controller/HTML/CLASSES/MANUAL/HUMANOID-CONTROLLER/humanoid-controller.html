@@ -69,15 +69,6 @@
         <br>
         <table>
             <tr>
-                <td class="label"><b>TimeScale</b></td>
-                <td class="description">
-                    Adjusts the time scale directly, affecting the overall speed of time in the game.
-                    <br>
-                    You can use this to debug your character at runtime, but be cautious as having multiple
-                    HumanoidControllers in the scene will cause each one to override the others' values.
-                </td>
-            </tr>
-            <tr>
                 <td class="label"><b>HorizontalCollider</b></td>
                 <td class="description">
                     Collider to use when the character is sliding.
@@ -103,7 +94,7 @@
             </tr>
             <tr>
                 <td class="label"><b>CoyoteTime</b></td>
-                <td class="description">Time in seconds where jump can be performed if the character leaves 'Grounded' state.</td>
+                <td class="description">Time in seconds where jump can be performed if the character leaves '<a class="redirect-link" href="../../SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-PROPERTIES/is-grounded.html">IsGrounded</a>' state.</td>
             </tr>
             <tr>
                 <td class="label"><b>NumberOfAirJumps</b></td>
@@ -149,6 +140,13 @@
         <img src="../../../../IMAGES/HUMANOID-CONTROLLER/HumanoidController_Slide.png" alt="HumanoidController_Slide">
         <br>
         <table>
+            <tr>
+                <td class="label"><b>floorSlideJump</b></td>
+                <td class="description">
+                    Setting this value to '<b>true</b>' allows your character to jump while sliding.
+                    Otherwise '<b>false</b>' if you want to prevent your character from jumping while sliding.
+                </td>
+            </tr>
             <tr>
                 <td class="label"><b>MinimumFloorSlideSpeed</b></td>
                 <td class="description">When the character reaches the specified speed, the floor slide should be canceled, transitioning the character's state back to running.</td>

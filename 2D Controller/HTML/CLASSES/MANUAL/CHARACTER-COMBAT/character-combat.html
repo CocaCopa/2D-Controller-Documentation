@@ -23,6 +23,64 @@
             <h1>CharacterCombat</h1>
             <a class="manual-or-scripting-button" href="../../SCRIPTING/CHARACTER-COMBAT/character-combat.html">SWITCH TO SCRIPTING</a>
         </div>
+        <h2>Overview</h2>
+        <p>
+            The <b>CharacterCombat</b> class is meticulously designed to oversee all combat-related actions in your game. Paired seamlessly with the <a class="redirect-link" href="../ENTITY-HEALTH/entity-health.html">EntityHealth</a>
+            class and the <a class="redirect-link" href="../ATTACK-SO/attack-so.html">AttackSO</a> scriptable object, it empowers you to finely manage your character's combat behaviour. Through
+            this class, you gain the ability to craft and customize attacks, shaping the combat dynamics of your game to your liking.
+        </p>
+        <br>
+        <p>
+            Note that the CharacterCombat <b>requires</b> the following components to operate correctly:
+        </p>
+        <ul>
+            <li><a class="redirect-link" href="../ENTITY-HEALTH/entity-health.html">EntityHealth</a></li>
+            <li><a class="redirect-link" href="../ENV-QUERY/env-query.html">CharacterEnvironmentalQuery</a></li>
+            <li><a class="redirect-link" href="https://docs.unity3d.com/Manual/class-Rigidbody2D.html">Rigidbody2D</a></li>
+        </ul>
+
+        <p>
+            When attaching the script to your character object, the referenced scripts will automatically be included.
+        </p>
+        <br>
+        <h2>Inspector</h2>
+        <img src="../../../../IMAGES/CHARACTER-COMBAT/CharacterCombat.png" alt="CharacterCombat_Inspector">
+        <br>
+        <table>
+            <tr>
+                <td class="label"><b>VisualizeAttackHitbox</b></td>
+                <td class="description">Set to true, if you want to visualize the hitbox of the current attack.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>AttackHitboxTransform</b></td>
+                <td class="description">The transform of the attack hitbox.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>AttackBufferTime</b></td>
+                <td class="description">
+                    Specifies the time window during which the player can initiate a follow-up attack after an initial attack.
+                    <br>
+                    For example, if the value is set to 0.1f and the assigned attack key is pressed 0.1 seconds or less before the attack is completed, the character will initiate a follow-up attack.
+                </td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+        <h2>Current Attack Information</h2>
+        <table>
+            <tr>
+                <td class="label"><b>AttackCharged</b></td>
+                <td class="description">If a charged attack is being casted, this value will be set to true once the attack is fully charged.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>ChargeTimer</b></td>
+                <td class="description">Defines the duration required to fully charge an attack, based on the attack configuration.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>HoldAttackTimer</b></td>
+                <td class="description">Specifies the maximum duration an attack can be held before the character is compelled to release or cancel it, as per the attack configuration.</td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

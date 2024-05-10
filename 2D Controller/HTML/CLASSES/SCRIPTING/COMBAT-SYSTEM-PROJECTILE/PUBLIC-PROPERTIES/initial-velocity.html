@@ -48,7 +48,7 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
     // Note that the provided prefab should have the CombatSystemProjectile component attached.
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> projectilePrefab;
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform.html">Transform</a> spawnTransform;
-    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float chargeTime;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RangeAttribute.html">Range</a>(1f, 100f)] private float chargeTime;
     
     private bool tickTimer = false;
     private float timerValue;

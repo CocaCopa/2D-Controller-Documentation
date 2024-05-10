@@ -23,6 +23,56 @@
             <h1>EntityHealth</h1>
             <a class="manual-or-scripting-button" href="../../SCRIPTING/ENTITY-HEALTH/entity-health.html">SWITCH TO SCRIPTING</a>
         </div>
+        <h2>Overview</h2>
+        <p>
+            The <b>EntityHealth</b> script is designed to oversee the health status of entities within your game. It can be seamlessly integrated
+            with the <a class="redirect-link" href="../ARMOUR-SO/armour-so.html">ArmourSO</a> scriptable object to provide advanced enhancements
+            to entity health management.
+            <br><br>
+            To utilize the component in your Unity project, proceed by attaching the script to the <b>root</b> object of your character in the Unity Editor,
+            and then configure the parameters exposed in the Inspector to customize how health should be managed in your game.
+        </p>
+        <br>
+        <h2>Inspector</h2>
+        <img src="../../../../IMAGES/ENTITY-HEALTH/EntityHealth.png" alt="EntityHealth_Inspector">
+        <br>
+        <table>
+            <tr>
+                <td class="label"><b>ArmourData</b></td>
+                <td class="description">Leave this field empty if your entity wears no armour. (See also: <a class="redirect-link" href="../ARMOUR-SO/armour-so.html">ArmourSO</a>)</td>
+            </tr>
+            <tr>
+                <td class="label"><b>MaxHealthPoints</b></td>
+                <td class="description">Maximum health points of the entity.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>CurrentHealthPoints</b></td>
+                <td class="description">Current health points of the entity.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>CanRegenHealth</b></td>
+                <td class="description">Whether or not your entity is able to regen missing health points.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>InterruptWhenDamaged</b></td>
+                <td class="description">
+                    Choose whether or not your entity should stop regenerating health, when they take damage.
+                    <br>
+                    Enabling this option will reset the health regeneration timer of the entity upon taking damage. However, this reset only occurs if
+                    the entity is already in the process of regenerating health, and does not apply when the regeneration effect is inactive.
+                    <br>
+                    (See also: <b>EntityHealth</b>.<a class="redirect-link" href="../../SCRIPTING/ENTITY-HEALTH/PUBLIC-METHODS/reset-regeneration-timer.html">ResetRegenerationTimer</a> for more information)
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><b>RegenTriggerTime</b></td>
+                <td class="description">Time in seconds at which the health regeneration can take effect, if the current health points are not equal to max health points.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>RegenHealthPoints</b></td>
+                <td class="description">How many health points per second the entity should gain, once the regen effect has been triggered.</td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

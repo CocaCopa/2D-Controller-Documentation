@@ -28,6 +28,8 @@
         <p>
             This class manages health-related aspects for entities in the game, including tracking health points, handling damage events, and managing
             health regeneration. It provides extensible functionality to implement specialized health behaviours and integrate additional features as needed.
+            <br><br>
+            <b>Note:</b> This class implements the <b>IDamageable</b> interface which can be found within the asset.
         </p>
         <br>
         <div class="table-division">
@@ -97,6 +99,10 @@
         <div class="table-division">
             <span class="table-title">Public Methods</span>
             <table>
+                <tr>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/reset-regeneration-timer.html">ResetRegenerationTimer</a></td>
+                    <td class="description">Resets the health regeneration timer.</td>
+                </tr>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/take-damage.html">TakeDamage</a></td>
                     <td class="description">Inflicts damage on the entity.</td>
