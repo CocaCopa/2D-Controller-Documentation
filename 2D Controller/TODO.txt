@@ -1,4 +1,0 @@
--------------------------------------- HUMANOID CONTROLLER --------------------------------------
-changeHorizontalVelocity.html
-- Add link to 'combatSystem' that will direct to the 'CombatSystem' page.
-- Add link to 'CharacterMovement' component.
