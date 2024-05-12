@@ -23,6 +23,58 @@
             <h1>AttackSO</h1>
             <a class="manual-or-scripting-button" href="../../SCRIPTING/ATTACK-SO/attack-so.html">SWITCH TO SCRIPTING</a>
         </div>
+        <h2>Overview</h2>
+        <p>
+            The <b>AttackSO</b> is a scriptable object, allowing users to customize and create attack configurations for their humanoid characters.
+            <br>
+            This component pairs well with <a class="redirect-link" href="../COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a> and <a class="redirect-link" href="../CHARACTER-COMBAT/character-combat.html">CharacterCombat</a> components found in the asset.
+        </p>
+        <br>
+        <h2>Create New Attack</h2>
+        <p>
+            To create a new attack, simply access the menu item by navigating to the "<b>Assets</b>" folder within your project files. From there, right-click and select
+            "<b>Create</b>," then choose "<b>Create New Attack</b>." This action sets you up with a scriptable object ready to define and adjust attacks in your project.
+        </p>
+        <br>
+        <img src="../../../../IMAGES/ATTACK-SO/CreateNewAttack.png" alt="CreateNewAttack">
+        <br>
+        <h2>Attack Configuration</h2>
+        <p>
+            Now that you've created your attack, it's time to tailor its behaviour. Whether it's a swift single strike or a charged-up assault,
+            you can adjust the parameters to suit your needs.
+            <br><br>
+            Locate the attack scriptable object within your project files and open it for editing. Inside the Inspector window, you'll discover a range of
+            options available for fine-tuning different aspects of the attack. These settings offer the flexibility to tailor the attack's behavior according
+            to your preferences, whether you aim to execute swift combos with quick strikes or unleash powerful blows with charged attacks.
+        </p>
+        <br>
+        <p>
+            The image below illustrates how the default attack will appear once it's been created.
+            <br>
+            Make sure to hover over each property for tooltips to appear if you have any questions about what the property does.
+        </p>
+        <br>
+        <img src="../../../../IMAGES/ATTACK-SO/AttackDefault.png" alt="AttackCreation_DefaultOptions">
+        <br>
+        <h2>Restrictions</h2>
+        <p>
+            Feel free to experiment with the values and explore the combinations available, but do note that there are some restrictions to what you can do. For instance,
+            it's not possible to set an attack where the character can move while the attack is being performed simultaneously with the attack pushing the character.
+            <br>
+            As the image below demonstrates, if the "<b>Can Move While Charging</b>" property is set to true, the "<b>Attack Push Character</b>" option will be disabled.
+        </p>
+        <br>
+        <img src="../../../../IMAGES/ATTACK-SO/AttackNote - Restriction.png" alt="AttackConfiguration_Restriction">
+        <br>
+        <h2>Damage Calculation</h2>
+        <p>
+            Remember, although you can configure the attack to launch a projectile and adjust its damage, the damage amount itself is primarily controlled by the <a class="redirect-link" href="../COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>
+            component. The '<b>damage</b>' property in the attack settings specifically refers to the damage dealt by the physical attack itself. In the image below, the highlighted '<b>damage</b>'
+            property is tied to the configured attack and affects the attack hitbox managed by the <a class="redirect-link" href="../CHARACTER-COMBAT/character-combat.html">CharacterCombat</a> component. This damage value will be applied only when the attack
+            hitbox successfully hits an enemy and does not influence the damage of the projectile in any manner.
+        </p>
+        <br>
+        <img src="../../../../IMAGES/ATTACK-SO/AttackNote - Damage.png" alt="Attack_DamageCalculation">
     </div>
 </body>
 </html>
