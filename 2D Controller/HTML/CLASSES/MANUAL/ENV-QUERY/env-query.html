@@ -23,6 +23,121 @@
             <h1>CharacterEnvironmentalQuery</h1>
             <a class="manual-or-scripting-button" href="../../SCRIPTING/ENV-QUERY/env-quey.html">SWITCH TO SCRIPTING</a>
         </div>
+        <h2>Overview</h2>
+        <p>
+            The <b>CharacterEnvironmentalQuery</b> class is intricately crafted to handle all environmental queries in your game. Seamlessly integrated with various transforms
+            representing key body parts like the head, chest, and feet, it offers precise control over the character's interaction with the game world. With features to customize
+            physics casts and layer interactions, this class enables you to meticulously manage environmental interactions. Whether checking for ground beneath the character,
+            detecting walls, or determining ledge grab opportunities, this class provides the tools to shape your game's environmental dynamics to your exact specifications.
+        </p>
+        <br>
+        <h2>Inspector</h2>
+        <p>
+            To ensure the proper functioning of each query, it's essential to provide a reference for each one of them. These references are represented by empty game objects,
+            which are attached as children to the character object, symbolizing the transform of each query. By adjusting the parameters of the component, you can fine-tune how
+            each query operates and functions within your game.
+            <br><br>
+            The default parameters of the component are configured to offer optimal functionality for characters with dimensions approximately around 0.72 on the X-axis and 1.64
+            on the Y-axis. These parameters are set to provide effective functionality without requiring extensive adjustments for characters of typical size in your game.
+        </p>
+        <br>
+        <img src="../../../../IMAGES/ENV-QUERY/EnvQuery.png" alt="CharacterEnvironmentalQuery_Inspector">
+        <br>
+        <h2>Debug</h2>
+        <table>
+            <tr>
+                <td class="label"><b>DebugMode</b></td>
+                <td class="description">When in play mode, select which Physics Cast of the component you wish to debug.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>DebugColor</b></td>
+                <td class="description">Specify the color of the drawn wire boxes.</td>
+            </tr>
+        </table>
+        <br>
+        <h2>Raycast Transform References</h2>
+        <table>
+            <tr>
+                <td class="label"><b>LedgeGrabTransform</b></td>
+                <td class="description">Game object that specifies the transform of the ledge check GameObject.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>HeadRayTransform</b></td>
+                <td class="description">Game object that specifies the transform of the player's head.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>ChestRayTransform</b></td>
+                <td class="description">Game object that specifies the transform of the player's chest.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>FeetRayTransform</b></td>
+                <td class="description">Game object that specifies the transform of the player's feet.</td>
+            </tr>
+        </table>
+        <br>
+        <h2>Raycast LayerMask</h2>
+        <table>
+            <tr>
+                <td class="label"><b>ExcludeCharacter</b></td>
+                <td class="description">Check this box to exclude the layer assigned to the Character from all the Physics Casts.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>CharacterMask</b></td>
+                <td class="description">Name of the player's assigned layer. (Tied with the <b>ExcludeCharacter</b> property)</td>
+            </tr>
+            <tr>
+                <td class="label"><b>UseSpecifiedLayer</b></td>
+                <td class="description">Check this box to assign specified layers for the Physics Casts to use.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>SpecifiedLayer</b></td>
+                <td class="description">Specify which layers to be used in the Physics Casts. (Tied with the <b>UseSpecifiedLayer</b> property)</td>
+            </tr>
+        </table>
+        <br>
+        <h2>Raycast Distances</h2>
+        <table>
+            <tr>
+                <td class="label"><b>GroundCheckDistance</b></td>
+                <td class="description">How far should the cast check for a platform below the character.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>WallDetectionDistance</b></td>
+                <td class="description">How far should the cast check for a platform in front of the character.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>WallAboveDetectionDistance</b></td>
+                <td class="description">How far should the cast check for a platform above the character.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>LedgeGrabRadius</b></td>
+                <td class="description">The radius used to detect ledges for potential grabbing.</td>
+            </tr>
+        </table>
+        <br>
+        <h2>Raycast Sizes</h2>
+        <table>
+            <tr>
+                <td class="label"><b>GroundCheckSizeY</b></td>
+                <td class="description">Adjust the size Y of the capsule cast.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>WallAboveSizeY</b></td>
+                <td class="description">Adjust the size Y of the box cast.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>HeadCollisionSizeY</b></td>
+                <td class="description">Adjust the size Y of the box cast.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>ChestCollisionSizeY</b></td>
+                <td class="description">Adjust the size Y of the box cast.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>FeetCollisionSizeY</b></td>
+                <td class="description">Adjust the size Y of the box cast.</td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>
