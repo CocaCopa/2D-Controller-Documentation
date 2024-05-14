@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SetCharacterObject</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../dash-effect.html">DashEffect</a>.SetCharacterObject</h1>
+        <h2>Declaration</h2>
+        <p>public void <b>SetCharacterObject</b>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> <b>character</b>);</p>
+        <br>
+        <div class="table-division">
+            <span class="table-title">Parameters</span>
+            <table>
+                <tr>
+                    <td class="label"><b>character</b></td>
+                    <td class="description">The game object representing the character.</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Sets the character object to track for the dash effect.
+            <br><br>
+            This method allows you to specify the character object that the dash effect should follow during the dash sequence.
+        </p>
+        <br>
+        <p>
+            Here is an example of how to utilize this method. It's important to invoke this method after instantiating the after-image prefab.
+            For demonstration purposes the after-image object will be instantiated with the press of the '<b>Escape</b>' button.
+        </p>
+<pre class="code-block">
+using UnityEngine;
+
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> afterImageObject;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.Escape</a>))
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> afterImage = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Instantiate</a>(afterImageObject, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3-zero.html">Vector3.zero</a>, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Quaternion-identity.html">Quaternion.identity</a>);
+            afterImage.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.TryGetComponent.html">TryGetComponent</a>&lt;<a class="redirect-link" href="../dash-effect.html">DashEffect</a>&gt;(out var dashEffect);
+            dashEffect?.<b>SetCharacterObject</b>(gameObject);
+        }
+    }
+}
+</pre>
+</div>
+</body>
