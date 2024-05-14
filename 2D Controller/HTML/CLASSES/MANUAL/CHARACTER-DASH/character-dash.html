@@ -50,7 +50,11 @@
         <table>
             <tr>
                 <td class="label"><b>AfterImageObject</b></td>
-                <td class="description">The GameObject to be spawned as the afterimage for the dash. (Optional)</td>
+                <td class="description">
+                    The GameObject to be spawned as the afterimage for the dash. (Optional)
+                    <br>
+                    Note that if you provide a prefab in this field, it needs to have the <a class="redirect-link" href="../DASH-EFFECT/dash-effect.html">DashEffect</a> component attached.
+                </td>
             </tr>
             <tr>
                 <td class="label"><b>AfterImageCount</b></td>
@@ -74,7 +78,12 @@
             </tr>
             <tr>
                 <td class="label"><b>AdjustDashPosition</b></td>
-                <td class="description">Adjusts the character's position to the platform's height plus the specified offset if their feet or head would collide with a wall during the dash, ensuring a smooth start to the dash.</td>
+                <td class="description">
+                    Adjusts the character's position to the platform's height plus the specified offset if their feet or head would collide with a wall during the dash, ensuring a smooth start to the dash.
+                    <br>
+                    The method of wall detection relies on the configuration of the <a class="redirect-link" href="../ENV-QUERY/env-query.html">CharacterEnvironmentalQuery</a> component, which in turn is determined by the specified transforms for the character's head and
+                    feet within the component. For further details, please consult the class manual.
+                </td>
             </tr>
         </table>
     </div>

@@ -46,8 +46,7 @@
             Makes your character dash.
             <br> <br>
             Upon invoking this function, it examines the potential collisions within the specified maximum dash distance range, particularly focusing on the character's <b>feet</b> and <b>head</b>.
-            If an impending collision is detected, the character's position is subtly adjusted based on the value designated in the '<b>adjustDashPosition</b>' field within the component's
-            inspector.
+            If an impending collision is detected, the character's position is subtly adjusted in order to avoid collision with the detected wall, avoiding making the dash mechanic feel punishing.
             <br>
             Subsequently, the function verifies if the character is on course to collide with a wall before completing the maximum dash distance. In such a scenario, the dash
             distance is truncated to ensure it concludes just prior to encountering the identified wall.

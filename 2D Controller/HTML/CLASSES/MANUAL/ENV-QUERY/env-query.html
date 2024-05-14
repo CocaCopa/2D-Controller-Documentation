@@ -31,9 +31,20 @@
             detecting walls, or determining ledge grab opportunities, this class provides the tools to shape your game's environmental dynamics to your exact specifications.
         </p>
         <br>
+        <h2>Class Interactions</h2>
+        <p>
+            Any component within the asset that interacts with this class will utilize its configuration to operate effectively.
+            <br>
+            Those will be: <a class="redirect-link" href="../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>, <a class="redirect-link" href="../CHARACTER-COMBAT/character-combat.html">CharacterCombat</a>, <a class="redirect-link" href="../CHARACTER-DASH/character-dash.html">CharacterDash</a>.
+            <ul>
+                <li>The <b>HumanoidController</b> integrates this class to manage game mechanics and detect the character's grounded state.</li>
+                <li>The <b>CharacterCombat</b> employs this class to impose restrictions on character attacks based on the attack configuration.</li>
+                <li>The <b>CharacterDash</b> utilizes this class to ensure that, upon detecting walls in proximity to the character's head or feet, the dash mechanic smoothly avoids them, preventing any collisions.</li>
+            </ul>
+        </p>
         <h2>Inspector</h2>
         <p>
-            To ensure the proper functioning of each query, it's essential to provide a reference for each one of them. These references are represented by empty game objects,
+            To ensure the proper functioning of each query, it's essential to provide a reference point for each one of them. These references are preferably represented by empty game objects,
             which are attached as children to the character object, symbolizing the transform of each query. By adjusting the parameters of the component, you can fine-tune how
             each query operates and functions within your game.
             <br><br>
