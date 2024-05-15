@@ -9,11 +9,53 @@
     <link rel="stylesheet" href="../CSS/scroll-bar.css">
     <link rel="stylesheet" href="../CSS/general.css">
     <link rel="stylesheet" href="../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../CSS/class-title.css">
 </head>
 <body>
     <iframe src="navigation-bar.html"></iframe>
 
     <div class="main-page-division">
-        <h1>This is the Getting Started page</h1>
+        <div class="page-title">
+            <span>Getting Started</span>
+        </div>
+        <h2>Locate Starter Files:</h2>
+        <p>
+            To get started, navigate to the '<b>Getting Started</b>' folder within your project files which it can be found in <b>Assets -> 2D Character Controller -> _Getting Started</b>.
+            <br>
+            The resources provided are designed to expedite the setup process and provide a solid foundation for incorporating the asset into your project.
+        </p>
+        <br>
+        <img src="../IMAGES/_GETTING-STARTED/LocateFiles.png" alt="LocateFiles">
+        <br>
+        <h2>Animator Controller:</h2>
+        <p>
+            This animator controller is pre-configured to seamlessly integrate with the created systems. Simply reference your desired animations to each state. 
+            <br><br>
+            <b>Important:</b> It's recommended not to remove any existing states, as it may result in unexpected behaviour. If you don't intend to use a specific state or lack
+            an animation for it, simply leave the animation reference empty.
+        </p>
+        <br>
+        <img style="max-width: 80%;" src="../IMAGES/_GETTING-STARTED/AnimatorController.png" alt="AnimatorController">
+        <br>
+        <h2>CharacterTemplate Prefab:</h2>
+        <p>
+            The prefab includes all necessary components for your character to utilize the provided mechanics within the asset and serves as a base character setup.
+            <br>
+            Default values are set for characters that are approximately <b>1.64</b> Unity units tall and <b>0.72</b> Unity units wide.
+            <br><br>
+            <b>Important:</b> Avoid <b>deleting</b> or <b>moving</b> any child objects within the prefab to prevent potential <b>bugs</b> and/or <b>errors</b>.
+        </p>
+        <br>
+        <img style="max-width: 80%;" src="../IMAGES/_GETTING-STARTED/CharacterTemplate.png" alt="CharacterTemplate">
+        <br>
+        <h2>CustomControllerTemplate Script:</h2>
+        <p>
+            This script establishes key functionality for creating your custom controller.
+            <br>
+            For your convenience, refrain from modifying the script directly. Instead, copy and paste the template code into a new script, allowing you to customize it
+            according to your preferences.
+        </p>
+        <br>
+        <img style="max-width: 80%;" src="../IMAGES/_GETTING-STARTED/ScriptTemplate.png" alt="CharacterTemplate">
     </div>
 </body>

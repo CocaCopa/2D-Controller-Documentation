@@ -14,3 +14,13 @@
     border-radius: 10px;
     background-color: #222C37;
 }
+
+.page-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bolder;
+    text-decoration: underline;
+}
