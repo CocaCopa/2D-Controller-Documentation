@@ -1,0 +1,19 @@
+.answer-division {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    justify-content: flex-start;
+}
+.answer-li {
+    height: 100%;
+    padding: 3px;
+    width: fit-content;
+    list-style: none;
+}
+ul .answer-li:first-child {
+    padding-top: 1px;
+    padding-left: 1.66px;
+    font-size: large;
+}

@@ -17,5 +17,93 @@
         <div class="page-title">
             <span>Locomotion System</span>
         </div>
+        <br>
+        <h2>Character Object Setup</h2>
+        <ul>
+            <li>
+                <b>Importing the CharacterTemplate Prefab:</b>
+                <br>
+                Begin by importing the CharacterTemplate prefab from the provided <a class="redirect-link" href="getting-started.html">Getting Started</a> folder.
+                <b>Drag and drop</b> this prefab into your Unity scene to initiate setup.
+            </li>
+            <br>
+            <li>
+                <b>Assigning the Default Character Sprite:</b>
+                <br>
+                Navigate to the SpriteRenderer component within the <b>CharacterTemplate</b> prefab. This component can be found under <b>CharacterTemplate -> SpriteHolder -> Sprites</b>.
+                Here, select and reference your desired character sprite to serve as the default appearance of your character.
+            </li>
+            <br>
+            <li>
+                <b>Aligning Colliders:</b>
+                <br>
+                Ensure that your selected sprite aligns properly with the character's colliders. You can find the colliders under <b>CharacterTemplate -> Colliders -> Horizontal / Vertical</b>.
+                Specifically, focus on the <b>Vertical</b> collider as it should have no offset set in the X axis to ensure proper alignment. The <b>Horizontal</b> collider, on the other hand,
+                generally does not require adjustment for alignment, but you may still review it for optimal positioning if needed.
+                <br><br>
+                <b>Note:</b> For more detailed information on the colliders and their usage, refer to <b>CharacterEnvironmentalQuery.</b><a class="redirect-link" href="CLASSES/SCRIPTING/ENV-QUERY/PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>.
+            </li>
+            <br>
+            <li>
+                <b>Saving Your Character Prefab:</b>
+                <br>
+                Once you've configured the visuals of your character to your satisfaction, save the object as an original prefab. This prefab will serve as the base character object
+                within your project.
+            </li>
+        </ul>
+        <br>
+        <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/CharacterSetup.png" alt="CharacterSetup">
+        <br>
+        <h2>Character Animations Setup</h2>
+        <p>
+            Once you've prepared your character object, navigate to the <a class="redirect-link" href="getting-started.html">Getting Started</a> folder again, and
+            locate the <b>CharacterTemplate</b> animator controller. It's recommended to create a duplicate of this animator controller instead of directly editing
+            it, for easier management and to avoid accidental changes.
+            <br><br>
+            To integrate your preferred animations with the animator controller template, simply assign your desired animation clip to each animation
+            state within the controller. If you wish to exclude a particular animation state, it's advisable to leave it empty rather than removing
+            it altogether. This helps prevent <b>errors</b> or <b>unintended behaviour</b>.
+            <br><br>
+            <b>Note:</b> Within the animator controller, there's an animation state named <b>BlendTree_OnAir</b>. To assign animation clips to this state,
+            <b>double-click</b> it to access the blend tree configuration. Here, you can fill in the animation clips for the blend tree.
+            <br><br>
+            <b>Important:</b> Ensure that you reference the newly created animator controller to the animator component field of your character object. You
+            can find this field within the character object under <b>CharacterTemplate -> SpriteHolder -> Sprites</b>.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/AnimatorSetup.png" alt="AnimatorSetup">
+        <br>
+        <h2>Mechanics Setup</h2>
+        <p>
+            With the character object now set up, you have the flexibility to customize it according to your preferences. The provided <b>CharacterTemplate</b> prefab comes
+            pre-equipped with all components included in the asset, such as the locomotion system and the combat system.
+            <br><br>
+            <b>Optional Enhancements:</b>
+            <br>
+            The prefab is designed to function seamlessly with additional <b>optional</b> components. These include:
+        </p>
+        <ul>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-SLIDE/character-slide.html">CharacterSlide</a>: Enables sliding mechanics.</li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-LEDGE-GRAB/character-ledge-grab.html">CharacterLedgeGrab</a>: Facilitates ledge-grabbing abilities.</li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-DASH/character-dash.html">CharacterDash</a>: Introduces dash maneuvers.</li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-COMBAT/character-combat.html">CharacterCombat</a>: Integrates combat functionalities.</li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/ENTITY-HEALTH/entity-health.html">EntityHealth</a>: Manages the character's health system.</li>
+        </ul>
+        <br>
+        <p>
+            <b>Simplified Configuration:</b>
+            <br>
+            If you prefer a simpler setup, you can remove the previously mentioned optional components. However, note that the core functionalities remain intact with the following components:
+        </p>
+        <ul>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-MOVEMENT/character-movement.html">CharacterMovement</a>: Provides basic movement controls.</li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>: Manages humanoid character behaviours.</li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/ENV-QUERY/env-query.html">CharacterEnvironmentalQuery</a>: Facilitates environmental interactions.</li>
+        </ul>
+        <p>
+            Feel free to customize your character by adding or removing components based on your project requirements and desired gameplay mechanics.
+        </p>
+        <br>
+        <img src="../IMAGES/_LOCOMOTION-SYSTEM/MechanicsSetup.png" alt="MechanicsSetup">
     </div>
 </body>

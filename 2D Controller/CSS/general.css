@@ -47,6 +47,11 @@ img {
     z-index: 0;
 }
 
+.img-large {
+    max-width: 1072px;
+    z-index: 0;
+}
+
 .iframe-body {
     background-color: #222C37;
     overflow-y: hidden;

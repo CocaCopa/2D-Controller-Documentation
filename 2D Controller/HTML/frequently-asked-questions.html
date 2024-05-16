@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+
+    <link rel="stylesheet" href="../CSS/scroll-bar.css">
+    <link rel="stylesheet" href="../CSS/general.css">
+    <link rel="stylesheet" href="../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../CSS/class-title.css">
+    <link rel="stylesheet" href="../CSS/faq-style.css">
+</head>
+<body>
+    <iframe src="navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <div class="page-title">
+            <span>Frequently Asked Questions</span>
+        </div>
+        <br>
+        <h2>Q: How can I set up a new character?</h2>
+        <ul class="answer-division">
+            <li class="answer-li">
+                <b>A:</b>
+            </li>
+            <li class="answer-li">
+                To set up a new character, please consult the <a class="redirect-link" href="locomotion-controller.html">Locomotion System</a>
+                page in the documentation. By following the outlined steps, you can create a fully functional base character to kickstart your
+                project.
+            </li>
+        </ul>
+        <br>
+        <h2>Q: Why does the character need 2 colliders in order to function properly?</h2>
+        <ul class="answer-division">
+            <li class="answer-li">
+                <b>A:</b>
+            </li>
+            <li class="answer-li">
+                The character requires two colliders for optimal functionality, primarily due to the mechanics implemented in the Locomotion System.
+                One collider <b>(Vertical)</b> is dedicated to the character's <b>main body collision detection</b>, while the second collider <b>(Horizontal)</b>
+                is specifically utilized for the <b>floor slide mechanic</b>. The system dynamically toggles between these two colliders as needed, ensuring that
+                each one is active only when required. This dynamic switching allows for precise control over collision detection, enabling the character to seamlessly
+                interact with the environment. 
+                <br>
+                For more insight, explore the documentation accompanying <b>CharacterEnvironmentalQuery.</b><a class="redirect-link" href="CLASSES/SCRIPTING/ENV-QUERY/PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>,
+                which offers more details on the usage and functionality.
+            </li>
+        </ul>
+        <br>
+        <h2>Q: How do I begin implementing the provided systems via code?</h2>
+        <ul class="answer-division">
+            <li class="answer-li">
+                <b>A:</b>
+            </li>
+            <li class="answer-li">
+                To begin, create a new controller class inheriting from <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>.
+                This grants access to all implemented locomotion mechanics, depending on which optional components are attached to your character object. For combat, ensure your character
+                object also has the <a class="redirect-link" href="CLASSES/SCRIPTING/CHARACTER-COMBAT/character-combat.html">CharacterCombat</a> component attached. Consult the documentation
+                for each of the other provided classes to identify public properties for creating features like UI-tracked cooldowns or integrating custom code.
+            </li>
+        </ul>
+        <br>
+        <h2>Q: How can I make a charge attack release immediately upon key release, bypassing the need for a draw animation cycle?</h2>
+        <ul class="answer-division">
+            <li class="answer-li">
+                <b>A:</b>
+            </li>
+            <li class="answer-li">
+                By default, the code for executing a charged attack verifies whether the animation cycle is finished before permitting the
+                attack to be released. However, if you're utilizing solely a charging animation without a corresponding draw animation,
+                this verification process will cause a delay in releasing the attack, which might be an unwanted behaviour in this context.
+                To bypass this delay, you can create a draw animation consisting of only one frame. This way, the animation check completes
+                immediately, and upon key release, the attack will be promptly executed.
+            </li>
+        </ul>
+    </div>
+</body>
