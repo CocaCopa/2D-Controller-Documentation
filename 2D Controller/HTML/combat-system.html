@@ -19,5 +19,244 @@
             <span>Combat System</span>
         </div>
         <br>
+        <h2>Quickly jump through sections:</h2>
+        <p>
+            <ul>
+                <li><a class="redirect-link" href="#normal-single-attack">Normal Single Attack - With Projectile</a></li>
+                <ul>
+                    <li><a class="redirect-link" href="#normal-single-creating-and-configuring-attacks">Creating and Configuring the Attack</a></li>
+                    <li><a class="redirect-link" href="#normal-single-creating-and-configuring-projectile">Creating and Configuring the Projectile</a></li>
+                    <li><a class="redirect-link" href="#normal-single-setting-up-the-projectile-spawn-point">Setting Up the Projectile Spawn Point</a></li>
+                    <li><a class="redirect-link" href="#normal-single-animator-setup">Animator Setup</a></li>
+                    <li><a class="redirect-link" href="#normal-single-attack-implementation">Attack Implementation</a></li>
+                </ul>
+                <br>
+                <li><a class="redirect-link" href="#normal-combo-attack">Normal Combo Attack - No Projectile</a></li>
+                <ul>
+                    <li><a class="redirect-link" href="#normal-combo-creating-and-configuring-attacks">Creating and Configuring the Attack</a></li>
+                    <li><a class="redirect-link" href="#normal-combo-animator-setup">Animator Setup</a></li>
+                    <li><a class="redirect-link" href="#normal-combo-attack-hitbox-setup">Attack Hitbox Setup</a></li>
+                    <li><a class="redirect-link" href="#normal-combo-attack-implementation">Attack Implementation</a></li>
+                </ul>
+                <br>
+                <li><a class="redirect-link" href="#chargeable-attack">Chargeable Attack</a></li>
+                <ul>
+                    <li><a class="redirect-link" href="#charge-creating-and-configuring-attacks">Creating and Configuring the Attack</a></li>
+                </ul>
+            </ul>
+        </p>
+        <br>
+        <div id="normal-single-attack" class="combat-title">
+            <span>Normal Single Attack - With Projectile</span>
+        </div>
+        <h2 id="normal-single-creating-and-configuring-attacks">Creating and Configuring the Attack</h2>
+        <p>
+            To utilize the combat system, first and foremost, an attack needs to be created. For details on how to create a new attack, please refer to
+            the <a class="redirect-link" href="CLASSES/MANUAL/ATTACK-SO/attack-so.html">AttackSO</a> documentation. Once the attack is created, let's configure
+            it to function as a gun fire. This configuration requires a corresponding <b>animation clip</b> for the attack, a prefab to act as the <b>bullet projectile</b>
+            and an empty <b>GameObject</b> to serve as the reference spawn point for the bullet to be fired from.
+            <br><br>
+            Let's begin by configuring the created attack. Pay attention to the following properties:
+        </p>
+        <ul>
+            <li>
+                <b>AttackPushesCharacter:</b>
+                <br>
+                Configure the attack so that each time the character attacks, they are pushed backward slightly, adding a polished touch.
+            </li>
+            <br>
+            <li>
+                <b>WallCastDistance:</b>
+                <br>
+                Prevent the character from initiating the attack if they are too close to a wall by configuring this property. This helps
+                prevent the bullet from phasing through walls.
+            </li>
+            <br>
+            <li>
+                <b>ThrowAtPercentage:</b>
+                <br>
+                Configure this property so that the projectile is thrown at the specified percentage of the animation played. This ensures
+                that the projectile matches the animation motion and is not thrown immediately when the attack key is pressed.
+            </li>
+            <br>
+            <li>
+                <b>Cooldown:</b>
+                <br>
+                Ensure that the cooldown set in the configuration matches or is longer than the duration of the attack animation clip to
+                prevent <b>errors</b> or <b>unintended behaviour</b>.
+            </li>
+        </ul>
+        <p>
+            Review the image below for a visual example of the attack configuration.
+        </p>
+        <br>
+        <img src="../IMAGES/_COMBAT-SYSTEM/Single-Normal-AttackConfiguration.png" alt="AttackConfiguration">
+        <br>
+        <h2 id="normal-single-creating-and-configuring-projectile">Creating and Configuring the Projectile</h2>
+        <p>
+
+        </p>
+        <br>
+        <h2 id="normal-single-setting-up-the-projectile-spawn-point">Setting Up the Projectile Spawn Point</h2>
+        <p>
+            With the attack now configured, the next step is to set up the projectile that will be thrown. Follow these steps to create a reference
+            spawn point for the bullet:
+        </p>
+        <ul>
+            <li>
+                <b>Create a New Empty GameObject:</b>
+                <br>
+                In the Unity Hierarchy, right-click on the character object to which the projectile spawn point will be attached.
+                <br>
+                Select <b>Create Empty</b> to add a new empty GameObject as a child of the character object.
+            </li>
+            <br>
+            <li>
+                <b>Position the Spawn Point:</b>
+                <br>
+                Rename the new empty GameObject to something like 'BulletSpawnPoint' for clarity.
+                <br>
+                Position this GameObject at the location on the character from where the projectile should be fired.
+            </li>
+        </ul>
+        <p>
+            <b>Tip:</b> To make positioning easier, temporarily change the default character's sprite to the frame of the animation where
+            the bullet will be fired. This provides a visual reference for accurate placement.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Single-Normal-ProjectileSetup.png" alt="ProjectileSetup">
+        <br>
+        <h2 id="normal-single-animator-setup">Animator Setup</h2>
+        <p>
+            The next step is to set up the animator controller. To begin open the animator controller for your character.
+        </p>
+        <ul>
+            <li>
+                <b>Adding the Animation Clip</b>
+                <br>
+                Drag and drop the attack animation clip into the animator. This should be the same attack animation referenced in the AttackSO attack.
+            </li>
+            <br>
+            <li>
+                <b>Creating State Transitions</b>
+                <br>
+                Make a transition from the attack animation state to the <b>Exit</b> state of the animator.
+                <br>
+                Configure the transition with no exit time or transition duration.
+                <br>
+                Set the transition condition to trigger only when the animator variable "<b>IsAttacking</b>" is <b>false</b>.
+            </li>
+        </ul>
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Single-Normal-AnimationClip.png" alt="AnimationClip">
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Single-Normal-AnimationTransition.png" alt="AnimationTransition">
+        <br>
+        <h2 id="normal-single-attack-implementation">Attack Implementation</h2>
+        <p>
+            With the attack now fully set up, we can proceed to implement it through code.
+        </p>
+        <ul>
+            <li>
+                <b>References</b>
+                <br>
+                Begin by creating two fields to reference the <b>AttackSO</b> attack and the <b>spawn point</b> for the bullet projectile.
+            </li>
+            <br>
+            <li>
+                <b>Triggering the Attack</b>
+                <br>
+                As this attack is not configured as a chargeable attack, it is considered a <b>Normal</b> attack. With that in mind, let's call
+                the appropriate function (<a class="redirect-link" href="CLASSES/SCRIPTING/CHARACTER-COMBAT/PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a>)
+                when the <b>'X' key</b> is pressed on the keyboard to allow the character to perform the attack.
+            </li>
+        </ul>
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Single-Normal-CodeImplementation.png" alt="CodeImplementation">
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Single-Normal-CodeReferences.png" alt="CodeReferences">
+        
+        <br><br><hr><br>
+        <div id="normal-combo-attack" class="combat-title">
+            <span>Normal Combo Attack - No Projectile</span>
+        </div>
+        <h2 id="normal-combo-creating-and-configuring-attacks">Creating and Configuring the Attacks</h2>
+        <p>
+            Similarly to the '<b>Single Normal Attack</b>' the first step is to create the attacks (<a class="redirect-link" href="CLASSES/MANUAL/ATTACK-SO/attack-so.html">AttackSO</a>)
+            that will form the combo sequence. This involves configuring each attack to your liking until you achieve the desired result.
+            <br><br>
+            Let's cofigure configure the attacks for the combo sequence. Pay attention to the following properties:
+        </p>
+        <ul>
+            <li>
+                <b>AdjustPositionOnAttackEnd:</b>
+                <br>
+                Some animations may cause the character to move slightly, resulting in an offset from their pivot position. If the character moves forward during the animation,
+                they will teleport back to their pivot position when the animation ends. This property addresses that issue by teleporting the character to a specified offset
+                as soon as the animation completes, ensuring a seamless transition. To understand how this property works, try removing the set offset of the attack and observe
+                the effect in action.
+            </li>
+            <br>
+            <li>
+                <b>Cooldown:</b>
+                <br>
+                You'll notice that the cooldown for the fourth attack is different from the others. The system allows for varying cooldowns for each attack in a combo sequence.
+                For example, if your combo sequence consists of four attacks, each attack can have a different cooldown which will affect the cooldown of the combo attack depending
+                on which attack the character stopped attacking.
+                <br><br>
+                In this configuration, if the character stops after the first, second, or third attack, the cooldown of the combo attack will be <b>0.5 seconds</b>. However, if the character
+                completes the entire combo sequence, the cooldown of the combo attack will be <b>1.5 seconds</b>.
+            </li>
+        </ul>
+        <br>
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-Attack_1&2.png" alt="Attack 1 & 2">
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-Attack_3&4.png" alt="Attack 3 & 4">
+        <br>
+        <h2 id="normal-combo-animator-setup">Animator Setup</h2>
+        <p>
+            Just like the '<b>Single Normal Attack</b>', the next step is to set up the animator controller. To begin open the animator controller for your character.
+        </p>
+        <ul>
+            <li>
+                <b>Adding the Animation Clip</b>
+                <br>
+                Drag and drop each attack animation clip into the animator. The animation clips should be the same with those referenced in each of the AttackSO attacks.
+            </li>
+            <br>
+            <li>
+                <b>Creating State Transitions</b>
+                <br>
+                Make a transition from each attack animation state to the <b>Exit</b> state of the animator.
+                <br>
+                Configure each transition with no exit time or transition duration.
+                <br>
+                Set each transition condition to trigger only when the animator variable "<b>IsAttacking</b>" is <b>false</b>.
+            </li>
+        </ul>
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-AnimationClips.png" alt="AnimationClips">
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-AnimationTransitions.png" alt="AnimationTransitions">
+        <br>
+        <h2 id="normal-combo-attack-hitbox-setup">Attack Hitbox Setup</h2>
+        <p>
+
+        </p>
+        <br>
+        <h2 id="normal-combo-attack-implementation">Attack Implementation</h2>
+        <p>
+            With the attack now fully set up, we can proceed to implement it through code.
+        </p>
+        <ul>
+            <li>
+                <b>References</b>
+                <br>
+                Begin by creating a field to reference an <b>AttackSO list</b> for the combo attack sequence.
+            </li>
+            <br>
+            <li>
+                <b>Triggering the Attacks</b>
+                <br>
+                To properly implement the combo attack, we need to make use of the <a class="redirect-link" href="CLASSES/SCRIPTING/CHARACTER-COMBAT/PUBLIC-PROPERTIES/attack-combo-counter.html">AttackComboCounter</a>
+                from the CharacterCombat class. We'll utilize the <a class="redirect-link" href="CLASSES/SCRIPTING/CHARACTER-COMBAT/PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a>
+                method and trigger the attack sequence when the <b>'C' key</b> is pressed on the keyboard, allowing the character to perform the combo attacks.
+            </li>
+        </ul>
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-CodeImplementation.png" alt="CodeImplementation">
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-CodeReferences.png" alt="CodeReferences">
     </div>
 </body>

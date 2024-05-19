@@ -35,12 +35,15 @@
         <h2>Description</h2>
         <p>
             Changes the character's horizontal velocity based on the provided direction.
+            <br><br>
+            This function adjusts the character's horizontal velocity based on the provided direction. It manages the character's horizontal movement, considering
+            factors such as whether the character is <b>grounded</b> or <b>airborne</b>. Additionally, it automatically restricts the character's movement if other actions, such
+            as dashing, are occurring (refer to <b>HumanoidController.</b><a class="redirect-link" href="try-dashing.html">TryDashing</a>). In cases involving a
+            combat system, the function also accounts for attack configurations and may impose movement limitations accordingly (refer to <a class="redirect-link" href="../../CHARACTER-COMBAT/character-combat.html">CharacterCombat</a>).
+            <br><br>
+            <b>Note:</b> This function alone will not alter the orientation of the character. To modify the character's orientation while they move, also utilize the <a class="redirect-link" href="flip-character.html">FlipCharacter</a> function.
         </p>
-        <ul>
-            <li>This function manages the horizontal movement of the character, taking into account various factors such as the character's grounded or airborne state.</li> <br>
-            <li>It automatically limits the character's movement if another action, such as 'dash,' is being performed. (See also: <b>HumanoidController</b>.<a class="redirect-link" href="try-dashing.html">TryDashing</a>)</li> <br>
-            <li>If a combat system is in place, it considers attack configurations and may restrict the character's movement accordingly. (See also: <a class="redirect-link" href="../../CHARACTER-COMBAT/character-combat.html">CharacterCombat</a>)</li> <br>
-        </ul>
+        <br>
         <p>
             This example implements the function to facilitate character movement:
         </p>

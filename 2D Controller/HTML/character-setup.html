@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Setup</title>
+
+    <link rel="stylesheet" href="../CSS/scroll-bar.css">
+    <link rel="stylesheet" href="../CSS/general.css">
+    <link rel="stylesheet" href="../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../CSS/class-title.css">
+</head>
+<body>
+    <iframe src="navigation-bar.html"></iframe>
+    <div class="main-page-division">
+        <div class="page-title">
+            <span>Character Setup</span>
+        </div>
+        <br>
+        <h2>Quickly jump through sections:</h2>
+        <p>
+            <ul>
+                <li><a class="redirect-link" href="#character-object-setup">Character Object Setup</a></li>
+                <li><a class="redirect-link" href="#character-animations-setup">Character Animations Setup</a></li>
+                <li><a class="redirect-link" href="#character-animations-setup-single-jump-animation">Character Animations Setup - Single Jump Animation</a></li>
+                <li><a class="redirect-link" href="#mechanics-setup">Mechanics Setup</a></li>
+            </ul>
+        </p>
+        <br>
+        <h2 id="character-object-setup">Character Object Setup</h2>
+        <ul>
+            <li>
+                <b>Importing the CharacterTemplate Prefab:</b>
+                <br>
+                Begin by importing the CharacterTemplate prefab from the provided <a class="redirect-link" href="getting-started.html">Getting Started</a> folder.
+                <b>Drag and drop</b> this prefab into your Unity scene to initiate setup.
+            </li>
+            <br>
+            <li>
+                <b>Assigning the Default Character Sprite:</b>
+                <br>
+                Navigate to the SpriteRenderer component within the <b>CharacterTemplate</b> in your scene. This component can be found under <b>CharacterTemplate -> SpriteHolder -> Sprites</b>.
+                Here, select and reference your desired character sprite to serve as the default appearance of your character.
+            </li>
+            <br>
+            <li>
+                <b>Aligning Colliders:</b>
+                <br>
+                Ensure that your selected sprite aligns properly with the character's colliders. You can find the colliders under <b>CharacterTemplate -> Colliders -> Horizontal / Vertical</b>.
+                Specifically, focus on the <b>Vertical</b> collider as it should have no offset set in the X axis to ensure proper alignment. The <b>Horizontal</b> collider, on the other hand,
+                generally does not require adjustment for alignment, but you may still review it for optimal positioning if needed.
+                <br><br>
+                <b>Note:</b> For more detailed information on the colliders and their usage, refer to <b>CharacterEnvironmentalQuery.</b><a class="redirect-link" href="CLASSES/SCRIPTING/ENV-QUERY/PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>.
+            </li>
+            <br>
+            <li>
+                <b>Creating and Attaching a Custom Controller:</b>
+                <br>
+                Create a new class that inherits from the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> class.
+                Attach this new custom controller to the root object of your character. This will allow you to extend and customize the character's behaviour as needed.
+            </li>
+            <br>
+            <li>
+                <b>Saving Your Character Prefab:</b>
+                <br>
+                Once you've configured the visuals of your character to your satisfaction, save the object as an original prefab. This prefab will serve as the base character object
+                within your project.
+            </li>
+        </ul>
+        <br>
+        <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/CharacterSetup.png" alt="CharacterSetup">
+        <br>
+        <h2 id="character-animations-setup">Character Animations Setup</h2>
+        <p>
+            Once you've prepared your character object, navigate to the <a class="redirect-link" href="getting-started.html">Getting Started</a> folder again, and
+            locate the <b>CharacterTemplate</b> animator controller. It's recommended to create a duplicate of this animator controller instead of directly editing
+            it, for easier management and to avoid accidental changes.
+            <br><br>
+            To integrate your preferred animations with the animator controller template, simply assign your desired animation clip to each animation state
+            within the controller. If you wish to exclude a particular animation state, it's recommended to leave it empty rather than removing it altogether.
+            This helps prevent <b>errors</b> or <b>unintended</b> behaviour.
+            <br><br>
+            Additionally, the system supports a <b>double jump</b> animation. If your character jumps while in the air, the animator will transition to the double
+            jump state. However, <b>unlike the other states</b>, if you lack a distinct animation for double jumping, do not leave the field empty; instead, reference
+            your normal jump animation.
+            <br><br>
+            <b>Important:</b> Ensure that you reference the newly created animator controller to the animator component field of your character object. You
+            can find this field within the character object under <b>CharacterTemplate -> SpriteHolder -> Sprites</b>.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/AnimatorSetup.png" alt="AnimatorSetup">
+        <br>
+        <h2 id="character-animations-setup-single-jump-animation">Character Animations Setup - Single Jump Animation</h2>
+        <p>
+            The locomotion system and animator are designed to support a series of animations for jumping via a blend tree, including <b>jump-rise</b>, <b>jump-mid</b>, and <b>jump-fall</b>
+            phases, resulting in the setup of the jump animation being a bit tricky. To configure it, <b>double-click</b> the '<b>BlendTree_OnAir</b>' animation state to open the blend
+            tree settings. From there, you can assign the three animations that make up your jump sequence. The blend tree is pre-configured with default threshold values that should work
+            well with any combination of animations.
+            <br><br>
+            <b>Note:</b> If you only have a <b>single</b> animation for jumping, you can use the same animation for all three fields in the blend tree. Removing any of the three animation
+            references may cause unwanted behaviour.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/JumpBlendTree.png" alt="JumpSetup">
+        <br>
+        <h2 id="mechanics-setup">Mechanics Setup</h2>
+        <p>
+            With the character object now set up, you have the flexibility to customize it according to your preferences. The provided <b>CharacterTemplate</b> prefab comes
+            pre-equipped with all components included in the asset, such as the locomotion system and the combat system.
+            <br><br>
+            <b>Optional Enhancements:</b>
+            <br>
+            The prefab is pre-configured with all of the <b>optional</b> components. These include:
+        </p>
+        <ul>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-SLIDE/character-slide.html">CharacterSlide</a>: Enables sliding mechanics.</li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-LEDGE-GRAB/character-ledge-grab.html">CharacterLedgeGrab</a>: Facilitates ledge-grabbing abilities.</li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-DASH/character-dash.html">CharacterDash</a>: Introduces dash maneuvers.</li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-COMBAT/character-combat.html">CharacterCombat</a>: Integrates combat functionalities.</li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/ENTITY-HEALTH/entity-health.html">EntityHealth</a>: Manages the character's health system.</li>
+        </ul>
+        <br>
+        <p>
+            <b>Simplified Configuration:</b>
+            <br>
+            If you prefer a simpler setup, you can remove the previously mentioned optional components. However, note that the core functionalities remain intact with the following components:
+        </p>
+        <ul>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-MOVEMENT/character-movement.html">CharacterMovement</a>: Provides basic movement controls.</li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>: Manages humanoid character behaviours. <b>(Your custom controller)</b></li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/ENV-QUERY/env-query.html">CharacterEnvironmentalQuery</a>: Facilitates environmental interactions.</li>
+        </ul>
+        <p>
+            Feel free to customize your character by adding or removing components based on your project requirements and desired gameplay mechanics.
+        </p>
+        <br>
+        <img src="../IMAGES/_CHARACTER-SETUP/MechanicsSetup.png" alt="MechanicsSetup">
+    </div>
+</body>

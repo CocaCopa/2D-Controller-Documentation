@@ -26,7 +26,7 @@
                 <b>A:</b>
             </li>
             <li class="answer-li">
-                To set up a new character, please consult the <a class="redirect-link" href="locomotion-controller.html">Locomotion System</a>
+                To set up a new character, please consult the <a class="redirect-link" href="character-setup.html">Character Setup</a>
                 page in the documentation. By following the outlined steps, you can create a fully functional base character to kickstart your
                 project.
             </li>
@@ -38,7 +38,7 @@
                 <b>A:</b>
             </li>
             <li class="answer-li">
-                The character requires two colliders for optimal functionality, primarily due to the mechanics implemented in the Locomotion System.
+                The character requires two colliders for optimal functionality, due to how the mechanics implemented in the Locomotion System.
                 One collider <b>(Vertical)</b> is dedicated to the character's <b>main body collision detection</b>, while the second collider <b>(Horizontal)</b>
                 is specifically utilized for the <b>floor slide mechanic</b>. The system dynamically toggles between these two colliders as needed, ensuring that
                 each one is active only when required. This dynamic switching allows for precise control over collision detection, enabling the character to seamlessly
@@ -62,17 +62,51 @@
             </li>
         </ul>
         <br>
-        <h2>Q: How can I make a charge attack release immediately upon key release, bypassing the need for a draw animation cycle?</h2>
+        <h2>Q: Why is my character not facing the direction they are moving towards?</h2>
         <ul class="answer-division">
             <li class="answer-li">
                 <b>A:</b>
             </li>
             <li class="answer-li">
-                By default, the code for executing a charged attack verifies whether the animation cycle is finished before permitting the
-                attack to be released. However, if you're utilizing solely a charging animation without a corresponding draw animation,
-                this verification process will cause a delay in releasing the attack, which might be an unwanted behaviour in this context.
-                To bypass this delay, you can create a draw animation consisting of only one frame. This way, the animation check completes
-                immediately, and upon key release, the attack will be promptly executed.
+                If your character isn't facing the right direction while moving, it's likely because you're only utilizing the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/change-horizontal-velocity.html">ChangeHorizontalVelocity</a>
+                method. Remember, this method controls movement behaviour, <b>not visuals</b>. To ensure your character faces the correct direction, be sure to also utilize the
+                <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/flip-character.html">FlipCharacter</a> method.
+            </li>
+        </ul>
+        <br>
+        <h2>Q: My charge attack doesn't release immediately if I release the key right after pressing it. Can I fix this?</h2>
+        <ul class="answer-division">
+            <li class="answer-li">
+                <b>A:</b>
+            </li>
+            <li class="answer-li">
+                Yes, you can fix this. By default, the code for executing a charged attack checks whether the animation cycle is complete before releasing
+                the attack. If your attack only has a charge animation without a corresponding draw animation, this check can cause a delay, which might
+                be an unwanted behaviour in this context. To bypass this, create a draw animation consisting of a single frame from the charge animation.
+                This will make the animation check complete immediately, ensuring the attack is released promptly when you release the key.
+            </li>
+        </ul>
+        <br>
+        <h2>Q: My charge attack gets stuck in the last frame of its animation when it's released. How can I fix this?</h2>
+        <ul class="answer-division">
+            <li class="answer-li">
+                <b>A:</b>
+            </li>
+            <li class="answer-li">
+                When creating a new attack (<a class="redirect-link" href="CLASSES/MANUAL/ATTACK-SO/attack-so.html">AttackSO</a>), whether it's configured
+                as chargeable or not, you need to reference an animation clip to the "<b>AttackAnimation</b>" field. This clip is used by the combat system to determine when the attack has been completed.
+                If the attack is made chargeable, two additional fields are provided for referencing animation clips. One is for the animation clip when the attack is initiated (<b>optional</b>),
+                and the other is for when the attack is charging (<b>required</b>). Make sure your attack configuration includes references to all essential animation clips.
+            </li>
+        </ul>
+        <br>
+        <h2>Q: Can I create a combo attack that includes a charge attack mid-combo?</h2>
+        <ul class="answer-division">
+            <li class="answer-li">
+                <b>A:</b>
+            </li>
+            <li class="answer-li">
+                Unfortunately, the combat system within the asset <b>does not support</b> charge attacks in a combo sequence. Combo attacks can only consist of normal attacks.
             </li>
         </ul>
     </div>

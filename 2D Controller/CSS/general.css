@@ -52,6 +52,10 @@ img {
     z-index: 0;
 }
 
+.img-bottom-spacing {
+    margin-bottom: 10px;
+}
+
 .iframe-body {
     background-color: #222C37;
     overflow-y: hidden;
