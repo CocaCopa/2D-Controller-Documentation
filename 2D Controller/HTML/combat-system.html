@@ -53,9 +53,15 @@
         <p>
             To utilize the combat system, first and foremost, an attack needs to be created. For details on how to create a new attack, please refer to
             the <a class="redirect-link" href="CLASSES/MANUAL/ATTACK-SO/attack-so.html">AttackSO</a> documentation. Once the attack is created, let's configure
-            it to function as a gun fire. This configuration requires a corresponding <b>animation clip</b> for the attack, a prefab to act as the <b>bullet projectile</b>
-            and an empty <b>GameObject</b> to serve as the reference spawn point for the bullet to be fired from.
-            <br><br>
+            it to function as a gun fire. 
+            This configuration requires the following:
+        </p>
+        <ul>
+            <li><b>Animation clip</b> for the attack.</li>
+            <li>A prefab to act as the <b>bullet projectile</b>.</li>
+            <li>An empty <b>GameObject</b> to serve as the reference spawn point for the bullet to be fired from.</li>
+        </ul>
+        <p>
             Let's begin by configuring the created attack. Pay attention to the following properties:
         </p>
         <ul>
@@ -85,6 +91,14 @@
                 Ensure that the cooldown set in the configuration matches or is longer than the duration of the attack animation clip to
                 prevent <b>errors</b> or <b>unintended behaviour</b>.
             </li>
+            <br>
+            <li>
+                <b>DamageAmount</b>
+                <br>
+                Note that the damage amount set for the attack is 0, as the attack itself won't directly cause damage. Instead, the thrown projectile
+                will inflict damage. Therefore, we need to configure the projectile separately. This includes defining its velocity and the damage amount
+                it can inflict to other objects.
+            </li>
         </ul>
         <p>
             Review the image below for a visual example of the attack configuration.
@@ -94,12 +108,43 @@
         <br>
         <h2 id="normal-single-creating-and-configuring-projectile">Creating and Configuring the Projectile</h2>
         <p>
-
+            With the attack now configured, the next step is to set up the projectile that will be thrown.
         </p>
+        <ul>
+            <li>
+                <b>Create a prefab:</b>
+                <br>
+                Begin by creating a new prefab. To this prefab, attach the '<a class="redirect-link" href="CLASSES/MANUAL/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>'
+                component. This component enables us to tailor the projectile's characteristics such as damage and velocity.
+            </li>
+            <br>
+            <li>
+                <b>Projectile hitbox</b>
+                <br>
+                Subsequently, create an empty game object within the prefab. This object serves as the hitbox area for the projectile. Any entity intersecting
+                with this area sustains damage.
+                <br><br>
+                <b>Note:</b> Remember to reference the hitbox's transform to the '<a class="redirect-link" href="CLASSES/MANUAL/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>'
+                component.
+            </li>
+            <br>
+            <li>
+                <b>Configuration</b>
+                <br>
+                Fine-tune the projectile's behaviour by adjusting the parameters within the '<a class="redirect-link" href="CLASSES/MANUAL/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>'
+                component. Here, we will specify the desired damage amount and velocity to tailor the projectile's impact. 
+            </li>
+        </ul>
+        <p>
+            After configuring the projectile prefab, remember to reference it to the AttackSO attack that we created earlier, under the '<b>ThrowsProjectile</b>'
+            property.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Single-Normal-ProjectilePrefab.png" alt="ProjectilePrefab">
         <br>
         <h2 id="normal-single-setting-up-the-projectile-spawn-point">Setting Up the Projectile Spawn Point</h2>
         <p>
-            With the attack now configured, the next step is to set up the projectile that will be thrown. Follow these steps to create a reference
+            With the projectile now configured, the next step is to set up its spawn point. Follow these steps to create a reference
             spawn point for the bullet:
         </p>
         <ul>
@@ -181,7 +226,7 @@
             Similarly to the '<b>Single Normal Attack</b>' the first step is to create the attacks (<a class="redirect-link" href="CLASSES/MANUAL/ATTACK-SO/attack-so.html">AttackSO</a>)
             that will form the combo sequence. This involves configuring each attack to your liking until you achieve the desired result.
             <br><br>
-            Let's cofigure configure the attacks for the combo sequence. Pay attention to the following properties:
+            Let's cofigure the attacks for the combo sequence. Pay attention to the following properties:
         </p>
         <ul>
             <li>
@@ -234,8 +279,35 @@
         <br>
         <h2 id="normal-combo-attack-hitbox-setup">Attack Hitbox Setup</h2>
         <p>
-
+            In order for the attack to inflict damage to other objects, we will need to setup its hitbox. Some information regarding the hitbox:
         </p>
+        <ul>
+            <li>
+                <b>Hitbox GameObject</b>
+                <br>
+                The hitbox is an empty game object, child of the game object with the SpriteRenderer component attached.
+                You can find it under <b>CharacterTemplate -> SpriteHolder -> Sprites -> AttackHitbox</b>.
+                Refrain from removing it or changing its position in the hierarchy as it may not function as expected.
+            </li>
+            <li>
+                <b>Hitbox Damage</b>
+                <br>
+                The combat system will inflict damage, only when the <b>AttackHitbox</b> GameObject is <b>active</b> in the hierarchy.
+            </li>
+        </ul>
+        <p>
+            To align the hitbox with each attack, we need to animate its position and scale along with the attack animation. To do this, select the <b>Sprites</b>
+            game object, which can be found at <b>CharacterTemplate -> SpriteHolder -> Sprites</b>.
+            <br>
+            In the animation window, choose the attack animation you want to configure and then, for <b>each frame of the attack</b>, animate the <b>position</b>
+            and <b>scale</b> of the hitbox to match your preferences.
+            <br><br>
+            <b>Note:</b> To visualize the attack hitbox, check the '<b>VisualizeHitbox</b>' property within the CharacterCombat component. The hitbox will be visualized
+            with an <b>outline</b> when it is <b>disabled</b> and will fill with <b>color</b> when it is <b>enabled</b>.
+        </p>
+        <br>
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-HitboxInactive.png" alt="HitboxInactive">
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-HitboxActive.png" alt="HitboxActive">
         <br>
         <h2 id="normal-combo-attack-implementation">Attack Implementation</h2>
         <p>
