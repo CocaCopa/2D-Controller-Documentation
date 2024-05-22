@@ -1,0 +1,28 @@
+.btn-back-to-top {
+    border: 1px solid #222C37;
+    border-radius: 100%;
+    
+
+    padding: 10px;
+    padding-bottom: 13px;
+    width: 54px;
+
+    background-color: #222C37;
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 85%;
+    right: 3%;
+
+    transition: 0.25s;
+}
+
+.btn-back-to-top:hover {
+    right: 3.2%;
+    top: 84.8%;
+    box-shadow: 2px 2px #888888;
+}

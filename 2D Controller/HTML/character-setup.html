@@ -10,12 +10,17 @@
     <link rel="stylesheet" href="../CSS/general.css">
     <link rel="stylesheet" href="../CSS/navigation-bar.css">
     <link rel="stylesheet" href="../CSS/class-title.css">
+    <link rel="stylesheet" href="../CSS/back-to-top.css">
 </head>
 <body>
     <iframe src="navigation-bar.html"></iframe>
+    <a class="btn-back-to-top" href="#back-to-top">
+        <span>↑</span>
+    </a>
+
     <div class="main-page-division">
         <div class="page-title">
-            <span>Character Setup</span>
+            <span id="back-to-top">Character Setup</span>
         </div>
         <br>
         <h2>Quickly jump through sections:</h2>
@@ -82,8 +87,10 @@
             This helps prevent <b>errors</b> or <b>unintended</b> behaviour.
             <br><br>
             Additionally, the system supports a <b>double jump</b> animation. If your character jumps while in the air, the animator will transition to the double
-            jump state. However, <b>unlike the other states</b>, if you lack a distinct animation for double jumping, do not leave the field empty; instead, reference
-            your normal jump animation.
+            jump state.
+            <br>
+            However, <b>unlike the other states</b>, if you lack a distinct animation for double jumping, do not leave the field empty; instead, reference your
+            normal jump animation.
             <br><br>
             <b>Important:</b> Ensure that you reference the newly created animator controller to the animator component field of your character object. You
             can find this field within the character object under <b>CharacterTemplate -> SpriteHolder -> Sprites</b>.

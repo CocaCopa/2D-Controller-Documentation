@@ -10,12 +10,16 @@
     <link rel="stylesheet" href="../CSS/general.css">
     <link rel="stylesheet" href="../CSS/navigation-bar.css">
     <link rel="stylesheet" href="../CSS/class-title.css">
+    <link rel="stylesheet" href="../CSS/back-to-top.css">
 </head>
 <body>
     <iframe src="navigation-bar.html"></iframe>
+    <a class="btn-back-to-top" href="#back-to-top">
+        <span>↑</span>
+    </a>
 
     <div class="main-page-division">
-        <div class="page-title">
+        <div id="back-to-top" class="page-title">
             <span>Combat System</span>
         </div>
         <br>
@@ -25,23 +29,30 @@
                 <li><a class="redirect-link" href="#normal-single-attack">Normal Single Attack - With Projectile</a></li>
                 <ul>
                     <li><a class="redirect-link" href="#normal-single-creating-and-configuring-attacks">Creating and Configuring the Attack</a></li>
-                    <li><a class="redirect-link" href="#normal-single-creating-and-configuring-projectile">Creating and Configuring the Projectile</a></li>
-                    <li><a class="redirect-link" href="#normal-single-setting-up-the-projectile-spawn-point">Setting Up the Projectile Spawn Point</a></li>
                     <li><a class="redirect-link" href="#normal-single-animator-setup">Animator Setup</a></li>
-                    <li><a class="redirect-link" href="#normal-single-attack-implementation">Attack Implementation</a></li>
+                    <li><a class="redirect-link" href="#normal-single-code-implementation">Code Implementation</a></li>
                 </ul>
                 <br>
                 <li><a class="redirect-link" href="#normal-combo-attack">Normal Combo Attack - No Projectile</a></li>
                 <ul>
-                    <li><a class="redirect-link" href="#normal-combo-creating-and-configuring-attacks">Creating and Configuring the Attack</a></li>
+                    <li><a class="redirect-link" href="#normal-combo-creating-and-configuring-attacks">Creating and Configuring the Attacks</a></li>
                     <li><a class="redirect-link" href="#normal-combo-animator-setup">Animator Setup</a></li>
                     <li><a class="redirect-link" href="#normal-combo-attack-hitbox-setup">Attack Hitbox Setup</a></li>
-                    <li><a class="redirect-link" href="#normal-combo-attack-implementation">Attack Implementation</a></li>
+                    <li><a class="redirect-link" href="#normal-combo-code-implementation">Code Implementation</a></li>
                 </ul>
                 <br>
-                <li><a class="redirect-link" href="#chargeable-attack">Chargeable Attack</a></li>
+                <li><a class="redirect-link" href="#chargeable-attack">Chargeable Attack - With Projectile</a></li>
                 <ul>
                     <li><a class="redirect-link" href="#charge-creating-and-configuring-attacks">Creating and Configuring the Attack</a></li>
+                    <li><a class="redirect-link" href="#charge-animator-setup">Animator Setup</a></li>
+                    <li><a class="redirect-link" href="#charge-code-implementation">Code Implementation</a></li>
+                </ul>
+                <br>
+                <li><a class="redirect-link" href="#projectile-setup">Projectile Setup</a></li>
+                <ul>
+                    <li><a class="redirect-link" href="#projectile-creating-and-configuring-projectile">Creating and Configuring the Projectile</a></li>
+                    <li><a class="redirect-link" href="#projectile-setting-up-the-projectile-spawn-point">Setting Up the Projectile Spawn Point</a></li>
+                    <li><a class="redirect-link" href="#projectile-code-implementation">Code Implementation</a></li>
                 </ul>
             </ul>
         </p>
@@ -93,11 +104,12 @@
             </li>
             <br>
             <li>
-                <b>DamageAmount</b>
+                <b>DamageAmount:</b>
                 <br>
                 Note that the damage amount set for the attack is 0, as the attack itself won't directly cause damage. Instead, the thrown projectile
                 will inflict damage. Therefore, we need to configure the projectile separately. This includes defining its velocity and the damage amount
-                it can inflict to other objects.
+                it can inflict to other objects. On the other hand, the <b>layers</b> that can be damaged will be configured within the AttackSO by adjusting
+                the '<b>DamageableLayers</b>' property.
             </li>
         </ul>
         <p>
@@ -105,71 +117,6 @@
         </p>
         <br>
         <img src="../IMAGES/_COMBAT-SYSTEM/Single-Normal-AttackConfiguration.png" alt="AttackConfiguration">
-        <br>
-        <h2 id="normal-single-creating-and-configuring-projectile">Creating and Configuring the Projectile</h2>
-        <p>
-            With the attack now configured, the next step is to set up the projectile that will be thrown.
-        </p>
-        <ul>
-            <li>
-                <b>Create a prefab:</b>
-                <br>
-                Begin by creating a new prefab. To this prefab, attach the '<a class="redirect-link" href="CLASSES/MANUAL/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>'
-                component. This component enables us to tailor the projectile's characteristics such as damage and velocity.
-            </li>
-            <br>
-            <li>
-                <b>Projectile hitbox</b>
-                <br>
-                Subsequently, create an empty game object within the prefab. This object serves as the hitbox area for the projectile. Any entity intersecting
-                with this area sustains damage.
-                <br><br>
-                <b>Note:</b> Remember to reference the hitbox's transform to the '<a class="redirect-link" href="CLASSES/MANUAL/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>'
-                component.
-            </li>
-            <br>
-            <li>
-                <b>Configuration</b>
-                <br>
-                Fine-tune the projectile's behaviour by adjusting the parameters within the '<a class="redirect-link" href="CLASSES/MANUAL/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>'
-                component. Here, we will specify the desired damage amount and velocity to tailor the projectile's impact. 
-            </li>
-        </ul>
-        <p>
-            After configuring the projectile prefab, remember to reference it to the AttackSO attack that we created earlier, under the '<b>ThrowsProjectile</b>'
-            property.
-        </p>
-        <br>
-        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Single-Normal-ProjectilePrefab.png" alt="ProjectilePrefab">
-        <br>
-        <h2 id="normal-single-setting-up-the-projectile-spawn-point">Setting Up the Projectile Spawn Point</h2>
-        <p>
-            With the projectile now configured, the next step is to set up its spawn point. Follow these steps to create a reference
-            spawn point for the bullet:
-        </p>
-        <ul>
-            <li>
-                <b>Create a New Empty GameObject:</b>
-                <br>
-                In the Unity Hierarchy, right-click on the character object to which the projectile spawn point will be attached.
-                <br>
-                Select <b>Create Empty</b> to add a new empty GameObject as a child of the character object.
-            </li>
-            <br>
-            <li>
-                <b>Position the Spawn Point:</b>
-                <br>
-                Rename the new empty GameObject to something like 'BulletSpawnPoint' for clarity.
-                <br>
-                Position this GameObject at the location on the character from where the projectile should be fired.
-            </li>
-        </ul>
-        <p>
-            <b>Tip:</b> To make positioning easier, temporarily change the default character's sprite to the frame of the animation where
-            the bullet will be fired. This provides a visual reference for accurate placement.
-        </p>
-        <br>
-        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Single-Normal-ProjectileSetup.png" alt="ProjectileSetup">
         <br>
         <h2 id="normal-single-animator-setup">Animator Setup</h2>
         <p>
@@ -195,8 +142,10 @@
         <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Single-Normal-AnimationClip.png" alt="AnimationClip">
         <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Single-Normal-AnimationTransition.png" alt="AnimationTransition">
         <br>
-        <h2 id="normal-single-attack-implementation">Attack Implementation</h2>
+        <h2 id="normal-single-code-implementation">Code Implementation</h2>
         <p>
+            <b style="color: red;">Important:</b> Prior to proceeding, ensure that you have configured the projectile for the attack by referring to the <a class="redirect-link" href="#projectile-setup">Projectile Setup</a> section. 
+            <br>
             With the attack now fully set up, we can proceed to implement it through code.
         </p>
         <ul>
@@ -249,7 +198,6 @@
                 completes the entire combo sequence, the cooldown of the combo attack will be <b>1.5 seconds</b>.
             </li>
         </ul>
-        <br>
         <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-Attack_1&2.png" alt="Attack 1 & 2">
         <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-Attack_3&4.png" alt="Attack 3 & 4">
         <br>
@@ -259,7 +207,7 @@
         </p>
         <ul>
             <li>
-                <b>Adding the Animation Clip</b>
+                <b>Adding the Animation Clips</b>
                 <br>
                 Drag and drop each attack animation clip into the animator. The animation clips should be the same with those referenced in each of the AttackSO attacks.
             </li>
@@ -284,32 +232,52 @@
         <ul>
             <li>
                 <b>Hitbox GameObject</b>
-                <br>
-                The hitbox is an empty game object, child of the game object with the SpriteRenderer component attached.
-                You can find it under <b>CharacterTemplate -> SpriteHolder -> Sprites -> AttackHitbox</b>.
-                Refrain from removing it or changing its position in the hierarchy as it may not function as expected.
+                <ul>
+                    <li>The hitbox is an empty game object and is a child of the game object with the SpriteRenderer component.</li>
+                    <li>You can find it under <b>CharacterTemplate -> SpriteHolder -> Sprites -> AttackHitbox.</b></li>
+                    <li><b style="color: red;">Important:</b> Do not remove or change its position in the hierarchy, as it may affect its functionality.</li>
+                </ul>
             </li>
+            <br>
             <li>
                 <b>Hitbox Damage</b>
+                <ul>
+                    <li>
+                        Damage is inflicted by the combat system only when the <b>AttackHitbox</b> GameObject is <b>active</b> in the hierarchy.
+                    </li>
+                    <li>
+                        To align the hitbox with each attack:
+                        <ul>
+                            <li>Select the Sprites game object (located under <b>CharacterTemplate -> SpriteHolder -> Sprites</b>).</li>
+                            <li>In the animation window, choose the attack animation you want to configure.</li>
+                            <li><b>For each frame of the attack</b>, animate the position and scale of the hitbox to match your preferences.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <br>
+            <li>
+                <b>Visualizing the Hitbox</b>
                 <br>
-                The combat system will inflict damage, only when the <b>AttackHitbox</b> GameObject is <b>active</b> in the hierarchy.
+                To see the attack hitbox during gameplay:
+                <ul>
+                    <li>Check the <b>'VisualizeHitbox'</b> property within the CharacterCombat component.</li>
+                    <li>When <b>disabled</b>, the hitbox will have an outline (<b>no damage</b> inflicted).</li>
+                    <li>When <b>enabled</b>, the hitbox will fill with color (damageable objects <b>will take damage</b>).</li>
+                </ul>
             </li>
         </ul>
         <p>
-            To align the hitbox with each attack, we need to animate its position and scale along with the attack animation. To do this, select the <b>Sprites</b>
-            game object, which can be found at <b>CharacterTemplate -> SpriteHolder -> Sprites</b>.
-            <br>
-            In the animation window, choose the attack animation you want to configure and then, for <b>each frame of the attack</b>, animate the <b>position</b>
-            and <b>scale</b> of the hitbox to match your preferences.
-            <br><br>
-            <b>Note:</b> To visualize the attack hitbox, check the '<b>VisualizeHitbox</b>' property within the CharacterCombat component. The hitbox will be visualized
-            with an <b>outline</b> when it is <b>disabled</b> and will fill with <b>color</b> when it is <b>enabled</b>.
+            In brief, align your hitbox animation with the attack motion. This step requires fine-tuning to suit your preferences. Consider adding duplicate
+            frames to allow more movement for the attack hitbox. For reference, explore how the <b>ComboAttack01</b>, <b>SwordAttack</b>, <b>ComboAttack03</b>,
+            and <b>ComboAttack04</b> animations are configured, under <b>2D Character Controller -> Visuals -> DeadRevolver
+            -> Animations</b>.
         </p>
         <br>
         <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-HitboxInactive.png" alt="HitboxInactive">
         <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-HitboxActive.png" alt="HitboxActive">
         <br>
-        <h2 id="normal-combo-attack-implementation">Attack Implementation</h2>
+        <h2 id="normal-combo-code-implementation">Code Implementation</h2>
         <p>
             With the attack now fully set up, we can proceed to implement it through code.
         </p>
@@ -330,5 +298,300 @@
         </ul>
         <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-CodeImplementation.png" alt="CodeImplementation">
         <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Combo-Normal-CodeReferences.png" alt="CodeReferences">
+
+        <br><br><hr><br>
+        <div id="chargeable-attack" class="combat-title">
+            <span>Chargeable Attack - With Projectile</span>
+        </div>
+        <h2 id="charge-creating-and-configuring-attacks">Creating and Configuring the Attack</h2>
+        <p>
+            Similar to how we configured previous <a class="redirect-link" href="CLASSES/MANUAL/ATTACK-SO/attack-so.html">AttackSO</a> attacks, we'll now configure a charge attack.
+            This time, we'll ensure to check the '<b>ChargeableAttack</b>' property in the AttackSO configuration. Enabling this property will reveal <b>additional options</b> in the
+            AttackSO inspector. Keep an eye on the following properties:
+        </p>
+        <ul>
+            <li>
+                <b>ChargeableAttack</b>
+                <br>
+                When you enable this option, it alters the configuration of the attack behaviour. Specifically, additional options related to the chargeable
+                feature will become available in the inspector. These options allow you to fine-tune how the chargeable attack behaves within your game mechanics.
+            </li>
+            <br>
+            <li>
+                <b>AttackAnimation</b>
+                <br>
+                The AttackAnimation is essential for both normal and chargeable attacks. However, it's easy to overlook referencing it specifically in a chargeable attack
+                configuration. Be sure to associate the correct animation clip with the AttackAnimation property. Failing to do so will result in the combat system being
+                unable to identify when the attack has been completed, potentially causing the attack to get stuck on the last frame of its animation.
+            </li>
+            <br>
+            <li>
+                <b>InitiateChargeAnimation (Optional)</b>
+                <br>
+                If your attack involves an initiation animation just before transitioning into the charge loop, you can specify it in this field. However,
+                some attacks may not have such an animation. If your attack <b>lacks</b> an initiation phase, you can leave this field <b>empty</b>.
+            </li>
+            <br>
+            <li>
+                <b>ChargeAnimation</b>
+                <br>
+                The charge animation represents the phase where your character prepares their charge attack. During this time, the character holds the attack and continuously
+                loops the charge animation. The duration of this animation is determined by the rest of the AttackSO configuration. As long as the configuration allows it,
+                your character will remain in the charged state, ready to release their attack.
+            </li>
+            <br>
+            <li>
+                <b>ScalableProjectileDamage</b>
+                <br>
+                Now that the attack is configured as chargeable, you have the option to enable scalable damage. When you toggle this property to true, the combat system
+                <b>dynamically</b> adjusts the damage amount of the <a class="redirect-link" href="CLASSES/MANUAL/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>
+                component of the projectile object, based on how long the attack was charged.
+                <br>
+                Charging the attack for a <b>shorter duration</b> results in <b>less damage</b>, while a <b>longer charge</b> yields more <b>impactful damage</b>.
+            </li>
+            <br>
+            <li>
+                <b>ScalableProjectileVelocity</b>
+                <br>
+                Similar to the ScalableProjectileDamage property, you now have the option to enable scalable velocity for your projectiles. When you set this property to true,
+                the system dynamically adjusts the velocity based on how long the projectile was charged. A shorter charge results in lower velocity, while a longer charge yields
+                a faster and more impactful velocity.
+            </li>
+        </ul>
+        <img src="../IMAGES/_COMBAT-SYSTEM/Charge-AttackConfiguration.png" alt="AttackConfiguration">
+        <br>
+        <h2 id="charge-animator-setup">Animator Setup</h2>
+        <p>
+            Setting up the animator for a charge attack requires some fine-tuning. However, the process follows the same logic as for previously created attacks. Let's get started:
+        </p>
+        <ul>
+            <li>
+                <b>Adding the Animation Clips</b>
+                <br>
+                Drag and drop each animation clip into the animator. In this case we will need:
+                <ul>
+                    <br>
+                    <li>
+                        <b>Initiate Animation</b>
+                        <br>
+                        Represents the start of the charge attack.
+                    </li>
+                    <br>
+                    <li>
+                        <b>Charge Animation</b>
+                        <br>
+                        The charge phase during which the animation will loop.
+                    </li>
+                    <br>
+                    <li>
+                        <b>Release Animation</b>
+                        <br>
+                        The release phase, where the projectile is thrown and the attack deals damage.
+                    </li>
+                </ul>
+            </li>
+            <br>
+            <li>
+                <b>Creating State Transitions</b>
+                <br>
+                Pay close attention when configuring the transitions between animation states. Incorrect configuration may lead to unexpected behaviour.
+                <br>
+                For reference, check out the "<b>CharacterExample</b>" animator located in the <b>2D Character Controller -> Visuals -> Animators</b>
+                folder to understand the recommended setup.
+            </li>
+        </ul>
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Charge-AnimationClips.png" alt="AnimationClips">
+        <br>
+        <h2>Initiate Animation - Transitions:</h2>
+        <ul>
+            <li>
+                <b>BowDraw -> Exit:</b>
+                <br>
+                Configure the transition with an <b>Exit Time</b> of <b>1</b> and <b>Transition Duration</b> of <b>0</b>.
+                <br>
+                Set the condition to the "<b>CancelChargeAttack</b>" trigger.
+            </li>
+            <br>
+            <li>
+                <b>BowDraw -> BowAim:</b>
+                <br>
+                Configure the transition with an <b>Exit Time</b> of <b>1</b> and <b>Transition Duration</b> of <b>0</b>.
+                <br>
+                Set the condition to the "<b>ChargingAttack</b>" boolean. <b>(true)</b>
+            </li>
+            <br>
+            <li>
+                <b>BowDraw -> BowFire:</b>
+                <br>
+                Configure the transition with an <b>Exit Time</b> of <b>1</b> and <b>Transition Duration</b> of <b>0</b>.
+                <br>
+                Set the condition to the "<b>ReleaseChargeAttack</b>" trigger.
+            </li>
+        </ul>
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Charge-Transition-BowDraw_1.png" alt="Transition-BowDraw_1">
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Charge-Transition-BowDraw_2.png" alt="Transition-BowDraw_2">
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Charge-Transition-BowDraw_3.png" alt="Transition-BowDraw_3">
+        <br>
+        <h2>Charge Animation - Transitions</h2>
+        <ul>
+            <li>
+                <b>BowAim -> Exit:</b>
+                <br>
+                Configure the transition with an <b>Exit Time</b> of <b>0</b> and <b>Transition Duration</b> of <b>0</b>.
+                <br>
+                Set the condition to the "<b>CancelChargeAttack</b>" trigger.
+            </li>
+            <br>
+            <li>
+                <b>BowAim -> BowFire:</b>
+                <br>
+                Configure the transition with an <b>Exit Time</b> of <b>0</b> and <b>Transition Duration</b> of <b>0</b>.
+                <br>
+                Set the condition to the "<b>ReleaseChargeAttack</b>" trigger.
+            </li>
+        </ul>
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Charge-Transition-BowAim_1.png" alt="BowAim_1">
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Charge-Transition-BowAim_2.png" alt="BowAim_2">
+        <br>
+        <h2>Fire Animation - Transition</h2>
+        <ul>
+            <li>
+                <b>BowFire -> Exit:</b>
+                <br>
+                Configure the transition with an <b>Exit Time</b> of <b>0</b> and <b>Transition Duration</b> of <b>0</b>.
+                <br>
+                Set the condition to the "<b>IsAttacking</b>" boolean. <b>(false)</b>
+            </li>
+        </ul>
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Charge-Transition-BowFire_1.png" alt="BowFire_1">
+        <br>
+        <h2 id="charge-code-implementation">Code Implementation</h2>
+        <p>
+            <b style="color: red;">Important:</b> Prior to proceeding, ensure that you have configured the projectile for the attack by referring to the <a class="redirect-link" href="#projectile-setup">Projectile Setup</a> section. 
+            <br>
+            With the attack now fully set up, we can proceed to implement it through code:
+        </p>
+        <ul>
+            <li>
+                <b>References</b>
+                <br>
+                Begin by creating two fields to reference the <b>AttackSO</b> attack and the <b>spawn point</b> for the bullet projectile.
+            </li>
+            <br>
+            <li>
+                <b>Triggering the Attack</b>
+                <br>
+                Given that the attack is configured as chargeable, the relevant function to invoke is <a class="redirect-link" href="CLASSES/SCRIPTING/CHARACTER-COMBAT/PUBLIC-METHODS/perform-charge-attack.html">PerformChargeAttack</a>.
+                Now, let's set it up so that the attack triggers while we hold down the <b>'Z'</b> key on the keyboard.
+            </li>
+        </ul>
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Charge-CodeImplementation.png" alt="CodeImplementation">
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Charge-CodeReferences.png" alt="CodeReferences">
+        
+        <br><br><hr><br>
+        <div id="projectile-setup" class="combat-title">
+            <span>Projectile Setup</span>
+        </div>
+        <h2 id="projectile-creating-and-configuring-projectile">Creating and Configuring the Projectile</h2>
+        <p>
+            To ensure that the projectile functions effectively within the combat system, follow these steps:
+        </p>
+        <ul>
+            <li>
+                <b>Create a prefab:</b>
+                <br>
+                Begin by creating a new prefab. To this prefab, attach the <a class="redirect-link" href="CLASSES/MANUAL/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>
+                component. This component enables you to tailor the projectile's characteristics such as damage and velocity.
+            </li>
+            <br>
+            <li>
+                <b>Projectile hitbox</b>
+                <br>
+                Subsequently, create an empty game object within the prefab. This object serves as the hitbox area for the projectile. Any entity intersecting
+                with this area sustains damage.
+                <br>
+                <b style="color: red;">Important:</b> Remember to reference the hitbox's transform to the <a class="redirect-link" href="CLASSES/MANUAL/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>
+                component.
+            </li>
+            <br>
+            <li>
+                <b>Configuration</b>
+                <br>
+                Fine-tune the projectile's behaviour by adjusting the parameters within the <a class="redirect-link" href="CLASSES/MANUAL/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>
+                and <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-Rigidbody2D.html">Rigidbody2D</a> components. Here, you can specify the desired damage amount and velocity to tailor the projectile's impact,
+                as well as the gravity scale and other physics related parameters. 
+            </li>
+        </ul>
+        <p>
+            <b style="color: red;">Important:</b> After configuring the projectile prefab, remember to <b>reference</b> it to the AttackSO attack, under the '<b>ThrowsProjectile</b>'
+            property in the '<b>ProjectilePrefab</b>' field.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Projectile-ProjectilePrefab.png" alt="ProjectilePrefab">
+        <br>
+        <h2 id="projectile-setting-up-the-projectile-spawn-point">Setting Up the Projectile Spawn Point</h2>
+        <p>
+            With the projectile now configured, the next step is to set up its spawn point. Follow these steps to create a reference
+            spawn point:
+        </p>
+        <ul>
+            <li>
+                <b>Create a New Empty GameObject:</b>
+                <br>
+                In the Unity Hierarchy, right-click on the character object to which the projectile spawn point will be attached.
+                <br>
+                Select <b>Create Empty</b> to add a new empty GameObject as a child of the character object.
+            </li>
+            <br>
+            <li>
+                <b>Position the Spawn Point:</b>
+                <br>
+                Rename the new empty GameObject to something like 'BulletSpawnPoint' for clarity.
+                <br>
+                Position this GameObject at the location on the character from where the projectile should be fired.
+            </li>
+        </ul>
+        <p>
+            <b>Tip:</b> To make positioning easier, temporarily change the default character's sprite to the frame of the animation where
+            the bullet will be fired. This provides a visual reference for accurate placement.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Projectile-ProjectileSetup.png" alt="ProjectileSetup">
+        <br>
+        <h2 id="projectile-code-implementation">Code Implementation</h2>
+        <p>
+            To enable the projectile to deal damage, create a new class and attach it to the projectile object's root. This class will work
+            in conjunction with the <a class="redirect-link" href="CLASSES/MANUAL/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>,
+            which is designed to be versatile, offering three distinct damage mechanisms:
+            For this example, we'll configure the projectile to damage the first collider it encounters.
+        </p>
+        <ul>
+            <li>
+                <b>Direct Impact</b>
+                <br>
+                Damages the first collider it contacts.
+            </li>
+            <br>
+            <li>
+                <b>Explosion</b>
+                <br>
+                Deals area-of-effect damage to all entities within its hitbox.
+            </li>
+            <br>
+            <li>
+                <b>Continuous Damage</b>
+                <br>
+                Inflicts damage over time to entities within its hitbox at set intervals.
+            </li>
+        </ul>
+        <p>
+            For detailed information on configuring these mechanisms, please refer to the <a class="redirect-link" href="CLASSES/SCRIPTING/COMBAT-SYSTEM-PROJECTILE/combat-system-projectile.html">CombatSystemProjectile</a>
+            documentation.
+            <br><br>
+            Continue: <a class="redirect-link" href="#normal-single-code-implementation">Normal Single Attack - With Projectile</a> / <a class="redirect-link" href="#charge-code-implementation">Chargeable Attack - With Projectile</a>
+        </p>
+        <br>
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_COMBAT-SYSTEM/Projectile-CodeImplementation.png" alt="CodeImplementation">
+        <img class="img-large" src="../IMAGES/_COMBAT-SYSTEM/Projectile-CodeReferences.png" alt="">
     </div>
 </body>

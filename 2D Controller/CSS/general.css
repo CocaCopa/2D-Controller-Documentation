@@ -1,6 +1,11 @@
 * {
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
+    scroll-margin-top: 90px;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -66,6 +71,7 @@ img {
     flex-direction: column;
     margin: auto;
     width: 75%;
+    min-width: 700px;
     color: #000000;
     background-color: #fcfcfc;
     box-shadow: 1px 2px 6px rgb(240, 240, 240);
