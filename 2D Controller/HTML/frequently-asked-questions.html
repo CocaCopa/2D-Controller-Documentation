@@ -71,6 +71,8 @@
                 If your character isn't facing the right direction while moving, it's likely because you're only utilizing the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/change-horizontal-velocity.html">ChangeHorizontalVelocity</a>
                 method. Remember, this method controls movement behaviour, <b>not visuals</b>. To ensure your character faces the correct direction, be sure to also utilize the
                 <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/flip-character.html">FlipCharacter</a> method.
+                <br>
+                For more information please consult the <a class="redirect-link" href="locomotion-controller.html">Locomotion System</a> page in the documentation.
             </li>
         </ul>
         <br>
@@ -97,6 +99,8 @@
                 as chargeable or not, you need to reference an animation clip to the "<b>AttackAnimation</b>" field. This clip is used by the combat system to determine when the attack has been completed.
                 If the attack is made chargeable, two additional fields are provided for referencing animation clips. One is for the animation clip when the attack is initiated (<b>optional</b>),
                 and the other is for when the attack is charging (<b>required</b>). Make sure your attack configuration includes references to all essential animation clips.
+                <br>
+                For more information please consult the <a class="redirect-link" href="combat-system.html">Combat System</a> page in the documentation.
             </li>
         </ul>
         <br>
@@ -107,6 +111,18 @@
             </li>
             <li class="answer-li">
                 Unfortunately, the combat system within the asset <b>does not support</b> charge attacks in a combo sequence. Combo attacks can only consist of normal attacks.
+            </li>
+        </ul>
+        <br>
+        <h2>Q: How can I create a damageable object?</h2>
+        <ul class="answer-division">
+            <li class="answer-li">
+                <b>A:</b>
+            </li>
+            <li class="answer-li">
+                Just attach to the object you want to be damageable the <a class="redirect-link" href="CLASSES/SCRIPTING/ENTITY-HEALTH/entity-health.html">EntityHealth</a>
+                component. Any attack that is based on the asset's <a class="redirect-link" href="combat-system.html">Combat System</a> or implements the <b>IDamageable</b>
+                interface will be able to inflict damage on the object.
             </li>
         </ul>
     </div>

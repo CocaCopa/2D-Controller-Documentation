@@ -10,13 +10,216 @@
     <link rel="stylesheet" href="../CSS/general.css">
     <link rel="stylesheet" href="../CSS/navigation-bar.css">
     <link rel="stylesheet" href="../CSS/class-title.css">
+    <link rel="stylesheet" href="../CSS/back-to-top.css">
 </head>
 <body>
     <iframe src="navigation-bar.html"></iframe>
+    <a class="btn-back-to-top" href="#back-to-top">
+        <span>↑</span>
+    </a>
+
     <div class="main-page-division">
         <div class="page-title">
-            <span>Locomotion System</span>
+            <span id="back-to-top">Locomotion System</span>
         </div>
-        
+        <br>
+        <h2>Quickly jump through sections:</h2>
+        <p>
+            <ul>
+                <li><a class="redirect-link" href="#horizontal-movement">Horizontal Movement</a></li>
+                <li><a class="redirect-link" href="#character-orientation">Character Orientation</a></li>
+                <li><a class="redirect-link" href="#character-jump">Jump</a></li>
+                <li><a class="redirect-link" href="#character-dash">Dash</a></li>
+                <li><a class="redirect-link" href="#wall-slide">Wall Slide</a></li>
+                <li><a class="redirect-link" href="#floor-slide">Floor Slide</a></li>
+                <li><a class="redirect-link" href="#ledge-grab">Ledge Grab</a></li>
+                <li><a class="redirect-link" href="#ledge-climb">Ledge Climb</a></li>
+            </ul>
+        </p>
+        <br>
+        <h2>Introduction</h2>
+        <p>
+            In this section, we will explore how to implement all the locomotion mechanics provided in the asset. By the end, we will have a
+            functional character capable of performing the following actions:
+        </p>
+        <ul>
+            <li>Smooth Movement</li>
+            <li>Jump</li>
+            <li>Dash</li>
+            <li>Wall / Floor Slide</li>
+            <li>Ledge Grab / Climb</li>
+        </ul>
+        <p>
+            Before we proceed, let's set up our character. If you haven't completed this step yet, please visit the <a class="redirect-link" href="character-setup.html">Character Setup</a>
+            section first.
+        </p>
+        <br>
+        <h2 id="horizontal-movement">Horizontal Movement</h2>
+        <p>
+            To implement horizontal movement for your character, simply call the  <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/change-horizontal-velocity.html">ChangeHorizontalVelocity</a>
+            method of the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> class and pass as the parameter the horizontal
+            input as a Vector2 variable.
+            <br><br>
+            <b>Note:</b> When obtaining the horizontal input from the keyboard, it is preferable to call the <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxisRaw.html">GetAxisRaw</a>
+            method instead of <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxis.html">GetAxis</a>, as the latter can make the movement laggy. 
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/HorizontalMovement.png" alt="HorizontalMovement">
+
+        <br>
+        <h2 id="character-orientation">Character Orientation</h2>
+        <p>
+            To make sure our character faces the right direction while moving we also need to utilize the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/flip-character.html">FlipCharacter</a>
+            function. As a parameter we simply need to pass the horizontal input.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/CharacterOrientation.png" alt="CharacterOrientation">
+
+        <br>
+        <h2 id="character-jump">Jump</h2>
+        <p>
+            The locomotion system already performs the appropriate checks to determine whether the character should be allowed to perform a jump.
+            <br>
+            These checks include:
+        </p>
+        <ul>
+            <li>Character is grounded.</li>
+            <li>Character is in mid-air and has remaining air jumps.</li>
+            <li>Character is not currently dashing.</li>
+            <li>Coyote Time (a grace period after leaving a platform).</li>
+        </ul>
+        <p>
+            Therefore, we don't need to add any further checks in our custom code. To implement the jump mechanic, we simply need to call the
+            <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/try-jumping.html">TryJumping</a> method when
+            the desired key is pressed.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/CharacterJump.png" alt="CharacterJump">
+
+        <br>
+        <h2 id="character-dash">Dash</h2>
+        <p>
+            The implementation of the dash mechanic focuses on enhancing responsiveness rather than just executing the action.
+            Upon the designated key press, the game will conduct a pre-dash check for potential collisions with the character's
+            head or feet. If a collision is detected, the character's position is dynamically adjusted based on parameters configured
+            within the <a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-DASH/character-dash.html">CharacterDash</a> component
+            in the inspector.
+            <br><br>
+            To integrate the dash mechanic, simply call the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/try-dashing.html">TryDashing</a>
+            method when the desired key is pressed.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/CharacterDash.png" alt="CharacterDash">
+
+        <br>
+        <h2 id="wall-slide">Wall Slide</h2>
+        <p>
+            The wall slide mechanic can be implemented in two different ways:
+        </p>
+        <ul>
+            <li>
+                <b>Immediate Wall Slide:</b>
+                <br>
+                As soon as a wall is detected and the character is not grounded, wall slide will immediately be initiated.
+            </li>
+            <br>
+            <li>
+                <b>Conditional Wall Slide:</b>
+                <br>
+                The character will only be able to slide down a wall if a specific condition is met, such as a keypress from the keyboard.
+            </li>
+        </ul>
+        <p>
+            For this example, we will implement a conditional wall slide. The goal is to allow the character to wall slide only if they are
+            running towards the wall.
+            <br>
+            Simply call the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/wall-slide.html">WallSlide</a> method,
+            passing as the parameter your desired condition.
+            <br><br>
+            <b>Note:</b> Keep an eye on the created <b>'RunTowardsWall'</b> function as it will be utilized again later on.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/WallSlide.png" alt="WallSlide">
+
+        <br>
+        <h2 id="floor-slide">Floor Slide</h2>
+        <p>
+            The floor slide mechanic allows the character to slide along the ground when a specific condition is met, most commonly
+            a keypress. In this case, the character will slide when the Down Arrow key is held on the keyboard. Note that the method
+            used is <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKey.html">GetKey</a> and <b>not</b>
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">GetKeyDown</a>.
+            <br><br>
+            An important aspect of this mechanic is that the locomotion system will continue the slide if the keypress is lifted while the character is under a collider that cannot be fit under. This prevents the character from getting stuck.
+            <br><br>
+            To implement this mechanic, simply call the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/try-floor-slide.html">TryFloorSlide</a> method, passing the keyboard input as the parameter.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/FloorSlide.png" alt="FloorSlide">
+
+        <br>
+        <h2 id="ledge-grab">Ledge Grab</h2>
+        <p>
+            The ledge grab mechanic will allow your character to grab onto a ledge and can be implemented in two different ways:
+        </p>
+        <ul>
+            <li>
+                <b>Immediate Ledge Grab:</b>
+                <br>
+                As soon as a ledge is detected and the character is not grounded, ledge grab will immediately be initiated.
+            </li>
+            <br>
+            <li>
+                <b>Conditional Ledge Grab:</b>
+                <br>
+                The character will only be able to grab a ledge if a specific condition is met.
+            </li>
+        </ul>
+        <p>
+            When implementing the ledge grab mechanic, it is crucial to ensure the <b>correct order</b> of method calls to prevent unintended behaviour,
+            such as the jump not being performed. To address this issue, the <b>jump</b> mechanic should be implemented <b>after</b> the <b>ledge grab</b>
+            method. This sequence allows for the character to smoothly transition from grabbing a ledge to executing a jump when the appropriate input is
+            provided.
+            <br><br>
+            In the example below, we will implement a conditional ledge grab. We will require the player to provide
+            horizontal input towards the wall in order to execute the action. To achieve this, simply call the
+            <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/ledge-grab.html">LedgeGrab</a>
+            method and pass the <b>RunTowardsWall</b> function, which was previously created, as a parameter.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/LedgeGrab.png" alt="LedgeGrab">
+
+        <br>
+        <h2 id="ledge-climb">Ledge Climb</h2>
+        <p>
+            The ledge grab mechanic will allow your character to climb a ledge and can be also implemented in two different ways:
+        </p>
+        <ul>
+            <li>
+                <b>Immediate Ledge Climb:</b>
+                <br>
+                As soon as a ledge is detected and the character is not grounded, ledge climb will immediately be initiated.
+            </li>
+            <br>
+            <li>
+                <b>Conditional Ledge Climb:</b>
+                <br>
+                The character will only be able to climb a ledge if a specific condition is met.
+            </li>
+        </ul>
+        <p>
+            Let's make the ledge climb mechanic conditional. In this example, when the character is grabbing a ledge, pressing the Space key on the
+            keyboard will initiate the ledge climb. However, since the Space key is already used by the jump mechanic, pressing Space to climb will
+            cause the character to <b>jitter</b>. This happens because the character will attempt to climb and jump simultaneously.
+            <br><br>
+            To resolve this issue, we need to make a minor <b>adjustment</b> to the implementation of the <b>jump mechanic</b>. Specifically, we should
+            check if the character is grabbing a ledge before allowing the jump mechanic to activate.
+            <br><br>
+            Let's implement this by simply calling the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/ledge-climb.html">LedgeClimb</a>
+            method, passing the <b>Space-bar keypress</b> as a parameter, and <b>modifying</b> the 'if' statement of the <b>jump mechanic</b> to also check if the
+            '<a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-PROPERTIES/is-ledge-grabbing.html">IsLedgeGrabbing</a>' property of the
+            <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> is <b>false</b>.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/LedgeClimb.png" alt="LedgeClimb">
     </div>
 </body>

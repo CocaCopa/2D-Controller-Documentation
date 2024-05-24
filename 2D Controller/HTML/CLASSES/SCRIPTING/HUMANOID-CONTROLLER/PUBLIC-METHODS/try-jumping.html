@@ -28,13 +28,13 @@
             <br><br>
             Responsible for initiating a jump action for the character based on specific conditions. Upon invocation, the method evaluates predefined conditions, such as the character's
             grounded state or any imposed jump restrictions. If the conditions are satisfied, the character is prompted to execute a jump, ensuring adherence to established gameplay mechanics.
-            <br>
-            Moreover, triggering a jump will override any ongoing attack animation within the combat system. To mitigate such occurrences or implement other custom restrictions, manual
-            customization within your script is necessary. Below, an example scenario is provided to illustrate potential customizations.
+            <br><br>
+            Moreover, triggering a jump will <b>override</b> any ongoing <b>attack animation</b> within the combat system. To mitigate such occurrences or implement other <b>custom restrictions</b>,
+            manual customization within your script is necessary. Below, an example scenario is provided to illustrate potential customizations.
         </p>
         <br>
         <p>
-            Here's an example of calling the function to prompt your character to attempt a jump, utilizing the default behavior checks:
+            Here's an example of calling the function to prompt your character to attempt a jump, utilizing the default behaviour checks:
         </p>
 
 <pre class="code-block">
@@ -44,7 +44,7 @@ public class Example : <a class="redirect-link" href="../humanoid-controller.htm
 {
     protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        base.Update();
+        base.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>();
 
         if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.Space</a>))
         {
@@ -56,7 +56,7 @@ public class Example : <a class="redirect-link" href="../humanoid-controller.htm
 
         <br>
         <p>
-            If you wish to tailor the jump behavior for additional restrictions, as mentioned above, manual customization is required. Here's an example of adjusting the function call to ensure it does not cancel
+            If you wish to tailor the jump behaviour for additional restrictions, as mentioned above, manual customization is required. Here's an example of adjusting the function call to ensure it does not cancel
             any ongoing attacks: (Note that '<b>characterCombat</b>' is a protected property of the <a class="redirect-link" href="humanoid-controller.html">HumanoidController</a>, enabling its
             use without the need to reference it explicitly in your script.)
         </p>
@@ -68,7 +68,7 @@ public class Example : <a class="redirect-link" href="../humanoid-controller.htm
 {
     protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        base.Update();
+        base.<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>();
 
         if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.html">KeyCode.Space</a>))
         {
