@@ -62,20 +62,6 @@
             </li>
         </ul>
         <br>
-        <h2>Q: Why is my character jittering?</h2>
-        <ul class="answer-division">
-            <li class="answer-li">
-                <b>A:</b>
-            </li>
-            <li class="answer-li">
-                The jittering behaviour you're experiencing with your character is likely due to the way the <b>physics simulation</b> is set up in your Unity project.
-                By default, Unity runs physics simulations in the <b>FixedUpdate</b> method, but the asset is designed to work best in the <b>Update</b> method.
-                To resolve the jittering issue, you'll need to change the simulation mode in your project settings.
-                <br><br>
-                You can find a detailed guide on how to make this change in the <a class="redirect-link" href="locomotion-controller.html">Locomotion System</a> section of the documentation.
-            </li>
-        </ul>
-        <br>
         <h2>Q: Why is my character not facing the direction they are moving towards?</h2>
         <ul class="answer-division">
             <li class="answer-li">

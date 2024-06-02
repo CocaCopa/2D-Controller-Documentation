@@ -26,7 +26,6 @@
         <h2>Quickly jump through sections:</h2>
         <p>
             <ul>
-                <li><a class="redirect-link" href="#project-settings">Project Settings - Anti-jitter</a></li>
                 <li><a class="redirect-link" href="#horizontal-movement">Horizontal Movement</a></li>
                 <li><a class="redirect-link" href="#character-orientation">Character Orientation</a></li>
                 <li><a class="redirect-link" href="#character-jump">Jump</a></li>
@@ -54,31 +53,6 @@
             Before we proceed, let's set up our character. If you haven't completed this step yet, please visit the <a class="redirect-link" href="character-setup.html">Character Setup</a>
             section first.
         </p>
-        <br>
-        <h2 id="project-settings">Project Settings - Anti-jitter</h2>
-        <p>
-            The asset utilizes the <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a> component, but for a smoother experience, the physics simulation is coded in the <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>
-            method instead of the <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html">FixedUpdate</a> method. To prevent jittering when the character moves, you should change the simulation
-            mode of the physics engine in the Project Settings. This adjustment will ensure that the code executes smoothly.
-            <br>
-            To change the physics simulation mode follow these steps:
-        </p>
-        <ul>
-            <b><li>Open Project Settings:</li></b>
-            Go to <b>Edit -> Project Settings</b> in the top menu.
-            <br><br>
-            <b><li>Navigate to Physics Settings:</li></b>
-            In the Project Settings window, select <b>Physics 2D</b> from the left-hand menu.
-            <br><br>
-            <b><li>Change Simulation Mode:</li></b>
-            Find the <b>Simulation</b> Mode setting and change it to <b>Update</b> to match the Update method's frame rate.
-        </ul>
-        <p>
-            Making this change will help synchronize the physics simulation with the frame rate, ensuring smoother character movement and avoiding jittering issues.
-        </p>
-        <br>
-        <img class="img-large img-bottom-spacing" src="../IMAGES/_LOCOMOTION-SYSTEM/ProjectSettings.png" alt="ProjectSettings">
-        <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/ProjectSettingsUpdate.png" alt="ProjectSettingsUpdate">
         <br>
         <h2 id="horizontal-movement">Horizontal Movement</h2>
         <p>
