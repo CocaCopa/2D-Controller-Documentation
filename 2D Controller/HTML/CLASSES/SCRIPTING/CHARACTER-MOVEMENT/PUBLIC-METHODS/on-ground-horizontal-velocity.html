@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnGroundHorizontalVelocity</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../character-movement.html">CharacterMovement</a>.OnGroundHorizontalVelocity</h1>
+        <h2>Declaration</h2>
+        <p>public <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> <b>OnGroundHorizontalVelocity</b>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> <b>moveInput</b>);</p>
+        <br>
+        <div class="table-division">
+            <span class="table-title">Parameters</span>
+            <table>
+                <tr>
+                    <td class="label"><b>moveInput</b></td>
+                    <td class="description">Player's input</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <h2>Returns</h2>
+        <p>
+            A vector with the calculated X axis velocity.
+        </p>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Calculates the velocity exclusively along the X axis. Best used when the character is grounded.
+            <br><br>
+            This method ensures smooth and responsive movement by dynamically adjusting the direction and speed of the character based on the given input. The precise
+            control it offers contributes to a more seamless interaction with the game environment. Overall, it enhances the character's grounded movement for a more
+            immersive gameplay experience.
+        </p>
+        <br>
+        <p>
+            Here is an example of how you can utilize the method:
+        </p>
+<pre class="code-block">
+using UnityEngine;
+using CharacterController2D.LocomotionSystem;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>), typeof(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>), typeof(<a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
+{
+    private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a> characterRb;
+    private <a class="redirect-link" href="../character-movement.html">CharacterMovement</a> movement;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterRb = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>&gt;();
+        movement = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        float horizontalInput = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxisRaw.html">Input.GetAxisRaw</a>("Horizontal");
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> vectorInput = new <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a>(horizontalInput, 0f);
+
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> horizontalVelocity = movement.<b>OnGroundHorizontalVelocity</b>(vectorInput);
+        characterRb.velocity = horizontalVelocity;
+    }
+}
+</pre>
+    </div>
+</body>

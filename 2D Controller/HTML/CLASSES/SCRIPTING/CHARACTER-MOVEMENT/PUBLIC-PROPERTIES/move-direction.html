@@ -32,17 +32,70 @@
         </p>
         <br>
         <p>
-        Unfortunately, providing a specific example demonstrating when and how to update the value of <b>MoveDirection</b> is not feasible here, as it requires a custom action
-        to precede it. Instead of presenting an example in this context, please refer to the <b>CharacterDash_OnDashDistanceCovered</b> event listener in the
-        <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> script. Navigate to your project files:
-        <br>
-        <b>Assets -> 2D Character Controller -> _Scripts -> Character -> Controllers -> HumanoidController.cs</b>
-        <br> <br>
-        When the character executes a dash, the <b>MoveDirection</b> property is updated with the value of the character's right direction
-        (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform-right.html">transform.right</a>). This is done because it is possible for your
-        character to jump, running toward the left direction, but the dash could be performed in the right direction and vice versa. This would result to your character
-        travelling toward the right direction as expected, but as soon as the dash was completed, they would change their travel direction again, to the left direction.
-        <br>Updating the value of the <b>MoveDirection</b> property accordingly, solves this issue.
+            In the example below, the <a class="redirect-link" href="../../CHARACTER-DASH/character-dash.html">CharacterDash</a> class will be utilized. After
+            completing the dash action, the move direction property will be adjusted to match the character's facing direction. This adjustment is crucial in
+            scenarios where the character moves left, jumps, turns to face right, and then dashes. Without this correction, the character would continue moving
+            left after dashing, rather than in the new direction they're facing, which is to the right.
         </p>
-    </div>
+<pre class="code-block">
+using UnityEngine;
+using CharacterController2D.LocomotionSystem;
+using CharacterController2D.Core;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>), typeof(<a class="redirect-link" href="../../CHARACTER-DASH/character-dash.html">CharacterDash</a>), typeof(<a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a> characterRb;
+    private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    private <a class="redirect-link" href="../character-movement.html">CharacterMovement</a> characterMovement;
+    private <a class="redirect-link" href="../../CHARACTER-DASH/character-dash.html">CharacterDash</a> characterDash;
+    private <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private float characterHeight;
+    
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterRb = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>&gt;();
+        m_Collider = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a>&gt;();
+        characterMovement = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>&gt;();
+        characterDash = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../../CHARACTER-DASH/character-dash.html">CharacterDash</a>&gt;();
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>&gt;();
+        
+        characterHeight = m_Collider.bounds.size.x;
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html">Start</a>()
+    {
+        characterDash.<a class="redirect-link" href="../../CHARACTER-DASH/EVENTS/on-dash-distance-covered.html">OnDashDistanceCovered</a> += CharacterDash_OnDashDistanceCovered;
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        float moveDirection = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxisRaw.html">Input.GetAxisRaw</a>("Horizontal");
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> moveInput = new <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a>(moveDirection, 0f);
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a> horizontalVelocity = characterMovement.<a class="redirect-link" href="../../CHARACTER-MOVEMENT/PUBLIC-METHODS/on-ground-horizontal-velocity.html">OnGroundHorizontalVelocity</a>(moveInput);
+        characterRb.velocity = horizontalVelocity;
+
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.UpArrow.html">KeyCode.UpArrow</a>))
+        {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> jumpVelocity = characterMovement.<a class="redirect-link" href="../PUBLIC-METHODS/vertical-velocity.html">VerticalVelocity</a>(false);
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a> velocity = characterRb.velocity;
+            velocity.y = jumpVelocity.y;
+            characterRb.velocity = velocity; 
+        }
+
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.LeftShift.html">KeyCode.LeftShift</a>))
+        {
+            characterDash.<a class="redirect-link" href="../../CHARACTER-DASH/PUBLIC-METHODS/dash.html">Dash</a>(characterHeight, envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/ground-check.html">GroundCheck</a>());
+        }
+    }
+
+    private void CharacterDash_OnDashDistanceCovered(object sender, CharacterDash.OnDashDistanceCoveredEventArgs e)
+    {
+        characterMovement.<a class="redirect-link" href="../PUBLIC-PROPERTIES/current-speed.html">CurrentSpeed</a> = characterMovement.<a class="redirect-link" href="../PUBLIC-PROPERTIES/top-speed.html">TopSpeed</a>;
+        characterMovement.<b>MoveDirection</b> = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform-right.html">transform.right</a>;
+    }
+}
+</div>
 </body>
+</html>

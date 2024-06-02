@@ -28,47 +28,65 @@
             This property represents the current speed of your character.
             <br> <br>
             It is important to note that the <b>CharacterMovement</b> class operates independently of external changes in your character's speed. In the
-            event of a sudden velocity change outside of this script, it is crucial to manually adjust the <b>CurrentSpeed</b> property accordingly.
+            event of a sudden velocity change outside of this script, it is crucial to manually adjust the <b>CurrentSpeed</b> property accordingly in
+            order to avoid unwanted behaviour.
         </p>
         <br>
         <p>
-            In this example, the provided class inherits from <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>
-            and is set up to let you move your gameObject in your scene. It is assumed that the <b>Example</b> class is attached to the same gameObject as the
-            <b>CharacterMovement</b> class:
+            In the example below, the <a class="redirect-link" href="../../CHARACTER-DASH/character-dash.html">CharacterDash</a> class will be utilized.
+            After the dash action is completed, the character's current speed will be clamped to ensure it does not exceed the predefined maximum speed.
         </p>
 <pre class="code-block">
 using UnityEngine;
+using CharacterController2D.LocomotionSystem;
+using CharacterController2D.Core;
 
-[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>))]
-public class Example : <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> 
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>), typeof(<a class="redirect-link" href="../../CHARACTER-DASH/character-dash.html">CharacterDash</a>))]
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>), typeof(<a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
+    private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a> characterRb;
+    private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
     private <a class="redirect-link" href="../character-movement.html">CharacterMovement</a> characterMovement;
+    private <a class="redirect-link" href="../../CHARACTER-DASH/character-dash.html">CharacterDash</a> characterDash;
+    private <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+
+    private float characterHeight;
     
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
     {
-        characterMovement = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&LeftAngleBracket;<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>&RightAngleBracket;();
+        characterRb = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>&gt;();
+        m_Collider = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a>&gt;();
+        characterMovement = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>&gt;();
+        characterDash = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../../CHARACTER-DASH/character-dash.html">CharacterDash</a>&gt;();
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>&gt;();
+        
+        characterHeight = m_Collider.bounds.size.x;
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html">Start</a>()
+    {
+        characterDash.<a class="redirect-link" href="../../CHARACTER-DASH/EVENTS/on-dash-distance-covered.html">OnDashDistanceCovered</a> += CharacterDash_OnDashDistanceCovered;
     }
 
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        Vector2 moveDirection = Input.GetAxis("Horizontal");
-        <a class="redirect-link" href="../../HUMANOID-CONTROLLER/PUBLIC-METHODS/change-horizontal-velocity.html">ChangeHorizontalVelocity</a>(moveDirection);
-        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("The current speed of your character is: " + characterMovement.CurrentSpeed + " Unity units per second");
+        float moveDirection = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxisRaw.html">Input.GetAxisRaw</a>("Horizontal");
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> moveInput = new <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a>(moveDirection, 0f);
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a> horizontalVelocity = characterMovement.<a class="redirect-link" href="../../CHARACTER-MOVEMENT/PUBLIC-METHODS/on-ground-horizontal-velocity.html">OnGroundHorizontalVelocity</a>(moveInput);
+        characterRb.velocity = horizontalVelocity;
+
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.LeftShift.html">KeyCode.LeftShift</a>))
+        {
+            characterDash.<a class="redirect-link" href="../../CHARACTER-DASH/PUBLIC-METHODS/dash.html">Dash</a>(characterHeight, envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/ground-check.html">GroundCheck</a>());
+        }
+    }
+
+    private void CharacterDash_OnDashDistanceCovered(object sender, CharacterDash.OnDashDistanceCoveredEventArgs e)
+    {
+        characterMovement.<b>CurrentSpeed</b> = characterMovement.<a class="redirect-link" href="../PUBLIC-PROPERTIES/top-speed.html">TopSpeed</a>;
     }
 }
-</pre>
-        <br>
-        <p>
-        Unfortunately, providing a specific example demonstrating when and how to update the value of <b>CurrentSpeed</b> is not feasible here, as it requires a custom action
-        to precede it. Instead of presenting an example in this context, please refer to the <b>CharacterDash_OnDashDistanceCovered</b> event listener in the
-        <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> script. Navigate to your project files:
-        <br>
-        <b>Assets -> 2D Character Controller -> _Scripts -> Character -> Controllers -> HumanoidController.cs</b>
-        <br> <br>
-        When the character executes a dash, their speed surpasses the designated <a class="redirect-link" href="top-speed.html">TopSpeed</a>. This is the moment when you
-        should ensure that CurrentSpeed reflects this change. Neglecting this step could lead to undesired outcomes; for instance, if the character dashes immediately
-        after jumping, with a horizontal velocity of 0, without updating the <b>CurrentSpeed</b> value, the character would end up with a speed of 0 when the dash is completed,
-        instead of maintaining their momentum. The update of the <b>CurrentSpeed</b> value resolves this issue.
-        </p>
-    </div>
+</div>
 </body>
+</html>

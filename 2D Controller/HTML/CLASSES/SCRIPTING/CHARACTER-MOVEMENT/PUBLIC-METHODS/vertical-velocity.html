@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerticalVelocity</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../character-movement.html">CharacterMovement</a>.VerticalVelocity</h1>
+        <h2>Declaration</h2>
+        <p>public <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> <b>VerticalVelocity</b>(bool <b>wallJump</b>);</p>
+        <br>
+        <div class="table-division">
+            <span class="table-title">Parameters</span>
+            <table>
+                <tr>
+                    <td class="label"><b>wallJump</b></td>
+                    <td class="description">True, if your character is performing a jump against a wall.</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <h2>Returns</h2>
+        <p>
+            A vector with the calculated velocity for the Y axis.
+        </p>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Calculates the velocity exclusively along the Y axis. Handles your character's jump.
+            <br><br>
+            Calculates the character's vertical velocity for jumps, differentiating between regular jumps and wall jumps to provide appropriate vertical movement.
+            For wall jumps, it adjusts the direction and strength based on predefined values. This ensures the character can properly rebound off walls or perform
+            standard jumps.
+        </p>
+        <br>
+        <p>
+            In the example below, you can see how the function can be utilized. Keep in mind that you may need to adjust the returned vector to achieve your desired
+            result. For a standard jump, you should modify the X value of the return vector to preserve the character's horizontal speed. For a wall jump, the returned
+            vector value can be used directly.
+        </p>
+<pre class="code-block">
+using UnityEngine;
+using CharacterController2D.LocomotionSystem;
+using CharacterController2D.Core;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>), typeof(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a>), typeof(<a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
+{
+    private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a> characterRb;
+    private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    private <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+    private <a class="redirect-link" href="../character-movement.html">CharacterMovement</a> movement;
+
+    private bool isWallSliding = false;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterRb = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>&gt;();
+        movement = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>&gt;();
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>&gt;();
+        envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/ground-check.html">GroundCheck</a>())
+        {
+            if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.Space.html">KeyCode.Space</a>))
+            {
+                characterRb.velocity = CalculateJump();
+            }
+        }
+    }
+
+    private Vector2 CalculateJump()
+    {
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> jumpVelocity = movement.<b>VerticalVelocity</b>(isWallSliding);
+        if (isWallSliding) {
+            return jumpVelocity;
+        }
+        else {
+            <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> verticalVelocity = characterRb.velocity;
+            verticalVelocity.y = jumpVelocity.y;
+            return verticalVelocity;
+        }
+    }
+}
+</pre>
+    </div>
+</body>

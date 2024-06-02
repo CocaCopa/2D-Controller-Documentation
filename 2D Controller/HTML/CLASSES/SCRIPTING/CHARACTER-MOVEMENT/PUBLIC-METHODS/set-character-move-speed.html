@@ -33,11 +33,12 @@
         </p>
 <pre class="code-block">
 using UnityEngine;
+using CharacterController2D.LocomotionSystem;
 
 [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
 {
-    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private CharacterMovement characterMovement;
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../character-movement.html">CharacterMovement</a> characterMovement;
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/TooltipAttribute.html">Tooltip</a>("Assigned values greater than 1 will result in buffing the speed, while values below 1 will nerf the speed instead.")]
     [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private float speedBuffMultiplier;
     

@@ -29,11 +29,6 @@
             <br><br>
             To utilize the component in your Unity project, proceed by attaching the script to the <b>root</b> object of your character in the
             Unity Editor, and then configure the parameters exposed in the Inspector to customize the character's movement behaviour.
-            <br><br>
-            While the script can operate independently without any required components, exercise caution when altering the <b>movement speed</b>
-            or <b>direction</b> of your character from external sources at runtime. It's crucial to inform the script of any sudden changes that
-            occur outside of it. Failure to do so may result in unexpected behaviour and cause your character to deviate from its intended
-            functionality. (See also: <a class="redirect-link" href="../../SCRIPTING/CHARACTER-MOVEMENT/character-movement.html">Scripting</a>)
         </p>
         <h2>Inspector</h2>
         <img src="../../../../IMAGES/CHARACTER-MOVEMENT/CharacterMovement.png" alt="CharacterMovement_Inspector">
@@ -89,6 +84,10 @@
             <tr>
                 <td class="label"><b>OnAirEvaluationSpeed</b></td>
                 <td class="description">How fast should the 'on-air' acceleration curves be evaluated.</td>
+            </tr>
+            <tr>
+                <td class="label"><b>SpeedResetOnWallHit</b></td>
+                <td class="description">When your character is airborne and collides with a wall, their speed will instantly reset to 0, causing a complete loss of momentum.</td>
             </tr>
         </table>
         <br>

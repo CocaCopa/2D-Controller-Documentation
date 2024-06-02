@@ -71,36 +71,46 @@
         </p>
 <pre class="code-block">
 using UnityEngine;
+using CharacterController2D.LocomotionSystem;
+using CharacterController2D.Core;
 
 [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>), typeof(<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>), typeof(<a class="redirect-link" href="../character-ledge-grab.html">CharacterLedgeGrab</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
 {
-    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
-    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
-    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../character-ledge-grab.html">CharacterLedgeGrab</a> characterLedgeGrab;
+    private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    private <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+    private <a class="redirect-link" href="../character-ledge-grab.html">CharacterLedgeGrab</a> characterLedgeGrab;
 
+    private bool exitLedgeGrab;
+    
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
     {
+        characterLedgeGrab = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-ledge-grab.html">CharacterLedgeGrab</a>&gt;();
+        m_Collider = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a>&gt;();
         envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>&gt;();
         envQuery.<a class="redirect-link" href="../PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
     }
 
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html">Start</a>()
+    {
+        characterLedgeGrab.<a class="redirect-link" href="../EVENTS/on-ledge-climb-completed.html">OnLedgeClimbCompleted</a> += CharacterLedgeGrab_OnLedgeClimbCompleted;
+    }
+
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
-        bool ledgeDetected = envQuery.LedgeGrabCheck>(ref exitLedgeGrab, out <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a> ledgePosition);
+        bool ledgeDetected = envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/ledge-grab-check.html">LedgeGrabCheck</a>(ref exitLedgeGrab, out <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a> ledgePosition);
         
         if (!exitLedgeGrab && ledgeDetected)
         {
-            characterLedgeGrab.<b>LedgeClimb</b>(ledgePosition, out bool isLedgeClimbing, out <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a> endPosition);
-            if (isLedgeClimbing == false)
-            {
-                characterLedgeGrab.<a class="redirect-link" href="exit-ledge-grab-state.html">ExitLedgeGrabState</a>();
-                <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform-position.html">transform.position</a> = endPosition;
-
-                // This will force the above 'if' statement to not be executed, preventing the character from re-entering 'ledge grab' state.
-                exitLedgeGrab = true;
-            }
+            characterLedgeGrab.<b>LedgeClimb</b>(ledgePosition, out _);
         }
+    }
+
+    private void CharacterLedgeGrab_OnLedgeClimbCompleted(object sender, System.EventArgs e) {
+        characterLedgeGrab.<a class="redirect-link" href="exit-ledge-grab-state.html">ExitLedgeGrabState</a>();
+
+        // This will force the above 'if' statement to not be executed, preventing the character from re-entering 'ledge grab' state.
+        exitLedgeGrab = true;
     }
 }
 </pre>

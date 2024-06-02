@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnAirHorizontalVelocity</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../character-movement.html">CharacterMovement</a>.OnAirHorizontalVelocity</h1>
+        <h2>Declaration</h2>
+        <p>public <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> <b>OnAirHorizontalVelocity</b>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> <b>moveInput</b>);</p>
+        <br>
+        <div class="table-division">
+            <span class="table-title">Parameters</span>
+            <table>
+                <tr>
+                    <td class="label"><b>moveInput</b></td>
+                    <td class="description">Player's input</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <h2>Returns</h2>
+        <p>
+            A vector with the calculated velocity for the X axis only, based on the move speed the character had when grounded.
+        </p>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Calculates the velocity exclusively along the X axis. Handles your character's aerial movement.
+            <br><br>
+            This method calculates the player's horizontal velocity along the X axis when the character is airborne. It handles various
+            scenarios such as wall collisions and direction changes based on the player's input. Using the player's input and environmental
+            feedback, the method adapts the character's speed and direction, ensuring fluid and responsive aerial movement.
+        </p>
+        <br>
+        <p>
+            In the example below, the <a class="redirect-link" href="on-ground-horizontal-velocity.html">OnGroundHorizontalVelocity</a> will be
+            utilized as well for convinience. You can place your character object on top of a platform, let them fall off the edge, and inspect
+            the airborne behavior of your character.
+        </p>
+<pre class="code-block">
+using UnityEngine;
+using CharacterController2D.LocomotionSystem;
+using CharacterController2D.Core;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>), typeof(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a>), typeof(<a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
+{
+    private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a> characterRb;
+    private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    private <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+    private <a class="redirect-link" href="../character-movement.html">CharacterMovement</a> movement;
+
+    private bool isGrounded;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        characterRb = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>&gt;();
+        movement = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>&gt;();
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>&gt;();
+        envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        isGrounded = envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/ground-check.html">GroundCheck</a>();
+
+        float horizontalInput = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxisRaw.html">Input.GetAxisRaw</a>("Horizontal");
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> vectorInput = new <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a>(horizontalInput, 0f);
+
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> horizontalVelocity = isGrounded
+        ? movement.<a class="redirect-link" href="on-ground-horizontal-velocity.html">OnGroundHorizontalVelocity</a>(vectorInput)
+        : movement.<b>OnAirHorizontalVelocity</b>(vectorInput);
+        characterRb.velocity = horizontalVelocity;
+    }
+}
+</pre>
+    </div>
+</body>

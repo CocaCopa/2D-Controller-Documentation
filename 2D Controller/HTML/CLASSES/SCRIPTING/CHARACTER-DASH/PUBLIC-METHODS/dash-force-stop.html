@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashForceStop</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../character-dash.html">CharacterDash</a>.DashForceStop</h1>
+        <h2>Declaration</h2>
+        <p>public void <b>DashForceStop</b>();</p>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Forces your character to stop the dash action.
+            <br><br>
+            This method is particularly useful when you need to immediately stop the dash of your character before the set distance is
+            completed. For instance, if your character is dashing and gets killed, the dash action might not complete properly, causing
+            your character to get stuck. In such cases, calling this function can prevent the issue by ensuring the dash is halted correctly.
+        </p>
+        <br>
+        <p>
+            In the example below, the dash will be forcibly stopped once the character has no more health points remaining.
+        </p>
+<pre class="code-block">
+using UnityEngine;
+using CharacterController2D.LocomotionSystem;
+using CharacterController2D.CombatSystem;
+
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-dash.html">CharacterDash</a>), typeof(<a class="redirect-link" href="../../ENTITY-HEALTH/entity-health.html">EntityHealth</a>))]
+public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
+{
+    private <a class="redirect-link" href="../../ENTITY-HEALTH/entity-health.html">EntityHealth</a> entityHealth;
+    private <a class="redirect-link" href="../character-dash.html">CharacterDash</a> characterDash;
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
+    {
+        entityHealth = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../../ENTITY-HEALTH/entity-health.html">EntityHealth</a>&gt;();
+        characterDash = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Component.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-dash.html">CharacterDash</a>&gt;();
+    }
+
+    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html">Start</a>()
+    {
+        entityHealth.<a class="redirect-link" href="../../ENTITY-HEALTH/EVENTS/on-entity-death.html">OnEntityDeath</a> += EntityHealth_OnEntityDeath;
+    }
+
+    private void EntityHealth_OnEntityDeath(object sender, System.EventArgs e)
+    {
+        characterDash.<b>DashForceStop</b>();
+    }
+}
+</pre>
+</div>

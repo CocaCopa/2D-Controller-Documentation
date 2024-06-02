@@ -62,6 +62,18 @@
             </li>
         </ul>
         <br>
+        <h2>Q: When I use collision callbacks to access the HumanoidController, Unity can't find the component and throws an error. How can I fix this?</h2>
+        <ul class="answer-division">
+            <li class="answer-li">
+                <b>A:</b>
+            </li>
+            <li class="answer-li">
+                The root character object doesn't have colliders attached; the asset uses separate colliders in child objects. To access the HumanoidController class in your collision
+                callback, use <b>collision.transform.root.GetComponent&lt;HumanoidController&gt;()</b> instead of <b>collision.GetComponent&lt;HumanoidController&gt;()</b>. This ensures you're referencing the
+                    root object containing the HumanoidController component.
+            </li>
+        </ul>
+        <br>
         <h2>Q: Why is my character not facing the direction they are moving towards?</h2>
         <ul class="answer-division">
             <li class="answer-li">
@@ -127,3 +139,4 @@
         </ul>
     </div>
 </body>
+</html>

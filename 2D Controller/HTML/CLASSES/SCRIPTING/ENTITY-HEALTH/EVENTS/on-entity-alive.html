@@ -38,6 +38,7 @@
         </p>
 <pre class="code-block">
 using UnityEngine;
+using CharacterController2D.CombatSystem;
 
 [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../entity-health.html">EntityHealth</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
@@ -62,7 +63,7 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
     {
         if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.Escape.html">KeyCode.Escape</a>))
         {
-            healthScript.<a class="redirect-link" href="../PUBLIC-METHODS/alive.html">Alive</a>();
+            healthScript.<a class="redirect-link" href="../PUBLIC-METHODS/entity-respawned.html">EntityRespawned</a>();
         }
     }
 

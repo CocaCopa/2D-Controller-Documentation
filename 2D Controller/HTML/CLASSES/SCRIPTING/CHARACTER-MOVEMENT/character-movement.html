@@ -24,10 +24,20 @@
             <h1>CharacterMovement</h1>
             <a class="manual-or-scripting-button" href="../../MANUAL/CHARACTER-MOVEMENT/character-movement.html">SWITCH TO MANUAL</a>
         </div>
+        <h2>Dependencies</h2>
+        <p>
+            <p><b style="text-decoration: underline;">Required</b> Component: <a class="redirect-link" href="../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a></p>
+        </p>
+        <br>
         <h2>Description</h2>
         <p>
             This class manages your character's movement, seamlessly combining animation curves with Unity's <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>
             component. This dynamic setup empowers you to create various types of movement, whether snappy or smooth.
+            <br><br>
+            While the script can operate independently without any required components, exercise caution when altering the <b>movement speed</b>
+            or <b>direction</b> of your character from external sources at runtime. It's crucial to inform the script of any sudden changes that
+            occur outside of it. Failure to do so may result in unexpected behaviour and cause your character to deviate from its intended
+            functionality.
         </p>
         <br>
         <div class="table-division">
@@ -53,7 +63,27 @@
             <table>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/set-character-move-speed.html">SetCharacterMoveSpeed</a></td>
-                    <td>Let's you change the default top speed of your character.</td>
+                    <td>Lets you change the default top speed of your character.</td>
+                </tr>
+                <tr>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/on-ground-horizontal-velocity.html">OnGroundHorizontalVelocity</a></td>
+                    <td>Calculates the velocity exclusively along the X axis. Best used when the character is grounded.</td>
+                </tr>
+                <tr>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/on-air-horizontal-velocity.html">OnAirHorizontalVelocity</a></td>
+                    <td>Calculates the velocity exclusively along the X axis. Handles your character's aerial movement.</td>
+                </tr>
+                <tr>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/vertical-velocity.html">VerticalVelocity</a></td>
+                    <td>Calculates the velocity exclusively along the Y axis. Handles your character's jump.</td>
+                </tr>
+                <tr>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/reset-on-ground-values.html">ResetOnGroundValues</a></td>
+                    <td>Resets all values that calculate grounded-movement to 0.</td>
+                </tr>
+                <tr>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/reset-on-air-values.html">ResetOnAirValues</a></td>
+                    <td>Resets all values that calculate aerial-movement to 0.</td>
                 </tr>
             </table>
         </div>

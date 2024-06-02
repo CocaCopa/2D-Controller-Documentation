@@ -27,7 +27,7 @@
             <span class="table-title">Event Arguments</span>
             <table>
                 <tr>
-                    <td class="label"><b>targetDashPosition</b></td>
+                    <td class="label"><b>dashEndPosition</b></td>
                     <td class="description">The claculated position the character should be at, once the dash is completed.</td>
                 </tr>
             </table>
@@ -37,10 +37,8 @@
         <p>
             Triggered when the dash action has been completed.
             <br> <br>
-            Subscribe to this event to be notified when your character has completed a dash. You can utilize the event's argument to adjust your character's position, in order to avoid
-            overshooting the specified dash distance.
-
-
+            Subscribe to this event to be notified when your character has completed a dash. You can utilize the event's argument 
+            to spawn particles when the dash action is completed or any other gameplay-related action.
         </p>
         <br>
         <p>
@@ -48,15 +46,28 @@
         </p>
 <pre class="code-block">
 using UnityEngine;
+using CharacterController2D.LocomotionSystem;
+using CharacterController2D.Core;
 
 [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-dash.html">CharacterDash</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
 {
-    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../character-dash.html">CharacterDash</a> characterDash;
-
+    private <a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a> m_Collider;
+    private <a class="redirect-link" href="../character-dash.html">CharacterDash</a> characterDash;
+    private <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
+    
+    private float characterHeight;
+    private bool isGrounded;
+    
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
     {
+        [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.html">GameObject</a> dashEndParticles;
+
+        m_Collider = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a>&gt;();
         characterDash = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-dash.html">CharacterDash</a>&gt;();
+        envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>&gt;();
+
+        characterHeight = m_Collider.bounds.size.y;
     }
 
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html">Start</a>()
@@ -66,15 +77,17 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
 
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
+        isGrounded = envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/ground-check.html">GroundCheck</a>();
+
         if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.LeftShift.html">KeyCode.LeftShift</a>))
         {
-            characterDash.<a class="redirect-link" href="../PUBLIC-METHODS/dash.html">Dash</a>();
+            characterDash.<a class="redirect-link" href="../PUBLIC-METHODS/dash.html">Dash</a>(characterHeight, isGrounded);
         }
     }
 
     private void Dash_OnDashDistanceCovered(object sender, CharacterDash.OnDashDistanceCoveredEventArgs e)
     {
-        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Transform-position.html">transform.position</a> = e.targetDashPosition;
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html">Instantiate</a>(dashEndParticles, e.dashEndPosition, <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Quaternion-identity.html">Quaternion.identity</a>);
     }
 }
 </pre>

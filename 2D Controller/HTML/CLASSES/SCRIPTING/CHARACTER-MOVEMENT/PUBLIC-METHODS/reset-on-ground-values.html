@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TopSpeed</title>
+    <title>ResetOnGroundValues</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,32 +19,29 @@
     <iframe src="../../../../navigation-bar.html"></iframe>
 
     <div class="main-page-division">
-        <h1><a class="redirect-link" href="../character-movement.html">CharacterMovement</a>.TopSpeed</h1>
+        <h1><a class="redirect-link" href="../character-movement.html">CharacterMovement</a>.ResetOnGroundValues</h1>
         <h2>Declaration</h2>
-        <p>public float <b>TopSpeed</b> { get; }</p>
+        <p>public void <b>ResetOnGroundValues</b>();</p>
         <br>
         <h2>Description</h2>
         <p>
-            The character's set movement speed.
-            <br> <br>
-            This property represents the character's maximum movement speed within the game world. It defines the upper limit of how fast the character can move when traversing
-            the environment. Adjusting this property allows you to fine-tune the character's mobility and responsiveness, providing control over the overall pace and
-            fluidity of movement during gameplay.
+            Resets all values that calculate grounded-movement to 0.
+            <br><br>
+            This method ensures that the character's movement is properly reset, eliminating
+            residual speed and preparing the system for fresh input in the next frame.
+        </p>
+        <br>
+        <p>
+            In the example below, the function will be used when the character respawns, utilizing the EntityHealth class for convenience.
         </p>
 <pre class="code-block">
 using UnityEngine;
-using CharacterController2D.Locomotion;
+using CharacterController2D.LocomotionSystem;
 
 [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a> 
 {
-    private <a class="redirect-link" href="../character-movement.html">CharacterMovement</a> characterMovement;
-
-    private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
-    {
-        characterMovement = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>&gt;();
-        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Debug.Log.html">Debug.Log</a>("The maximum speed that your character has been set to reach is: " + characterMovement.<b>TopSpeed</b> + " Unity units per second");
-    }
+    
 }
 </pre>
     </div>
