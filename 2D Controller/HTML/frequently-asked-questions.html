@@ -69,8 +69,8 @@
             </li>
             <li class="answer-li">
                 The root character object doesn't have colliders attached; the asset uses separate colliders in child objects. To access the HumanoidController class in your collision
-                callback, use <b>collision.transform.root.GetComponent&lt;HumanoidController&gt;()</b> instead of <b>collision.GetComponent&lt;HumanoidController&gt;()</b>. This ensures you're referencing the
-                    root object containing the HumanoidController component.
+                callback, use <b>collision.transform.root.GetComponent&lt;HumanoidController&gt;();</b> instead of <b>collision.GetComponent&lt;HumanoidController&gt;();</b>. This ensures
+                you're referencing the <b>root</b> object containing the HumanoidController component.
             </li>
         </ul>
         <br>
@@ -123,6 +123,8 @@
             </li>
             <li class="answer-li">
                 Unfortunately, the combat system within the asset <b>does not support</b> charge attacks in a combo sequence. Combo attacks can only consist of normal attacks.
+                <br>
+                With enough demand this is subject to change.
             </li>
         </ul>
         <br>

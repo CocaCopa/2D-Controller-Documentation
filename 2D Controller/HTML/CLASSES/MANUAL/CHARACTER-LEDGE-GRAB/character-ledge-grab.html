@@ -52,12 +52,15 @@
                 <td class="description">
                     Transform of the character's vertical collider.
                     <br>
-                    If you do not intend to offset the collider's position when the character is grabbing a ledge, you can leave this field empty.
+                    It will be offseted based on the <b>OffsetSprite</b> value to match the visual position of the character.
                 </td>
             </tr>
             <tr>
                 <td class="label"><b>LedgeClimbEndTransform</b></td>
-                <td class="description">A <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Physics.Raycast.html">Raycast</a> will be fired downward to determine the precise location where the character should be positioned after performing the ledge climb.</td>
+                <td class="description">A <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Physics.Raycast.html">Raycast</a> will be fired downward to determine
+                    the precise location where the character should be positioned after performing the ledge climb. Position this transform to the location that your character should
+                    be, when the ledge-climb action is completed.
+                </td>
             </tr>
         </table>
         <br>
@@ -102,10 +105,6 @@
                     relative to the edge. Adjusting the offset will ensure that every time your character hits a ledge, they will be positioned correctly.
                     <b>Note that the actual position of the character object, will not be affected.</b>
                 </td>
-            </tr>
-            <tr>
-                <td class="label"><b>OffsetColliderHeight</b></td>
-                <td class="description">Offset the character's collider if it doesn't correspond to the player's position.</td>
             </tr>
         </table>
     </div>

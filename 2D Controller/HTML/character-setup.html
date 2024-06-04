@@ -29,6 +29,7 @@
                 <li><a class="redirect-link" href="#character-object-setup">Character Object Setup</a></li>
                 <li><a class="redirect-link" href="#character-animations-setup">Character Animations Setup</a></li>
                 <li><a class="redirect-link" href="#character-animations-setup-single-jump-animation">Character Animations Setup - Single Jump Animation</a></li>
+                <li><a class="redirect-link" href="#animation-clips-rebind">Animation Clips Rebind</a></li>
                 <li><a class="redirect-link" href="#mechanics-setup">Mechanics Setup</a></li>
             </ul>
         </p>
@@ -45,18 +46,26 @@
             <li>
                 <b>Assigning the Default Character Sprite:</b>
                 <br>
-                Navigate to the SpriteRenderer component within the <b>CharacterTemplate</b> in your scene. This component can be found under <b>CharacterTemplate -> SpriteHolder -> Sprites</b>.
-                Here, select and reference your desired character sprite to serve as the default appearance of your character.
+                Navigate to the SpriteRenderer component within the <b>CharacterTemplate</b> in your scene. This component can be found under <b>CharacterTemplate -> Animatable -> SpriteHolder -> Sprites</b>.
+                Here, select and reference your desired character sprite to serve as the default appearance of your character. You can also scale the <b>Sprites</b> object if you wish to change
+                the size of your character.
             </li>
             <br>
             <li>
                 <b>Aligning Colliders:</b>
                 <br>
-                Ensure that your selected sprite aligns properly with the character's colliders. You can find the colliders under <b>CharacterTemplate -> Colliders -> Horizontal / Vertical</b>.
+                Ensure that your selected sprite aligns properly with the character's colliders. You can find the colliders under <b>CharacterTemplate -> Animatable -> Colliders -> Horizontal / Vertical</b>.
                 Specifically, focus on the <b>Vertical</b> collider as it should have no offset set in the X axis to ensure proper alignment. The <b>Horizontal</b> collider, on the other hand,
-                generally does not require adjustment for alignment, but you may still review it for optimal positioning if needed.
+                generally does not require any special adjustment for alignment, but you may still review it for optimal positioning if needed.
                 <br><br>
                 <b>Note:</b> For more detailed information on the colliders and their usage, refer to <b>CharacterEnvironmentalQuery.</b><a class="redirect-link" href="CLASSES/SCRIPTING/ENV-QUERY/PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>.
+            </li>
+            <br>
+            <li>
+                <b>Layers & Tags:</b>
+                <br>
+                Assign your character to the desired <b>Layer</b> and/or <b>Tag</b>. By default, the assigned layer is set to <b>Ignore Raycast</b> since the asset cannot be destributed with
+                custom layers included.
             </li>
             <br>
             <li>
@@ -92,8 +101,8 @@
             However, <b>unlike the other states</b>, if you lack a distinct animation for double jumping, do not leave the field empty; instead, reference your
             normal jump animation.
             <br><br>
-            <b>Important:</b> Ensure that you reference the newly created animator controller to the animator component field of your character object. You
-            can find this field within the character object under <b>CharacterTemplate -> SpriteHolder -> Sprites</b>.
+            <b style="color: red;">Important:</b> Ensure that you reference the newly created animator controller to the animator component field of your character object. You
+            can find this field within the character object under <b>CharacterTemplate -> Animatable</b>.
         </p>
         <br>
         <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/AnimatorSetup.png" alt="AnimatorSetup">
@@ -105,11 +114,38 @@
             tree settings. From there, you can assign the three animations that make up your jump sequence. The blend tree is pre-configured with default threshold values that should work
             well with any combination of animations.
             <br><br>
-            <b>Note:</b> If you only have a <b>single</b> animation for jumping, you can use the same animation for all three fields in the blend tree. Removing any of the three animation
+            <b style="color: red;">Important:</b> If you only have a <b>single</b> animation for jumping, you can use the same animation for all three fields in the blend tree. Removing any of the three animation
             references may cause unwanted behaviour.
         </p>
         <br>
         <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/JumpBlendTree.png" alt="JumpSetup">
+        <br>
+        <h2 id="animation-clips-rebind">Animation Clips Rebind</h2>
+        <p>
+            By default, Unity expects an <b>Animator</b> component to be attached to the same object as a <b>Sprite Renderer</b> component. This setup allows animation clips to play
+            correctly without additional configuration. However, in this case, the Animator component <b>is not</b> on the same object as the Sprite Renderer. Therefore, the animation clips'
+            paths need to be updated to reflect this change.
+            <br><br>
+            To ensure the <b>Animator</b> component <b>correctly</b> locates the <b>Sprite Renderer</b> in the hierarchy, follow these steps using the <b>provided tool</b> for changing animation
+            clip paths:
+        </p>
+        <ul>
+            <b><li>Backup Animation Clips:</li></b>
+            Make sure to first backup your animation clips of your character.
+            <br><br>
+            <b><li>Select Character Object:</li></b>
+            Select your character in the hierarchy window.
+            <br><br>
+            <b><li>Rebind the Animation Clips:</li></b>
+            With the character selected, head over to <b>Tools -> Rebind Animator Sprites</b> in the top menu.
+            <br>
+            <b style="color: red;">Important:</b> Remember to <b>re-run</b> the tool whenever you add <b>new</b> animation clips to the Animator.
+        </ul>
+        <p>
+            With this setup, you will be able to animate other parts of your character, such as the character collider, alongside the main character animations.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/AnimatorRebind.png" alt="AnimatorRebind">
         <br>
         <h2 id="mechanics-setup">Mechanics Setup</h2>
         <p>
@@ -135,7 +171,7 @@
         </p>
         <ul>
             <li><a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-MOVEMENT/character-movement.html">CharacterMovement</a>: Provides basic movement controls.</li>
-            <li><a class="redirect-link" href="CLASSES/MANUAL/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>: Manages humanoid character behaviours. <b>(Your custom controller)</b></li>
+            <li><a class="redirect-link" href="CLASSES/MANUAL/HUMANOID-CONTROLLER/humanoid-controller.html">CustomControllerTemplate</a>: Manages humanoid character behaviours. <b>(Replace with your custom controller)</b></li>
             <li><a class="redirect-link" href="CLASSES/MANUAL/ENV-QUERY/env-query.html">CharacterEnvironmentalQuery</a>: Facilitates environmental interactions.</li>
         </ul>
         <p>
