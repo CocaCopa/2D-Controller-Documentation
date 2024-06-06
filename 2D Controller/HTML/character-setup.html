@@ -100,6 +100,15 @@
         </p>
         <ul>
             <li>
+                The <b>Wall Slide</b> animation may need some adjustments to appear visually correct. Ensure that when your character is wall sliding,
+                it is properly positioned against the wall. If not, you'll need to adjust your animation clip slightly.
+                <br>
+                A common solution is to <b>animate</b> the "<b>SpriteHolder</b>" child object of the <b>CharacterTemplate</b> along with the wall slide
+                animation clip. This can be found under <b>CharacterTemplate -> Animatable -> SpriteHolder</b>. Move it slightly backward once the animation
+                begins. For reference, you can inspect how the provided player character is set up.
+            </li>
+            <br>
+            <li>
                 The system supports a <b>double jump</b> animation. If your character jumps while in the air, the animator will transition to the double
                 jump state.
                 However, <b>unlike the other states</b>, if you lack a distinct animation for double jumping, do not leave the field empty; instead, reference
