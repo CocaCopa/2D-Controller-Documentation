@@ -42,7 +42,8 @@ using UnityEngine;
 using CharacterController2D.LocomotionSystem;
 using CharacterController2D.Core;
 
-[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>), typeof(<a class="redirect-link" href="../../CHARACTER-DASH/character-dash.html">CharacterDash</a>), typeof(<a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a>))]
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>), typeof(<a class="redirect-link" href="../../CHARACTER-DASH/character-dash.html">CharacterDash</a>), typeof(<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>))]
+[<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/RequireComponent.html">RequireComponent</a>(typeof(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a>), typeof(<a class="redirect-link" href="https://docs.unity3d.com/Manual/class-CapsuleCollider2D.html">CapsuleCollider2D</a>))]
 public class Example : <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a>
 {
     private <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a> characterRb;
@@ -52,6 +53,7 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
     private <a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a> envQuery;
 
     private float characterHeight;
+    private bool isGrounded;
     
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
     {
@@ -61,6 +63,7 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
         characterDash = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../../CHARACTER-DASH/character-dash.html">CharacterDash</a>&gt;();
         envQuery = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>&gt;();
         
+        envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>(m_Collider);
         characterHeight = m_Collider.bounds.size.x;
     }
 
@@ -71,9 +74,13 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
 
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
     {
+        isGrounded = envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/ground-check.html">GroundCheck</a>();
         float moveDirection = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetAxisRaw.html">Input.GetAxisRaw</a>("Horizontal");
         <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a> moveInput = new <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector2.html">Vector2</a>(moveDirection, 0f);
-        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a> horizontalVelocity = characterMovement.<a class="redirect-link" href="../../CHARACTER-MOVEMENT/PUBLIC-METHODS/on-ground-horizontal-velocity.html">OnGroundHorizontalVelocity</a>(moveInput);
+        <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Vector3.html">Vector3</a> horizontalVelocity = isGrounded
+        ? characterMovement.<a class="redirect-link" href="../../CHARACTER-MOVEMENT/PUBLIC-METHODS/on-ground-horizontal-velocity.html">OnGroundHorizontalVelocity</a>(moveInput);
+        : characterMovement.<a class="redirect-link" href="../../CHARACTER-MOVEMENT/PUBLIC-METHODS/on-air-horizontal-velocity.html">OnAirHorizontalVelocity</a>(moveInput);
+
         characterRb.velocity = horizontalVelocity;
 
         if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.UpArrow.html">KeyCode.UpArrow</a>))
@@ -86,7 +93,7 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
 
         if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.LeftShift.html">KeyCode.LeftShift</a>))
         {
-            characterDash.<a class="redirect-link" href="../../CHARACTER-DASH/PUBLIC-METHODS/dash.html">Dash</a>(characterHeight, envQuery.<a class="redirect-link" href="../../ENV-QUERY/PUBLIC-METHODS/ground-check.html">GroundCheck</a>());
+            characterDash.<a class="redirect-link" href="../../CHARACTER-DASH/PUBLIC-METHODS/dash.html">Dash</a>(characterHeight, isGrounded);
         }
     }
 

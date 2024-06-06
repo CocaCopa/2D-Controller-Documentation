@@ -25,7 +25,7 @@
         <br>
         <h2>Description</h2>
         <p>
-            Set a new movement speed (top speed) for your character.
+            Set a new movement speed (<a class="redirect-link" href="../PUBLIC-PROPERTIES/top-speed.html">TopSpeed</a>) for your character.
         </p>
         <br>
         <p>
@@ -44,9 +44,14 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
     
     public bool PlayerHasSpeedBuff { get; set; }
 
+    private float defaultMoveSpeed;
+    private float buffedMoveSpeed;
+
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html">Awake</a>()
     {
         characterMovement = <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/GameObject.GetComponent.html">GetComponent</a>&lt;<a class="redirect-link" href="../character-movement.html">CharacterMovement</a>&gt;();
+        defaultMoveSpeed = characterMovement.<a class="redirect-link" href="../PUBLIC-PROPERTIES/top-speed.html">TopSpeed</a>;
+        buffedMoveSpeed = defaultMoveSpeed * speedBuffMultiplier;
     }
 
     private void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
@@ -54,13 +59,12 @@ public class Example : <a class="redirect-link" href="https://docs.unity3d.com/S
         if (PlayerHasSpeedBuff)
         {
             // Change your character speed based on a multiplier set in the inspector.
-            float newMovementSpeed = characterMovement.<a class="redirect-link" href="../PUBLIC-PROPERTIES/top-speed.html">TopSpeed</a> * speedBuffMultiplier;
-            characterMovement.<b>SetCharacterMoveSpeed</b>(newMovementSpeed);
+            characterMovement.<b>SetCharacterMoveSpeed</b>(buffedMoveSpeed);
         }
         else
         {
             // Revert back to the default speed.
-            characterMovement.<b>SetCharacterMoveSpeed</b>(characterMovement.<a class="redirect-link" href="../PUBLIC-PROPERTIES/top-speed.html">TopSpeed</a>);
+            characterMovement.<b>SetCharacterMoveSpeed</b>(defaultMoveSpeed);
         }
     }
 }

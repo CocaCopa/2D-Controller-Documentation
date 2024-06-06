@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collision Queries Setup</title>
+
+    <link rel="stylesheet" href="../CSS/scroll-bar.css">
+    <link rel="stylesheet" href="../CSS/general.css">
+    <link rel="stylesheet" href="../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../CSS/class-title.css">
+    <link rel="stylesheet" href="../CSS/back-to-top.css">
+</head>
+<body>
+    <iframe src="navigation-bar.html"></iframe>
+    <a class="btn-back-to-top" href="#back-to-top">
+        <span>↑</span>
+    </a>
+
+    <div class="main-page-division">
+        <div class="page-title">
+            <span id="back-to-top">Collision Queries Setup</span>
+        </div>
+        <br>
+        <h2>Quickly jump through sections:</h2>
+        <p>
+            <ul>
+                <li><a class="redirect-link" href="#understanding-the-system">Understanding the System</a></li>
+                <li><a class="redirect-link" href="#setup-transform-references">Setting up the Component - Transform References</a></li>
+                <li><a class="redirect-link" href="#setup-collision-layers">Setting up the Component - Collision Layers</a></li>
+                <li><a class="redirect-link" href="#how-it-works">How it Works</a></li>
+            </ul>
+        </p>
+        <br>
+        <h2 id="understanding-the-system">Understanding the System</h2>
+        <p>
+            The collision queries in the asset are handled by the <a class="redirect-link" href="CLASSES/MANUAL/ENV-QUERY/env-query.html">CharacterEnvironmentalQuery</a>
+            component. It provides the locomotion and combat systems with essential information about the environment surrounding the character. This information allows
+            these systems to determine how the character can behave in the environment. Consequently, the configuration of this component significantly influences the
+            behaviour logic of these systems. <b>Fine-tuning the component needs time and patience.</b> The <b>default</b> values can work well with characters that are
+            that are approximately <b>1.64</b> Unity units <b>tall</b> and <b>0.72</b> Unity units <b>wide</b>.
+        </p>
+        <br>
+        <h2 id="setup-transform-references">Setting up the Component - Transform References</h2>
+        <p>
+            Although the component comes <b>pre-configured</b> within the CharacterTemplate prefab and the provided characters within the asset, it's beneficial to understand
+            how it's set up. For proper functionality, it needs the following references:
+        </p>
+        <ul>
+            <li>
+                <b>Ledge Grab Transform:</b>
+                <br>
+                This should be an empty GameObject, a child of the root object with the component attached. It helps the component identify the preferred position relative
+                to the character for searching a ledge, which is crucial for the Ledge Grab/Climb mechanics.
+            </li>
+            <br>
+            <li>
+                <b>Head/Chest/Feet Transforms:</b>
+                <br>
+                These should also be empty GameObjects, children of the root object with the component attached. They determine the positions of the respective parts of
+                the character. By correctly positioning these transforms, the CharacterEnvironmentalQuery will produce more accurate results.
+            </li>
+        </ul>
+        <p>
+            By correctly positioning these transforms, the CharacterEnvironmentalQuery will produce more accurate results.
+        </p>
+        <br>
+        <img src="../IMAGES/_COLLISION-QUERIES-SETUP/ColQueryTransforms.png" alt="Queries_Transforms">
+        <br>
+        <h2 id="setup-collision-layers">Setting up the Component - Collision Layers</h2>
+        <p>
+            The component allows you to specify which layers the queries should interact with. You have two options for setting the layers:
+        </p>
+        <ul>
+            <li>
+                <b>Use Specified Layer</b>
+                <br>
+                This option lets you pick the layers that the component will consider.
+            </li>
+            <br>
+            <li>
+                <b>Exclude Character</b>
+                <br>
+                With this option, the component will perform casts against all layers except the one the character is set to.
+            </li>
+        </ul>
+        <p>
+            Based on your selected setup, the component will conduct its checks only within the specified layers. This will affect how the mechanics
+            as well as the systems within the asset operate.
+        </p>
+        <br>
+        <img src="../IMAGES/_COLLISION-QUERIES-SETUP/ColQueryLayers.png" alt="Queries_Layers">
+        <br>
+        <h2 id="how-it-works">How it Works</h2>
+        <p>
+            When the component queries the environment, it takes into account the character's <a class="redirect-link" href="CLASSES/SCRIPTING/ENV-QUERY/PUBLIC-METHODS/set-active-collider.html">active collider</a>.
+            This allows the component to remain independent of the character's size, ensuring it works with any size with the same precision. All "<b>size</b>" properties in the inspector represent a percentage based on
+            the collider's size and position.
+            <br><br>
+            For instance, setting a "<b>Size Y</b>" value to <b>0.5f</b> means the cast size will be <b>50%</b> of the character's active <b>collider size</b>. This ensures
+            consistency in queries even if the character's collider size is changed later after fine-tuning the component's values.
+            <br><br>
+            In contrast, <b>distances</b> are calculated in units, as expected. For example, if you set a "<b>Distance</b>" value to <b>1.0f</b>, the cast will be <b>1</b> Unity <b>unit away</b>
+            from the character.
+            <br><br>
+            You can always visualize the casts through the "<b>Debug</b>" section of the component for better clarity and troubleshooting.
+        </p>
+        <br>
+        <img src="../IMAGES/_COLLISION-QUERIES-SETUP/ColQuerySizes&Distances.png" alt="Queries_Sizes&Distances">
+    </div>
+</body>
+</html>

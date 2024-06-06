@@ -83,7 +83,8 @@
             </li>
         </ul>
         <br>
-        <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/CharacterSetup.png" alt="CharacterSetup">
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_CHARACTER-SETUP/CharacterSetup.png" alt="CharacterSetup">
+        <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/CharacterSetupCustomController.png" alt="CharacterSetupCustomController">
         <br>
         <h2 id="character-animations-setup">Character Animations Setup</h2>
         <p>
@@ -95,12 +96,22 @@
             within the controller. If you wish to exclude a particular animation state, it's recommended to leave it empty rather than removing it altogether.
             This helps prevent <b>errors</b> or <b>unintended</b> behaviour.
             <br><br>
-            Additionally, the system supports a <b>double jump</b> animation. If your character jumps while in the air, the animator will transition to the double
-            jump state.
+            <b>Some Notes:</b>
+        </p>
+        <ul>
+            <li>
+                The system supports a <b>double jump</b> animation. If your character jumps while in the air, the animator will transition to the double
+                jump state.
+                However, <b>unlike the other states</b>, if you lack a distinct animation for double jumping, do not leave the field empty; instead, reference
+                your <b>normal jump</b> animation.
+            </li>
             <br>
-            However, <b>unlike the other states</b>, if you lack a distinct animation for double jumping, do not leave the field empty; instead, reference your
-            normal jump animation.
-            <br><br>
+            <li>
+                The system also supports a unique animation for <b>wall jumping</b>. If you do not have a specific wall jump animation, do not leave the state's field empty.
+                Instead, reference your <b>normal jump</b> animation.
+            </li>
+        </ul>
+        <p>
             <b style="color: red;">Important:</b> Ensure that you reference the newly created animator controller to the animator component field of your character object. You
             can find this field within the character object under <b>CharacterTemplate -> Animatable</b>.
         </p>
