@@ -64,9 +64,7 @@
                 <br>
                 <b>Horizontal Collider:</b> Will be used when your character is <b>floor-sliding</b>.
                 <br>
-                The colliders of the character will be automatically toggled by the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> class.
-                <br><br>
-                <b>Note:</b> For more detailed information on the colliders and their usage, refer to <b>CharacterEnvironmentalQuery.</b><a class="redirect-link" href="CLASSES/SCRIPTING/ENV-QUERY/PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>.
+                The colliders of the character will be automatically toggled by the <b>HumanoidController.</b><a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/try-floor-slide.html">TryFloorSlide</a> method.
             </li>
             <br>
             <li>
@@ -80,9 +78,10 @@
                 <b>Creating and Attaching a Custom Controller:</b>
                 <br>
                 Create a new class that inherits from the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> class.
-                Attach this new custom controller to the root object of your character. This will allow you to extend and customize the character's behaviour as needed. Once the controller
-                script is created and attached to the character, it will attempt to reference the colliders of the character to their respective fields. If the provided prefab is altered in
-                any way, this operation might fail and the script will throw an error; otherwise a message will be logged in the console indicating that the operation was successful.
+                Attach this new custom controller to the root object of your character <b>(CharacterTemplate)</b>. This will allow you to extend and customize the character's behaviour
+                as needed. Once the controller script is created and attached to the character, it will attempt to reference the colliders of the character to their respective fields.
+                If the provided prefab is altered in any way, this operation might fail and the script will throw an error; otherwise a message will be logged in the console indicating
+                that the operation was successful.
             </li>
             <br>
             <li>
@@ -102,8 +101,8 @@
             it, for easier management and to avoid accidental changes.
             <br><br>
             To integrate your preferred animations with the animator controller template, simply assign your desired animation clip to each animation state
-            within the controller. If you wish to exclude a particular animation state, it's recommended to leave it empty rather than removing it altogether.
-            This helps prevent <b>errors</b> or <b>unintended</b> behaviour.
+            within the controller. If you wish to exclude a particular animation state, it's recommended to leave the state's reference empty rather than removing
+            it altogether. This helps prevent <b>errors</b> or <b>unintended</b> behaviour.
             <br><br>
             <b>Some Notes:</b>
         </p>
@@ -112,6 +111,11 @@
                 The system supports both <b>double-jump</b> and <b>wall-jump</b> animations. If your character jumps while in the air or performs a wall jump, the animator will
                 transition to the respective state. If you lack distinct animations for double jumping and/or wall jumping but intend to <b>support these mechanics</b>, do not
                 leave these fields empty; instead, reference your normal jump animation.
+            </li>
+            <br>
+            <li>
+                At this stage, <b>none</b> of your animations will function. If you press play in the editor, your character will remain stationary, displaying the default sprite set in
+                the Sprite Renderer component. This issue will be resolved in the next section of <b>this</b> page.
             </li>
         </ul>
         <p>
@@ -133,6 +137,10 @@
             references may cause unwanted behaviour.
         </p>
         <br>
+        <p>
+            Reference your animations from top to bottom: <b>Jump-Fall -> Jump-Mid (Transition to fall) -> Jump-Rise</b>
+        </p>
+        <br>
         <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/JumpBlendTree.png" alt="JumpSetup">
         <br>
         <h2 id="character-animations-setup-wall-slide-animation">Character Animations Setup - Wall Slide Animation</h2>
@@ -140,8 +148,12 @@
             The <b>Wall Slide</b> animation may need some adjustments to appear visually correct. Ensure that when your character is wall sliding,
             it is properly positioned against the wall. If not, you'll need to adjust your animation clip slightly.
             A common solution is to <b>animate</b> the "<b>Sprites</b>" child object of the <b>CharacterTemplate</b> along with the wall slide
-            animation clip. This can be found under <b>CharacterTemplate -> Animatable -> SpriteHolder -> Sprites</b>. Move it slightly backward once the animation
-            begins. For reference, you can inspect how the wall-slide animation clip of the provided player character is set up.
+            animation clip. This can be found under <b>CharacterTemplate -> Animatable -> SpriteHolder -> Sprites</b>. Move it slightly backward
+            once the animation begins. For reference, you can inspect how the wall-slide animation clip of the provided player character is set up.
+            <br><br>
+            There is no need to fix any potential offsets right now since the character isn't yet configured to move or perform any actions. It is
+            recommended to complete this documentation page first. You can then address any offsets when you reach the <b>Locomotion System</b> page,
+            where all the mechanics will be implemented.
         </p>
         <br>
         <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/WallSlideAnim.png" alt="WallSlideAnim">
@@ -153,6 +165,9 @@
             a ledge is detected and the character engages in a grab or climb. The visual offset resets immediately after the action is completed. You can set this offset
             using the <a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-LEDGE-GRAB/character-ledge-grab.html">LedgeGrab</a> component attached to your character,
             which includes a preset value to assist with initial adjustments.
+            <br><br>
+            As with the wall-slide mechanic, there is no need to rush and fix any offsets at this time. You can address any offsets when you reach the <b>Locomotion System</b>
+            page, where all the mechanics will be implemented.
         </p>
         <br>
         <img src="../IMAGES/_CHARACTER-SETUP/LedgeGrab-ClimbAnim.png" alt="LedgeGrab/ClimbAnim">

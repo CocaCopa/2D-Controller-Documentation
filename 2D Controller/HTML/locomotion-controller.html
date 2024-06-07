@@ -145,6 +145,13 @@
             passing as the parameter your desired condition.
             <br><br>
             <b>Note:</b> Keep an eye on the created <b>'RunTowardsWall'</b> function as it will be utilized again later on.
+            <br><br>
+            <b>Tip: Animation Adjustments</b>
+            <br>
+            To adjust the character's visuals during a wall-slide, go to the <a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-SLIDE/character-slide.html">CharacterSlide</a>
+            component in your character object and set the <b>"WallSlideAcceleration"</b> value to 0. This will keep the character stationary when starting a wall-slide, allowing you to
+            fine-tune the animation if the visuals are misaligned. Additionally, during this adjustment period, you can call the <b>WallSlide</b> function without passing any parameters. This
+            will make your character initiate a wall-slide immediately upon detecting a wall, without any input required.
         </p>
         <br>
         <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/WallSlide.png" alt="WallSlide">
@@ -192,6 +199,13 @@
             horizontal input towards the wall in order to execute the action. To achieve this, simply call the
             <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/PUBLIC-METHODS/ledge-grab.html">LedgeGrab</a>
             method and pass the <b>RunTowardsWall</b> function, which was previously created, as a parameter.
+            <br><br>
+            <b>Tip: Animation Adjustments</b>
+            <br>
+            To adjust the character's visuals during a ledge grab, go to the <a class="redirect-link" href="CLASSES/MANUAL/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>
+            component in your character object <b>(Your custom controller)</b> and set the <b>"MaxLedgeGrabTime"</b> value to a large number. This will allow your character to remain in the
+            ledge-grab state for an extended period. Additionally, during this adjustment period, you can call the <b>LedgeGrab</b> function without passing any parameters. This will make your character
+            initiate a ledge-grab immediately upon detecting a ledge, without any input required.
         </p>
         <br>
         <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/LedgeGrab.png" alt="LedgeGrab">
