@@ -29,6 +29,8 @@
                 <li><a class="redirect-link" href="#character-object-setup">Character Object Setup</a></li>
                 <li><a class="redirect-link" href="#character-animations-setup">Character Animations Setup</a></li>
                 <li><a class="redirect-link" href="#character-animations-setup-single-jump-animation">Character Animations Setup - Single Jump Animation</a></li>
+                <li><a class="redirect-link" href="#character-animations-setup-wall-slide-animation">Character Animations Setup - Wall Slide Animation</a></li>
+                <li><a class="redirect-link" href="#character-animations-setup-ledge-grab-climb-animation">Character Animations Setup - Ledge Grab/Climb Animation</a></li>
                 <li><a class="redirect-link" href="#animation-clips-rebind">Animation Clips Rebind</a></li>
                 <li><a class="redirect-link" href="#mechanics-setup">Mechanics Setup</a></li>
             </ul>
@@ -48,7 +50,7 @@
                 <br>
                 Navigate to the SpriteRenderer component within the <b>CharacterTemplate</b> in your scene. This component can be found under <b>CharacterTemplate -> Animatable -> SpriteHolder -> Sprites</b>.
                 Here, select and reference your desired character sprite to serve as the default appearance of your character. You can also scale the <b>Sprites</b> object if you wish to change
-                the size of your character.
+                the size of your character but <b>NOT</b> the <b>SpriteHolder</b>.
             </li>
             <br>
             <li>
@@ -57,6 +59,12 @@
                 Ensure that your selected sprite aligns properly with the character's colliders. You can find the colliders under <b>CharacterTemplate -> Animatable -> Colliders -> Horizontal / Vertical</b>.
                 Specifically, focus on the <b>Vertical</b> collider as it should have no offset set in the X axis to ensure proper alignment. The <b>Horizontal</b> collider, on the other hand,
                 generally does not require any special adjustment for alignment, but you may still review it for optimal positioning if needed.
+                <br>
+                <b>Vertical Collider:</b> Will be used when your character is in an <b>upright position</b>.
+                <br>
+                <b>Horizontal Collider:</b> Will be used when your character is <b>floor-sliding</b>.
+                <br>
+                The colliders of the character will be automatically toggled by the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> class.
                 <br><br>
                 <b>Note:</b> For more detailed information on the colliders and their usage, refer to <b>CharacterEnvironmentalQuery.</b><a class="redirect-link" href="CLASSES/SCRIPTING/ENV-QUERY/PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a>.
             </li>
@@ -72,14 +80,15 @@
                 <b>Creating and Attaching a Custom Controller:</b>
                 <br>
                 Create a new class that inherits from the <a class="redirect-link" href="CLASSES/SCRIPTING/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> class.
-                Attach this new custom controller to the root object of your character. This will allow you to extend and customize the character's behaviour as needed.
+                Attach this new custom controller to the root object of your character. This will allow you to extend and customize the character's behaviour as needed. Once the controller
+                script is created and attached to the character, it will attempt to reference the colliders of the character to their respective fields. If the provided prefab is altered in
+                any way, this operation might fail and the script will throw an error; otherwise a message will be logged in the console indicating that the operation was successful.
             </li>
             <br>
             <li>
                 <b>Saving Your Character Prefab:</b>
                 <br>
-                Once you've configured the visuals of your character to your satisfaction, save the object as an original prefab. This prefab will serve as the base character object
-                within your project.
+                After configuring your character object, save it as an <b>original prefab</b>. This prefab will act as the base character object for your project.
             </li>
         </ul>
         <br>
@@ -100,24 +109,9 @@
         </p>
         <ul>
             <li>
-                The <b>Wall Slide</b> animation may need some adjustments to appear visually correct. Ensure that when your character is wall sliding,
-                it is properly positioned against the wall. If not, you'll need to adjust your animation clip slightly.
-                <br>
-                A common solution is to <b>animate</b> the "<b>SpriteHolder</b>" child object of the <b>CharacterTemplate</b> along with the wall slide
-                animation clip. This can be found under <b>CharacterTemplate -> Animatable -> SpriteHolder</b>. Move it slightly backward once the animation
-                begins. For reference, you can inspect how the provided player character is set up.
-            </li>
-            <br>
-            <li>
-                The system supports a <b>double jump</b> animation. If your character jumps while in the air, the animator will transition to the double
-                jump state.
-                However, <b>unlike the other states</b>, if you lack a distinct animation for double jumping, do not leave the field empty; instead, reference
-                your <b>normal jump</b> animation.
-            </li>
-            <br>
-            <li>
-                The system also supports a unique animation for <b>wall jumping</b>. If you do not have a specific wall jump animation, do not leave the state's field empty.
-                Instead, reference your <b>normal jump</b> animation.
+                The system supports both <b>double-jump</b> and <b>wall-jump</b> animations. If your character jumps while in the air or performs a wall jump, the animator will
+                transition to the respective state. If you lack distinct animations for double jumping and/or wall jumping but intend to <b>support these mechanics</b>, do not
+                leave these fields empty; instead, reference your normal jump animation.
             </li>
         </ul>
         <p>
@@ -125,7 +119,8 @@
             can find this field within the character object under <b>CharacterTemplate -> Animatable</b>.
         </p>
         <br>
-        <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/AnimatorSetup.png" alt="AnimatorSetup">
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_CHARACTER-SETUP/AnimatorSetup.png" alt="AnimatorSetup">
+        <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/AnimatorReference.png" alt="AnimatorReference">
         <br>
         <h2 id="character-animations-setup-single-jump-animation">Character Animations Setup - Single Jump Animation</h2>
         <p>
@@ -139,6 +134,28 @@
         </p>
         <br>
         <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/JumpBlendTree.png" alt="JumpSetup">
+        <br>
+        <h2 id="character-animations-setup-wall-slide-animation">Character Animations Setup - Wall Slide Animation</h2>
+        <p>
+            The <b>Wall Slide</b> animation may need some adjustments to appear visually correct. Ensure that when your character is wall sliding,
+            it is properly positioned against the wall. If not, you'll need to adjust your animation clip slightly.
+            A common solution is to <b>animate</b> the "<b>Sprites</b>" child object of the <b>CharacterTemplate</b> along with the wall slide
+            animation clip. This can be found under <b>CharacterTemplate -> Animatable -> SpriteHolder -> Sprites</b>. Move it slightly backward once the animation
+            begins. For reference, you can inspect how the wall-slide animation clip of the provided player character is set up.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_CHARACTER-SETUP/WallSlideAnim.png" alt="WallSlideAnim">
+        <br>
+        <h2 id="character-animations-setup-ledge-grab-climb-animation">Character Animations Setup - Ledge Grab/Climb Animation</h2>
+        <p>
+            The ledge grab and climb animations may be offset by a significant margin due to the ledge detection method. To ensure accurate animations, the character's
+            visuals (not the character object's position) will be adjusted to match the detected ledge's height and horizontal position. This adjustment occurs whenever
+            a ledge is detected and the character engages in a grab or climb. The visual offset resets immediately after the action is completed. You can set this offset
+            using the <a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-LEDGE-GRAB/character-ledge-grab.html">LedgeGrab</a> component attached to your character,
+            which includes a preset value to assist with initial adjustments.
+        </p>
+        <br>
+        <img src="../IMAGES/_CHARACTER-SETUP/LedgeGrab-ClimbAnim.png" alt="LedgeGrab/ClimbAnim">
         <br>
         <h2 id="animation-clips-rebind">Animation Clips Rebind</h2>
         <p>

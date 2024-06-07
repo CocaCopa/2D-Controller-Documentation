@@ -40,7 +40,18 @@
             <li class="answer-li">
                 Any new animation added to the animator, needs to be rebinded. Please consult the <b>Animation Clips Rebind</b> section of the
                 <a class="redirect-link" href="character-setup.html">Character Setup</a> documentation page.
-                
+            </li>
+        </ul>
+        <br>
+        <h2>Q: Why is the 'OffsetSprite' property of the LedgeGrab component not affecting the character's position during a ledge grab?</h2>
+        <ul class="answer-division">
+            <li class="answer-li">
+                <b>A:</b>
+            </li>
+            <li class="answer-li">
+                Make sure that you do not animate the "<b>SpriteHolder</b>" child object along with an animation. If you wish to animate or change the position
+                of your character visually, verify that you are altering the position of the "<b>Sprites</b>" object instead which can be found under
+                <b>CharacterTemplate -> Animatable -> SpriteHolder -> Sprites</b>.
             </li>
         </ul>
         <br>
