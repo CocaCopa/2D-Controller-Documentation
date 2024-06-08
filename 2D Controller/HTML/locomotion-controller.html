@@ -56,7 +56,7 @@
         <br>
         <h2>Customization</h2>
         <p>
-            To customize the behavior of the controller, configure the settings of each component in the Inspector.
+            To customize the behaviour of the controller, configure the settings of each component in the Inspector.
             <br>
             Visit the <a class="redirect-link" href="CLASSES/classes.html">Classes</a>
             page and consult the "<b>Manual</b>" documentation in the "<b>Locomotion System</b>" section for each component.
@@ -150,8 +150,8 @@
             <br>
             To adjust the character's visuals during a wall-slide, go to the <a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-SLIDE/character-slide.html">CharacterSlide</a>
             component in your character object and set the <b>"WallSlideAcceleration"</b> value to 0. This will keep the character stationary when starting a wall-slide, allowing you to
-            fine-tune the animation if the visuals are misaligned. Additionally, during this adjustment period, you can call the <b>WallSlide</b> function without passing any parameters. This
-            will make your character initiate a wall-slide immediately upon detecting a wall, without any input required.
+            find the exact offset position the "<b>Sprites</b>" object should be during the animation, if the visuals are misaligned. Additionally, during this adjustment period, you can
+            call the <b>WallSlide</b> function without passing any parameters. This will make your character initiate a wall-slide immediately upon detecting a wall, without any input required.
         </p>
         <br>
         <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/WallSlide.png" alt="WallSlide">
@@ -204,8 +204,9 @@
             <br>
             To adjust the character's visuals during a ledge grab, go to the <a class="redirect-link" href="CLASSES/MANUAL/HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>
             component in your character object <b>(Your custom controller)</b> and set the <b>"MaxLedgeGrabTime"</b> value to a large number. This will allow your character to remain in the
-            ledge-grab state for an extended period. Additionally, during this adjustment period, you can call the <b>LedgeGrab</b> function without passing any parameters. This will make your character
-            initiate a ledge-grab immediately upon detecting a ledge, without any input required.
+            ledge-grab state for an extended period. Additionally, during this adjustment period, you can call the <b>LedgeGrab</b> function without passing any parameters. This will make your
+            character initiate a ledge-grab immediately upon detecting a ledge, without any input required. Finally, you can adjust the "<b>OffsetSprite</b>" value of the <a class="redirect-link" href="CLASSES/MANUAL/CHARACTER-LEDGE-GRAB/character-ledge-grab.html">CharacterLedgeGrab</a>
+            component to fine-tune the visuals of your character during the ledge-grab action.
         </p>
         <br>
         <img class="img-large" src="../IMAGES/_LOCOMOTION-SYSTEM/LedgeGrab.png" alt="LedgeGrab">
@@ -213,7 +214,7 @@
         <br>
         <h2 id="ledge-climb">Ledge Climb</h2>
         <p>
-            The ledge grab mechanic will allow your character to climb a ledge and can be also implemented in two different ways:
+            The ledge climb mechanic will allow your character to climb a ledge and can be also implemented in two different ways:
         </p>
         <ul>
             <li>
