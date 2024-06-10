@@ -24,6 +24,12 @@
             <h1>CharacterEnvironmentalQuery</h1>
             <a class="manual-or-scripting-button" href="../../MANUAL/ENV-QUERY/env-query.html">SWITCH TO MANUAL</a>
         </div>
+        <h2>Overview Note</h2>
+        <p>
+            Some public methods are integrated and managed by the <a class="redirect-link" href="../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>.
+            These methods are generally irrelevant for users relying on the full provided asset, but they are documented in case users wish to use the <b>CharacterEnvironmentalQuery</b>
+            class separately.
+        </p>
         <h2>Description</h2>
         <p>
             The <b>CharacterEnvironmentalQuery</b> class serves as the central hub for managing collision checks within this asset. Some of the scripts in this asset, seeking
@@ -47,12 +53,8 @@
         </p>
         <br>
         <div class="table-division">
-            <span class="table-title">Public Methods</span>
+            <span class="table-title">Public Methods - Direct Usage</span>
             <table>
-                <tr>
-                    <td class="label"><a class="important-link" href="PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a></td>
-                    <td class="description">Sets the collider to be utilized by the class.</td>
-                </tr>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/collider-around-character.html">ColliderAroundCharacter</a></td>
                     <td class="description">Searches for colliders around the character in the specified range.</td>
@@ -70,10 +72,6 @@
                     <td class="description">Checks if there is a wall in front of the character.</td>
                 </tr>
                 <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/ledge-grab-check.html">LedgeGrabCheck</a></td>
-                    <td class="description">Checks if the character is able to grab onto a ledge.</td>
-                </tr>
-                <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/head-collision-check.html">HeadCollisionCheck</a></td>
                     <td class="description">Checks if there is a collider in front of the character's head.</td>
                 </tr>
@@ -84,6 +82,20 @@
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/feet-collision-check.html">FeetCollisionCheck</a></td>
                     <td class="description">Checks if there is a collider in front of the character's feet.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-division">
+            <span class="table-title">Public Methods - Internal Integration</span>
+            <table>
+                <tr>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/set-active-collider.html">SetActiveCollider</a></td>
+                    <td class="description">Sets the collider to be utilized by the class.</td>
+                </tr>
+                <tr>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/ledge-grab-check.html">LedgeGrabCheck</a></td>
+                    <td class="description">Checks if the character is able to grab onto a ledge.</td>
                 </tr>
             </table>
         </div>

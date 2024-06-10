@@ -29,6 +29,13 @@
             <p><b style="text-decoration: underline;">Required</b> Components: <a class="redirect-link" href="../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a>, <a class="redirect-link" href="../ENTITY-HEALTH/entity-health.html">EntityHealth</a> <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody2D.html">Rigidbody2D</a></p>
         </p>
         <br>
+        <h2>Overview Note</h2>
+        <p>
+            Some public methods are integrated and managed by the <a class="redirect-link" href="../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>.
+            These methods are generally irrelevant for users relying on the full provided asset, but they are documented in case users wish to use the <b>CharacterCombat</b>
+            class separately.
+        </p>
+        <br>
         <h2>Description</h2>
         <p>
             This class is specifically crafted to manage the combat mechanics of a humanoid character. Paired with the <a class="redirect-link" href="../ATTACK-SO/attack-so.html">AttackSO</a>
@@ -49,14 +56,6 @@
             and functioning of their velocity and damage.
             <br>
             - In order for any object to take damage within the combat system of the asset, it needs to have the <a class="redirect-link" href="../ENTITY-HEALTH/entity-health.html">EntityHealth</a> component attached to the root game object that you intend to be damageable.
-        </p>
-        <br>
-        <h2>Important Note</h2>
-        <p>
-            Methods and properties highlighted in <span style="color:red; text-decoration:underline;">red</span> need to interact with the class(es) responsible for controlling your character's movement to ensure the correct execution of certain
-            functionalities within the <b>CharacterCombat</b> class.
-            <br>
-            It's worth noting that the <a class="redirect-link" href="../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a> class is already designed to handle such restrictions.
         </p>
         <br>
         <div class="table-division">
@@ -136,12 +135,8 @@
         </div>
 
         <div class="table-division">
-            <span class="table-title">Public Methods</span>
+            <span class="table-title">Public Methods - Direct Usage</span>
             <table>
-                <tr>
-                    <td class="label"><a class="important-link" href="PUBLIC-METHODS/can-move-while-casting-attack.html">CanMoveWhileCastingAttack</a></td>
-                    <td class="description">Manipulates the velocity of the character for the duration of the attack.</td>
-                </tr>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a></td>
                     <td class="description">Performs a normal single or combo attack.</td>
@@ -157,6 +152,16 @@
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/cancel-charge-attack.html">CancelChargeAttack</a></td>
                     <td class="description">Cancels the current charge attack.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-division">
+            <span class="table-title">Public Methods - Internal Integration</span>
+            <table>
+                <tr>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/can-move-while-casting-attack.html">CanMoveWhileCastingAttack</a></td>
+                    <td class="description">Manipulates the velocity of the character for the duration of the attack.</td>
                 </tr>
             </table>
         </div>

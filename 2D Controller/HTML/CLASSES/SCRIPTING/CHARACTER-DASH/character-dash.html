@@ -29,12 +29,18 @@
             <p><b style="text-decoration: underline;">Required</b> Components: <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Rigidbody.html">Rigidbody2D</a>, <a class="redirect-link" href="../ENV-QUERY/env-quey.html">CharacterEnvironmentalQuery</a></p>
         </p>
         <br>
+        <h2>Overview Note</h2>
+        <p>
+            Some public methods are integrated and managed by the <a class="redirect-link" href="../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>.
+            These methods are generally irrelevant for users relying on the full provided asset, but they are documented in case users wish to use the <b>CharacterDash</b>
+            class separately.
+        </p>
+        <br>
         <h2>Description</h2>
         <p>
             This class is designed to handle the behaviour of your character while dashing.
         </p>
         <br>
-
         <div class="table-division">
             <span class="table-title">Public Properties</span>
             <table>
@@ -60,15 +66,21 @@
         </div>
 
         <div class="table-division">
-            <span class="table-title">Public Methods</span>
+            <span class="table-title">Public Methods - Direct Usage</span>
+            <table>
+                <tr>
+                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/dash-force-stop.html">DashForceStop</a></td>
+                    <td>Forces your character to stop the dash action.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-division">
+            <span class="table-title">Public Methods - Internal Integration</span>
             <table>
                 <tr>
                     <td class="label"><a class="public-methods" href="PUBLIC-METHODS/dash.html">Dash</a></td>
                     <td>Makes your character dash.</td>
-                </tr>
-                <tr>
-                    <td class="label"><a class="public-methods" href="PUBLIC-METHODS/dash-force-stop.html">DashForceStop</a></td>
-                    <td>Forces your character to stop the dash action.</td>
                 </tr>
             </table>
         </div>
