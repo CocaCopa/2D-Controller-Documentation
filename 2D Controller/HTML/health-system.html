@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health System</title>
+
+    <link rel="stylesheet" href="../CSS/scroll-bar.css">
+    <link rel="stylesheet" href="../CSS/general.css">
+    <link rel="stylesheet" href="../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../CSS/class-title.css">
+</head>
+<body>
+    <iframe src="navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <div class="page-title">
+            <span>Health System</span>
+        </div>
+        <h2>Introduction</h2>
+        <p>
+            The <a class="redirect-link" href="CLASSES/SCRIPTING/ENTITY-HEALTH/entity-health.html">EntityHealth</a> component is responsible for managing all
+            aspects of your character's health mechanisms.
+            These include:
+        </p>
+        <ul>
+            <b><li>Damage Taken</li></b>
+            <b><li>Death</li></b>
+            <b><li>Respawn</li></b>
+            <b><li>Health Regeneration</li></b>
+        </ul>
+        <p>
+            To <b>modify</b> a character's health points in any way, you will interact directly with the <a class="redirect-link" href="CLASSES/SCRIPTING/ENTITY-HEALTH/entity-health.html">EntityHealth</a>
+            class.
+            <br>
+            For more detailed instructions on how to use the component and the potential outcomes of interacting with it, please refer to its dedicated documentation page. (<a class="redirect-link" href="CLASSES/SCRIPTING/ENTITY-HEALTH/entity-health.html">Scripting</a>)
+        </p>
+        <br>
+        <h2>Take Damage and Death Animations</h2>
+        <p>
+            The <b>"Take-Damage"</b> animation is placed on a separate, additive layer of the animator, providing flexibility for different damage effects. The <b>"Dead"</b>
+            animation is located on the main layer. By default, invoking <a class="redirect-link" href="CLASSES/SCRIPTING/ENTITY-HEALTH/PUBLIC-METHODS/take-damage.html">TakeDamage</a>
+            will cause the character's sprite to flash without disrupting the current animation. If the <b>damage surpasses</b> the character's <b> current health points</b>, the <b>"Dead"</b>
+            animation will activate. These animations can be configured similarly to other animations as detailed on the <a class="redirect-link" href="character-setup.html">Character Setup</a>
+            page.
+        </p>
+        <br>
+        <img class="img-large img-bottom-spacing" src="../IMAGES/_HEALTH-SYSTEM/TakeDamageAnim.png" alt="TakeDamageAnim">
+        <img class="img-large" src="../IMAGES/_HEALTH-SYSTEM/DeadAnim.png" alt="DeadAnim">
+        <br>
+        <h2>Utilizing the damage system</h2>
+        <p>
+            Custom functionality can be added by attaching listeners to the EntityHealth events. The <a class="redirect-link" href="CLASSES/SCRIPTING/ENTITY-HEALTH/EVENTS/on-take-damage.html">OnTakeDamage</a>
+            event is triggered when the character <b>takes damage</b>, allowing you to execute custom logic. If the character <b>dies</b>, both <a class="redirect-link" href="CLASSES/SCRIPTING/ENTITY-HEALTH/EVENTS/on-take-damage.html">OnTakeDamage</a>
+            and <a class="redirect-link" href="CLASSES/SCRIPTING/ENTITY-HEALTH/EVENTS/on-entity-death.html">OnEntityDeath</a> events are triggered, enabling you to implement custom death logic.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_HEALTH-SYSTEM/EventListeners.png" alt="EventListeners">
+        <br>
+        <h2>Respawn your characters</h2>
+        <p>
+            When a character dies, the <a class="redirect-link" href="CLASSES/SCRIPTING/ENTITY-HEALTH/entity-health.html">EntityHealth</a> component is <b>disabled</b>. To reactivate it,
+            it is <b>crucial</b> to invoke the <a class="redirect-link" href="CLASSES/SCRIPTING/ENTITY-HEALTH/PUBLIC-METHODS/entity-respawned.html">EntityRespawned</a> function in your respawn
+            logic once the character is ready to be controlled again. This <b>re-enables</b> the component and <b>triggers</b> the <a class="redirect-link" href="CLASSES/SCRIPTING/ENTITY-HEALTH/EVENTS/on-entity-alive.html">OnEntityAlive</a>
+            event, allowing for the execution of custom logic upon character respawn.
+        </p>
+        <br>
+        <img class="img-large" src="../IMAGES/_HEALTH-SYSTEM/CharacterRespawn.png" alt="CharacterRespawn">
+    </div>
+</body>
+</html>
