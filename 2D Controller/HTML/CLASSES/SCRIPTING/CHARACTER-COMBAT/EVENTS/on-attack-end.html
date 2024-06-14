@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnAttackEnd</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../CSS/navigation-bar.css">
+    <link rel="stylesheet" href="../../../../../CSS/general.css">
+    <link rel="stylesheet" href="../../../../../CSS/table.css">
+    <link rel="stylesheet" href="../../../../../CSS/code-block.css">
+    <link rel="stylesheet" href="../../../../../CSS/scroll-bar.css">
+</head>
+<body>
+    <iframe src="../../../../navigation-bar.html"></iframe>
+
+    <div class="main-page-division">
+        <h1><a class="redirect-link" href="../character-combat.html">CharacterCombat</a>.OnAttackEnd</h1>
+        <h2>Declaration</h2>
+        <p>public event EventHandler&lt;<b>CurrentAttackEventArgs</b>&gt; <b>OnAttackEnd</b>;</p>
+        <br>
+        <div class="table-division">
+            <span class="table-title">Event Arguments</span>
+            <table>
+                <tr>
+                    <td class="label"><b>attackData</b></td>
+                    <td class="description">The ongoing attack's current data.</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <h2>Description</h2>
+        <p>
+            Triggered when the current attack is completed.
+            <br><br>
+            One useful scenario for this event is when the attack ends with the character facing in the opposite direction. By subscribing to this event,
+            you can confirm whether the attack in question alters the character's orientation and subsequently adjust the direction your character is facing.
+        </p>
+        <br>
+        <p>
+            In the example below, a scenario like this will be handled, utilizing the <a class="redirect-link" href="../../HUMANOID-CONTROLLER/humanoid-controller.html">HumanoidController</a>
+            class for connvinience.
+        </p>
+
+<pre class="code-block">
+using UnityEngine;
+using CharacterController2D.Core;
+using CharacterController2D.CombatSystem;
+
+public class Example : <a class="redirect-link" href="../../HUMANOID-CONTROLLER/">HumanoidController</a>
+{
+    [<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/SerializeField.html">SerializeField</a>] private <a class="redirect-link" href="../../ATTACK-SO/attack-so.html">AttackSO</a> exampleAttack;
+    
+    protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html">Start</a>()
+    {
+        characterCombat.<b>OnAttackEnd</b> += CharacterCombat_OnAttackEnd;
+    }
+
+    protected override void <a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a>()
+    {
+        if (<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/Input.GetKeyDown.html">Input.GetKeyDown</a>(<a class="redirect-link" href="https://docs.unity3d.com/ScriptReference/KeyCode.C.html">KeyCode.C</a>))
+        {
+            characterCombat.<a class="redirect-link" href="../PUBLIC-METHODS/perform-normal-attack.html">PerformNormalAttack</a>(exampleAttack);
+        }
+    }
+
+    private void CharacterCombat_OnAttackEnd(object sender, <a class="redirect-link" href="../character-combat.html">CharacterCombat</a>.CurrentAttackEventArgs e)
+    {
+        if (e.attackData == exampleAttack)
+        {
+            <a class="redirect-link" href="../../HUMANOID-CONTROLLER/PUBLIC-METHODS/flip-character.html">FlipCharacter</a>(-transform.right.x);
+        }
+    }
+}
+</pre>
+</div>
+</body>
+</html>

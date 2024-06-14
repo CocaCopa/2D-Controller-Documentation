@@ -39,6 +39,20 @@
         <h2 id="character-object-setup">Character Object Setup</h2>
         <ul>
             <li>
+                <b style="color: red;">IMPORTANT NOTE</b>
+                <br>
+                Please <b>do not alter any names and/or the order</b> of existing child objects within the character prefab to prevent <b>errors or unintended behaviour</b>.
+                <br>
+                You can safely:
+                <ul>
+                    <li>Add new child objects under the "<b>Animatable</b>" object after all existing child objects.</li>
+                    <li>Add new child objects under the "<b>PhysicsCasts</b>" object.</li>
+                    <li>Add new child objects under the "<b>root</b>" object (<b>CharacterTemplate</b>) after all existing child objects.</li>
+                </ul>
+                Altering your character object in any other than the suggested way, the editor will log an <b>error</b>.
+            </li>
+            <br>
+            <li>
                 <b>Importing the CharacterTemplate Prefab:</b>
                 <br>
                 Begin by importing the CharacterTemplate prefab from the provided <a class="redirect-link" href="getting-started.html">Getting Started</a> folder.
